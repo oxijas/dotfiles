@@ -1,0 +1,92 @@
+#!/bin/sh
+
+## Alias section
+alias cp="cp -i"                                                # Confirm before overwriting something
+alias df='df -h'                                                # Human-readable sizes
+alias free='free -m'                                            # Show sizes in MB
+alias gitu='git add . && git commit && git push'
+alias ls='ls --color=always --group-directories-first'
+alias l='ls --color=always -A --group-directories-first'
+alias la='ls -liAFh --group-directories-first --color=always'
+alias ll='ls -liFh --group-directories-first --color=always'
+alias gst='git status'
+alias pac='sudo pacman'
+alias vi='nvim'
+alias fm='vifm'
+alias mi='micro'
+alias please='sudo'
+#alias gh="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gh="git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci)' --abbrev-commit"
+alias gh2="git log --all --decorate --oneline --graph"
+alias gh3="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias cdh="cd ~"
+alias cdc="cd ~/.config"
+#alias mc=". /usr/share/mc/bin/mc-wrapper.sh"
+alias update='sudo pacman -Syyu'
+#Cleanup orphaned packages
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+
+#managing dotfiles
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME'
+dotfiles config --local status.showUntrackedFiles no
+#dotfiles remote add origin git@github.com:oxijas/dotfiles.git
+
+
+#get the error messages from journalctl
+alias jctl="journalctl -p 3 -xb"
+
+export EDITOR="/usr/bin/nvim"
+#export EDITOR="/usr/bin/micro"
+
+#nnn config
+export NNN_BMS='h:~/;c:~/.config/;d:~/Downloads/;e:/etc/;m:~/mydot;u:/usr/share'
+export NNN_PLUG='c:fzcd;f:fzhist;h:hexview;i:imgview;o:fzopen;m:nmount;x:_chmod +x $nnn;S:suedit'
+export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
+export NNN_COLORS='1267'
+export NNN_FIFO=/tmp/nnn.fifo
+export NNN_OPENER=/usr/share/nnn/plugins/nuke
+export CUR_CTX=1
+
+#geen n alias maar een n function
+n ()
+{
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, remove the "export" as in:
+    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    # NOTE: NNN_TMPFILE is fixed, should not be modified
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn -aceR "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
+
+#pfetch
+export PF_INFO="ascii title os kernel wm shell editor uptime memory palette"
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+#fzf
+cd_with_fzf()
+{
+    cd $HOME && cd "$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
+}
+#bindkey '\C-f' "cd_with_fzf\n"

@@ -1,0 +1,337 @@
+#################################################################
+# KEYBOARD BINDINGS FOR ANY TWM
+#################################################################
+
+#myTerm = urxvt
+myTerm="st"
+myEditor=code
+
+
+
+#################################################################
+# SUPER + FUNCTION KEYS
+#################################################################
+
+#Rofi Fullscreen
+super + F11
+    rofi -show run -fullscreen
+
+#Rofi
+super + F12
+    rofi -show run
+
+#################################################################
+# SUPER + ... KEYS
+#################################################################
+
+#terminal standard alacritty
+super + Return
+	alacritty
+
+# cycle through window states
+super + space
+	bspc node -t {floating, tiled}
+
+# Move focus to other monitor 
+# only change focus - let nodes as is
+super + BackSpace
+		bspc monitor -f next
+
+#cycle through desktops
+super {_,shift +} + Tab
+	bspc desktop -f {next, prev}
+
+#Move window to selected desktop FOR QWERTY KEYBOARDS
+super + shift + {1-9,0}
+    id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}}
+
+#Xkill
+super + Escape
+    xkill
+
+# Increase/decrease window gap on focused desktop
+super + bracket{left,right}
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
+
+#focus desktop
+super + {1-9,0}
+	bspc desktop -f '^{1-9,10}'
+
+#dmenu
+super + d
+	dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'Hack:bold:pixelsize=18'
+
+#VS Code
+super + e
+    code
+
+#swap with biggest window on the screen 
+super + g
+	bspc node -s biggest 
+ 
+# Alternate between the tiled and monocle layout:
+# this works because there is only2 layouts: tiled or monocle
+super + m
+ 	bspc desktop --layout next
+
+
+#rofi
+super + p
+    rofi -show 
+
+#duplicate uitzoeken 
+# focus the node for the given path jump
+#super + {p,z,comma,period}
+#	bspc node -f @{parent,brother,first,second}
+
+#kill
+super + q
+	bspc node -c
+
+#Toggle fullscreen of window
+#pseudo tiled not used at all - removed
+super + {s, f, t}
+	bspc node --state {\~floating, \~fullscreen, \~tiled}
+
+
+#new recepticle, it follows the autotiling direction and
+#quit/kill last created recepticle on current desktop
+#better/easier to use preselect
+super + r; {n, q}
+	bspc node {-i, 'any.leaf.!window.local' -k}
+
+#web browser
+super + w
+	firefox
+
+#move node to preselect area
+super + y
+ 	bspc node focused -n newest.!automatic.local
+
+#focus/swap nodes - vim way
+super + {_,shift +}{h,j,k,l}
+	bspc node --{focus,swap} {west,south,north,east}
+
+#focus/swap - arrow keys
+super + {_,shift +}{Left,Down,Up,Right}
+	bspc node --{focus,swap} {west,south,north,east}
+
+#################################################################
+# SUPER + SHIFT KEYS
+#################################################################
+# WATCH OUT OVERLAPPING WITH WM
+
+#Logout
+super + shift + q
+	bspc quit
+
+#Reload bspwm
+super + shift + r
+	~/.config/bspwm/bspwmrc
+
+#reload sxhkd:
+super + shift + s
+	pkill -USR1 -x sxhkd
+
+#reload tint2 bar
+super + shift + i
+	killall -SIGUSR1 tint2
+
+#backup different terminal - safety
+super + shift + t
+	st
+
+# Move focused window to other monitor
+super + shift + {comma,period}
+	bspc node -m {prev,next} --follow
+
+
+#################################################################
+# SUPER + CONTROL KEYS
+#################################################################
+
+# preselect the direction
+super + ctrl + {h,j,k,l}
+	bspc node -p \~{west,south,north,east}
+
+super + ctrl + {Left,Down,Up,Right}
+	bspc node -p \~{west,south,north,east}
+
+# Cancel preselection
+super + ctrl + space
+	bspc node --presel-dir cancel
+
+# Focus parent/brother/first/second for preselection
+#super + ctrl + {e,r,t,y}
+#	bspc node --focus @{parent,brother,first,second}
+
+# preselect the ratio
+super + ctrl + {1-9}
+	bspc node -o 0.{1-9}
+
+# cancel the preselection for the focused desktop
+super + ctrl + shift + space
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
+# set the node flags - nog uitzoeken
+super + ctrl + {m,x,y,z}
+	bspc node -g {marked,locked,sticky,private}
+
+#################################################################
+# CONTROL + ALT KEYS
+#################################################################
+
+#Pulse Audio Control
+ctrl + alt + u
+     pavucontrol
+
+#Rofi theme selector
+ctrl + alt + r
+  rofi-theme-selector
+
+#################################################################
+# ALT + ... KEYS
+#################################################################
+
+#Rotate desktop - switch vertical/horizontal
+alt + space
+	bspc node @/ --rotate {90,-90}
+
+#Gmrun
+alt + F2
+    gmrun
+
+alt + b
+    blueberry
+
+#Midnight Commander
+#niet te verwarren met super+m=monocle mode
+alt + m
+    alacritty -e mc    
+
+#sound
+alt + s
+    pavucontrol
+
+#alternative terminal
+alt + t
+    st
+
+
+#################################################################
+# CONTROL + SHIFT KEYS
+#################################################################
+
+
+#################################################################
+#     SCREENSHOTS
+#################################################################
+
+#Scrot
+Print
+    scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
+
+
+
+#################################################################
+#     FUNCTION KEYS
+#################################################################
+
+
+#################################################################
+#     MULTIMEDIA KEYS
+#################################################################
+
+#Raises volume
+XF86AudioRaiseVolume
+    amixer set Master 10%+
+
+#Lowers volume
+XF86AudioLowerVolume
+    amixer set Master 10%-
+
+#Mute
+XF86AudioMute
+    amixer -D pulse set Master 1+ toggle
+
+#Playerctl works for Pragha, Spotify and others
+#Delete the line for playerctl if you want to use mpc
+#and replace it with the corresponding code
+#mpc works for e.g.ncmpcpp
+#mpc toggle
+#mpc next
+#mpc prev
+#mpc stop
+
+#PLAY
+XF86AudioPlay
+    playerctl play-pause
+
+#Next
+XF86AudioNext
+    playerctl next
+
+#previous
+XF86AudioPrev
+    playerctl previous
+
+#Stop
+XF86AudioStop
+    playerctl stop
+
+#Brightness up
+XF86MonBrightnessUp
+    xbacklight -inc 10
+
+#Brightness down
+XF86MonBrightnessDown
+    xbacklight -dec 10
+
+#########################
+#        POLYBAR        #
+#########################
+
+#Hide polybar
+#super + y
+#    polybar-msg cmd toggle
+
+#################################################################
+#################################################################
+##################   DESKTOP SPECIFIC    ########################
+#################################################################
+#################################################################
+
+# MOVE AROUND
+#################################################################
+#Focus selected desktop FOR QWERTY KEYBOARDS
+#
+#
+#  Principles:
+#  super key    =  1) moves focus/cursor around no movement of 
+#  		   nodes/leaves on screen or between monitors
+#
+#  super+shift  =  1) (vim/arrows) move nodes around,
+#   	 	   grab node/window and move
+#  		   on same screen or 
+#  		   between monitors (comma/period)
+#  		   2) shift can be reverse direction of 
+#  		   super key (e.g. 1-9)
+#  		   3) combo with letters to quickly change state
+#
+#  super+ctrl   =  1) (vim/arrows) resize nodes/windows
+#
+#
+#
+#################################################################
+
+
+#Resize - vim way  -uitgezet om preselect dir te checken
+#super + ctrl + {h,j,k,l}
+#	bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
+
+# Move floating window manually - needs xdotools installed
+# easier with mouse.. deactivated
+#super + alt + {_,shift + }{Left,Down,Up,Right}
+#	~/.config/bspwm/scripts/move-window {_,edge-}{west,south,north,east}
+#
+#
