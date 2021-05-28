@@ -19,6 +19,7 @@ alias please='sudo'
 alias gh="git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci)' --abbrev-commit"
 alias gh2="git log --all --decorate --oneline --graph"
 alias gh3="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gls="git ls-tree --full-tree -r --name-only HEAD |fzf"
 alias cdh="cd ~"
 alias cdc="cd ~/.config"
 #alias mc=". /usr/share/mc/bin/mc-wrapper.sh"
@@ -26,13 +27,14 @@ alias update='sudo pacman -Syyu'
 #Cleanup orphaned packages
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
-#managing dotfiles
+
+# ----=== Managing dotfiles ===----
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME'
 dotfiles config --local status.showUntrackedFiles no
 # doth=history   dots=status
 alias doth="dotfiles log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias dots='dotfiles status'
-
+alias dotls='dotfiles ls-tree --full-tree -r --name-only HEAD |fzf'
 
 #get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
