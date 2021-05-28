@@ -29,7 +29,9 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 #managing dotfiles
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME'
 dotfiles config --local status.showUntrackedFiles no
-#dotfiles remote add origin git@github.com:oxijas/dotfiles.git
+# doth=history   dots=status
+alias doth="dotfiles log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias dots='dotfiles status'
 
 
 #get the error messages from journalctl
