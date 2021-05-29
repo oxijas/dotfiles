@@ -88,7 +88,7 @@ shadows=true
 
 [Layout]
 output_lines=0
-left_panel_size=60
+left_panel_size=74
 top_panel_size=0
 message_visible=false
 keybar_visible=true
