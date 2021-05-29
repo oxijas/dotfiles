@@ -35,6 +35,7 @@ dotfiles config --local status.showUntrackedFiles no
 alias dotl="dotfiles log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias dots='dotfiles status'
 alias dotlt='dotfiles ls-tree --full-tree -r --name-only HEAD |fzf'
+alias dotcom='dotfiles commit'
 
 #get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
