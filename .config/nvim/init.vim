@@ -33,10 +33,11 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	"fzf
 		Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 		Plug 'junegunn/fzf.vim'
-	"colortheme
-		Plug 'drewtempelmeyer/palenight.vim'
 	"sudavim om in sudo mode te saven
 		Plug 'lambdalisue/suda.vim'
+		"iceberg is dark rustgevend colorscheme
+		Plug 'cocopon/iceberg.vim'
+"		Plug 'sonph/onehalf'
 call plug#end()
 
 let mapleader=" "
@@ -64,7 +65,7 @@ set t_Co=256
 
 "theme related settings
 set background=dark
-colorscheme molokai_dark
+colorscheme onehalfdark
 
 " overloop/wordwrap
 "set nowrap
@@ -228,7 +229,8 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 "colortheme
-let g:airline_theme='molokai'
+"let g:airline_theme='molokai'
+let g:airline_theme='onehalfdark'
 
 "this will automatically populate the g:airline symbols
 let g:airline_powerline_fonts = 1
@@ -260,5 +262,3 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 " let g:airline_symbols.linenr = ''
 let g:airline_symbols.linenr = ''
-
-
