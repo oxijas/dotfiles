@@ -29,7 +29,7 @@ cmd chmod_bits %{{
   lf -remote 'send reload'
 }}
 
-cmd fzf_jump ${{
+cmd fzf_dir ${{
   res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
   if [ -f "$res" ]; then
     cmd="select"
@@ -97,6 +97,7 @@ cmd open_config  ${{
 
 
 cmd dotfiles_log ${{
+  clear
   dot log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset \
   %s %Cgreen(%cs) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
 }}
@@ -106,7 +107,7 @@ cmd dotfiles_status !{{
   dot status
 }}
 
-cmd dotfiles_removefromindex !{{
+cmd dotfiles_removefromindex ${{
   clear
   dot status -s
   printf "$fx\n"
@@ -119,7 +120,7 @@ cmd dotfiles_removefromindex !{{
   fi
 }}
 
-cmd dotfiles_add !{{
+cmd dotfiles_add ${{
   set -f
   clear
   printf "$fx\n"
@@ -132,7 +133,58 @@ cmd dotfiles_add !{{
   fi
 }}
 
+cmd dotfiles_commit ${{
+  set -f
+  clear
+  dot status
+  printf "These files will be committed, continue? [y/n]\n"
+  read ans
+  if [ "$ans" = "y" ]; then
+      dot commit
+      dot status;
+  fi
+}}
 
+
+cmd git_log !{{
+  clear
+  git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset \
+  %s %Cgreen(%cs) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+}}
+
+
+cmd git_add ${{
+  set -f
+  clear
+  printf "$fx\n"
+  printf "\n"
+  printf "These files are added, ok? [y/n]\n"
+  read ans
+  if [ "$ans" = "y" ]; then
+      git add $fx
+      git status;
+  fi
+}}
+
+
+cmd git_removefromindex ${{
+  clear
+  git status -s
+  printf "$fx\n"
+  printf "Remove these from the index? [y/n]"
+  read ans
+  if [ "$ans" = "y" ]; then
+    git restore --staged $fx
+    printf "\nNieuwe status\n"
+    git status -s;
+  fi
+}}
+
+
+cmd git_status !{{
+  clear
+  git status
+}}
 
 
 # Bindings=======================================
@@ -153,13 +205,14 @@ map gc cd ~/.config
 map ge cd /etc
 map gg cd ~/git
 map gl cd ~/.local
-map go fasd_dir
+map go fzf_dir
 map gu cd /usr/share
 
 map o
 map ol dotfiles_log
 map os dotfiles_status
 map oa dotfiles_add
+map oc dotfiles_commit
 map or dotfiles_removefromindex
 
 map H top
@@ -172,15 +225,11 @@ map mf mkfile
 map mb chmod_bits
 
 map t
-map t fzf_jump
+map tl git_log
+map ts git_status
+map ta git_add
+map tr git_removefromindex
 
 map d delete
 map x cut
 
-# execute current file (must be executable)
-map x $$f
-map X !$f
-
-# dedicated keys for file opener actions
-#map o &mimeopen $f
-#map O $mimeopen --ask $f
