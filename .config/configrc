@@ -29,13 +29,13 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 
 # ----=== Managing dotfiles ===----
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME'
-dotfiles config --local status.showUntrackedFiles no
+#alias dotfiles='/usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME'
+dot config --local status.showUntrackedFiles no
 # dotl=log   dots=status  dotlt=list tree
-alias dotl="dotfiles log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias dots='dotfiles status'
-alias dotlt='dotfiles ls-tree --full-tree -r --name-only HEAD |fzf'
-alias dotcom='dotfiles commit'
+alias dotl="dot log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias dots='dot status'
+alias dotlt='dot ls-tree --full-tree -r --name-only HEAD |fzf'
+alias dotcom='dot commit'
 
 #get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
@@ -52,37 +52,8 @@ export NNN_FIFO=/tmp/nnn.fifo
 export NNN_OPENER=/usr/share/nnn/plugins/nuke
 export CUR_CTX=1
 
-#geen n alias maar een n function
-n ()
-{
-    # Block nesting of nnn in subshells
-    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-        echo "nnn is already running"
-        return
-    fi
-
-    # The default behaviour is to cd on quit (nnn checks if NNN_TMPFILE is set)
-    # To cd on quit only on ^G, remove the "export" as in:
-    #     NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-    # NOTE: NNN_TMPFILE is fixed, should not be modified
-    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-
-    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
-    # stty start undef
-    # stty stop undef
-    # stty lwrap undef
-    # stty lnext undef
-
-    nnn -aceR "$@"
-
-    if [ -f "$NNN_TMPFILE" ]; then
-            . "$NNN_TMPFILE"
-            rm -f "$NNN_TMPFILE" > /dev/null
-    fi
-}
-
-#pfetch
-export PF_INFO="ascii title os kernel wm shell editor uptime memory palette"
+#nadat ranger --config-copy=all aangeven dat ie niet meer de default eerst moet laden
+export RANGER_LOAD_DEFAULT_RC=FALSE
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then

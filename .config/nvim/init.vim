@@ -1,5 +1,7 @@
 " JGA settings
 
+"de autoload directory wordt automatisch aangemaakt en
+"gevuld met de plugings - niet in dotfiles meenemen.
 " auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -33,6 +35,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 		Plug 'junegunn/fzf.vim'
 	"colortheme
 		Plug 'drewtempelmeyer/palenight.vim'
+	"sudavim om in sudo mode te saven
+		Plug 'lambdalisue/suda.vim'
 call plug#end()
 
 let mapleader=" "
@@ -168,6 +172,9 @@ inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " Better tabbing
 vnoremap < <gv
 vnoremap > >gv
+
+"nnoremap w!! w !sudo tee > /dev/null %
+nnoremap wss w !sudo tee > /dev/null %
 
 "shortcut splitting screen
 "nnoremap <leader>h :split<space>

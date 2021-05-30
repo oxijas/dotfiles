@@ -58,3 +58,4 @@ source ~/.config/configrc
 neofetch
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
