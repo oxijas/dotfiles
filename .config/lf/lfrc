@@ -145,8 +145,29 @@ cmd dotfiles_commit ${{
   fi
 }}
 
+cmd dotfiles_push ${{
+  set -f
+  clear
+  printf "Push dotfiles?[y/n]\n"
+  read ans
+  if [ "$ans" = "y" ]; then
+      dot push
+  fi
+}}
 
-cmd git_log !{{
+cmd dotfiles_amend ${{
+  set -f
+  clear
+  printf "Amend last commit?[y/n]\n"
+  read ans
+  if [ "$ans" = "y" ]; then
+      dot commit --amend
+  fi
+}}
+
+
+#log met $, niet ! want zit al less stop op
+cmd git_log ${{
   #clear
   #git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset \
   #%s %Cgreen(%cs) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
@@ -187,6 +208,7 @@ cmd git_status !{{
   git status
 }}
 
+cmd bulkrename $vidir $fx
 
 # Bindings=======================================
 # Remove some defaults
@@ -213,13 +235,15 @@ map ol dotfiles_log
 map os dotfiles_status
 map oa dotfiles_add
 map oc dotfiles_commit
+map oC dotfiles_amend
 map or dotfiles_removefromindex
+map op dotfiles_push
 
 map H top
 map L bottom
 map J half-down
 map K half-up
-map R reload
+map R bulkrename
 
 
 map m
