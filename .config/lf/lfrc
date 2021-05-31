@@ -203,7 +203,6 @@ map b open_config
 map gb cd /usr/bin
 map gc cd ~/.config
 map ge cd /etc
-map gg cd ~/git
 map gl cd ~/.local
 map go fzf_dir
 map gu cd /usr/share
