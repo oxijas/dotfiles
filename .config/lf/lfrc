@@ -216,7 +216,10 @@ map or dotfiles_removefromindex
 
 map H top
 map L bottom
+map J half-down
+map K half-up
 map R reload
+
 
 map m
 map md mkdir

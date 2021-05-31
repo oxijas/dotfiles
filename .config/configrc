@@ -29,8 +29,7 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 
 # ----=== Managing dotfiles ===----
-#alias dotfiles='/usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME'
-dot config --local status.showUntrackedFiles no
+git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
 # dotl=log   dots=status  dotlt=list tree
 alias dotl='dot log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset" --abbrev-commit'
 alias dots='dot status'
