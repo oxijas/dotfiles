@@ -28,7 +28,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 		Plug 'mcchrish/nnn.vim'
 	"vifm plugin
 		Plug 'vifm/vifm.vim'
-	"nerd commenter
 		Plug 'preservim/nerdcommenter'
 	"fzf
 		Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
@@ -219,7 +218,7 @@ let g:NERDToggleCheckAllLines = 1"
 
 
 " ==== RANGER PLUGIN
-let g:rnvimr_ex_enable = 1
+"let g:rnvimr_ex_enable = 1
 
 " ==== AIRLINE PLUGIN
 " let g:airline_theme = 'wombat'
@@ -230,7 +229,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 "colortheme
 "let g:airline_theme='molokai'
-let g:airline_theme='onehalfdark'
+let g:airline_theme='onedark'
 
 "this will automatically populate the g:airline symbols
 let g:airline_powerline_fonts = 1
