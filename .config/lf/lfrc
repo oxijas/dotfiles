@@ -217,6 +217,7 @@ map '"'
 
 # new mappings ==================================
 map <enter> shell-wait
+map <c-j> !$f
 map . set hidden!
 map DD delete
 
