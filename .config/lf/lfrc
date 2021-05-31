@@ -98,8 +98,7 @@ cmd open_config  ${{
 
 cmd dotfiles_log ${{
   clear
-  dot log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset \
-  %s %Cgreen(%cs) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+  dot log --graph --oneline --abbrev-commit
 }}
 
 cmd dotfiles_status !{{
@@ -217,7 +216,7 @@ map '"'
 
 
 # new mappings ==================================
-map <enter> shell
+map <enter> shell-wait
 map . set hidden!
 map DD delete
 
