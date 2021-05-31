@@ -147,9 +147,10 @@ cmd dotfiles_commit ${{
 
 
 cmd git_log !{{
-  clear
-  git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset \
-  %s %Cgreen(%cs) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+  #clear
+  #git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset \
+  #%s %Cgreen(%cs) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
+  git log --oneline --graph
 }}
 
 

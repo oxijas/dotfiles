@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
 ## Alias section
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias df='df -h'                                                # Human-readable sizes
@@ -42,29 +47,17 @@ alias jctl="journalctl -p 3 -xb"
 export EDITOR="/usr/bin/nvim"
 #export EDITOR="/usr/bin/micro"
 
+#nadat ranger --config-copy=all aangeven dat ie niet meer de default eerst moet laden
+#export RANGER_LOAD_DEFAULT_RC=FALSE
+
 #nnn config
 export NNN_BMS='h:~/;c:~/.config/;d:~/Downloads/;e:/etc/;m:~/mydot;u:/usr/share'
-export NNN_PLUG='c:fzcd;f:fzhist;h:hexview;i:imgview;o:fzopen;m:nmount;x:_chmod +x $nnn;S:suedit'
+export NNN_PLUG='c:fzcd;f:fzhist;h:hexview;i:imgview;o:fzopen;m:nmount;x:_chmod +x $nnn;S:suedit;u:uidgid'
 export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
 export NNN_COLORS='1267'
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_OPENER=/usr/share/nnn/plugins/nuke
 export CUR_CTX=1
-
-#nadat ranger --config-copy=all aangeven dat ie niet meer de default eerst moet laden
-export RANGER_LOAD_DEFAULT_RC=FALSE
-
-# set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
-fi
-
-#fzf
-cd_with_fzf()
-{
-    cd $HOME && cd "$(fd -t d | fzf --preview="tree -L 1 {}" --bind="space:toggle-preview" --preview-window=:hidden)"
-}
-#bindkey '\C-f' "cd_with_fzf\n"
 
 n ()
 {
@@ -86,7 +79,7 @@ n ()
     # stty lwrap undef
     # stty lnext undef
 
-    nnn -aceR "$@"
+    nnn -aceRH "$@"
 
     if [ -f "$NNN_TMPFILE" ]; then
             . "$NNN_TMPFILE"
