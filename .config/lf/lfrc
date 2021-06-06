@@ -144,7 +144,7 @@ cmd dotfiles_commit ${{
   fi
 }}
 
-cmd dotfiles_push ${{
+cmd dotfiles_push !{{
   set -f
   clear
   printf "Push dotfiles?[y/n]\n"
@@ -207,6 +207,28 @@ cmd git_status !{{
   git status
 }}
 
+cmd git_commit ${{
+  set -f
+  clear
+  git status
+  printf "These files will be committed, continue? [y/n]\n"
+  read ans
+  if [ "$ans" = "y" ]; then
+      git commit
+      git status;
+  fi
+}}
+
+cmd git_push !{{
+  set -f
+  clear
+  printf "Push git?[y/n]\n"
+  read ans
+  if [ "$ans" = "y" ]; then
+      git push
+  fi
+}}
+
 cmd bulkrename $vidir $fx
 
 # Bindings=======================================
@@ -252,9 +274,11 @@ map mf mkfile
 map mb chmod_bits
 
 map t
+map tc git_commit
 map tl git_log
 map ts git_status
 map ta git_add
+map tp git_push
 map tr git_removefromindex
 
 map d delete
