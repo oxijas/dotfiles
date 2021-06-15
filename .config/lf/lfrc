@@ -29,6 +29,13 @@ cmd chmod_bits %{{
   lf -remote 'send reload'
 }}
 
+cmd mkhardlink ${{
+  for file in "$fx"
+  do
+    ln $file $file.ln
+  done
+}}
+
 cmd fzf_dir ${{
   res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
   if [ -f "$res" ]; then
@@ -271,6 +278,7 @@ map R bulkrename
 map m
 map md mkdir
 map mf mkfile
+map mh mkhardlink
 map mb chmod_bits
 
 map t

@@ -17,6 +17,7 @@ alias ll='ls -liFh --group-directories-first --color=always'
 alias gst='git status'
 alias pac='sudo pacman'
 alias vi='nvim'
+alias slf='sudo lf'
 alias fm='vifm'
 alias mi='micro'
 alias please='sudo'
@@ -36,7 +37,7 @@ alias pclip='xclip -o -selection clipboard'
 
 # ----=== Managing dotfiles ===----
 git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
-# dotl=log   dots=status  dotlt=list tree
+dotl=log   dots=status  dotlt=list tree
 alias dotl='dot log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset" --abbrev-commit'
 alias dots='dot status'
 alias dotlt='dot ls-tree --full-tree -r --name-only HEAD |fzf'
@@ -98,3 +99,5 @@ lfcd () {
     fi
 }
 bindkey -s '^[o' 'lfcd\n'
+
+
