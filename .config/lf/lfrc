@@ -1,8 +1,15 @@
 # jga lf config file
 
 # basic settings ========================
-set shell sh
-set shellopts '-eu'
+#set shell sh
+#set shellopts '-eu'
+#aanpassingen voor zsh shell met spaties
+set shell zsh
+set shellopts '-euy'
+set ifs "\n"
+set filesep "\n"  # default already
+
+
 set scrolloff 10
 set hidden true
 set ignorecase true
@@ -34,6 +41,7 @@ cmd mkhardlink ${{
   do
     ln $file $file.ln
   done
+  unset file
 }}
 
 cmd fzf_dir ${{
@@ -237,6 +245,26 @@ cmd git_push !{{
 }}
 
 cmd bulkrename $vidir $fx
+
+cmd bulk_rename ${{
+    old="$(mktemp)"
+    new="$(mktemp)"
+    [ -n "$fs" ] && fs="$(ls)"
+    printf '%s\n' "$fs" >"$old"
+    printf '%s\n' "$fs" >"$new"
+    $EDITOR "$new"
+    [ "$(wc -l "$new")" -ne "$(wc -l "$old")" ] && exit
+    paste "$old" "$new" | while IFS= read -r names; do
+        src="$(printf '%s' "$names" | cut -f1)"
+        dst="$(printf '%s' "$names" | cut -f2)"
+        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+            continue
+        fi
+        mv -- "$src" "$dst"
+    done
+    rm -- "$old" "$new"
+    lf -remote "send $id unselect"
+}}
 
 # Bindings=======================================
 # Remove some defaults

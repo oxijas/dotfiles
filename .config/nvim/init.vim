@@ -209,17 +209,6 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1"
 
 
-" ==== NERDTREE
-"let NERDTreeIgnore = ['__pycache__', '\.pyc$', '\.o$', '\.so$', '\.a$', '\.swp', '*\.swp', '\.swo', '\.swn', '\.swh', '\.swm', '\.swl', '\.swk', '\.sw*$', '[a-zA-Z]*egg[a-zA-Z]*', '.DS_Store']
-"let NERDTreeShowHidden=1
-"let g:NERDTreeWinPos="left"
-"let g:NERDTreeDirArrows=0
-
-
-
-" ==== RANGER PLUGIN
-"let g:rnvimr_ex_enable = 1
-
 " ==== AIRLINE PLUGIN
 " let g:airline_theme = 'wombat'
 let g:airline#extensions#tabline#enabled = 1
@@ -261,3 +250,4 @@ let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 " let g:airline_symbols.linenr = ''
 let g:airline_symbols.linenr = ''
+
