@@ -8,3 +8,4 @@ zshrc:~/.zshrc
 mcini:~/.config/mc/ini
 mckeymap:~/.config/mc/mc.keymap
 neovim:~/.config/nvim/init.vim
+herbstluftwm:~/.config/herbstluftwm/autostart
