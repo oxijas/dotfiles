@@ -32,12 +32,12 @@ alias cdc="cd ~/.config"
 alias update='sudo pacman -Syyu'
 #Cleanup orphaned packages
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+
 alias cclip='xclip -selection clipboard'
 alias pclip='xclip -o -selection clipboard'
 
 # ----=== Managing dotfiles ===----
-git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME config --local status.showUntrackedFiles no
-dotl=log   dots=status  dotlt=list tree
+# dot is defined in ~/.local/bin
 alias dotl='dot log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset" --abbrev-commit'
 alias dots='dot status'
 alias dotlt='dot ls-tree --full-tree -r --name-only HEAD |fzf'
