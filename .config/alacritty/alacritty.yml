@@ -248,7 +248,7 @@ Cobalt2: &cobalt2
 
 DarkSide: &darkside
   primary:
-    background: '#222324'
+    background: '#000000'
     foreground: '#BABABA'
 
   # Normal colors
