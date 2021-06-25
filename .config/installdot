@@ -19,4 +19,4 @@ ssh-keygen -t rsa -b 4096 -C "oxijas@gmail.com"
 
 
 paru -Syu
-paru -S lf-git vifm xsel xclip xorg-xsetroot
+paru -S lf-git vifm xsel xclip xorg-xsetroot nerd-fonts-bitstream-vera-mono dmenu
