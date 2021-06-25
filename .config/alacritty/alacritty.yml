@@ -104,26 +104,26 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: Bitstream Vera Sans Mono
+    family: Bitstream Vera Sans Mono NF
     style: Regular
 
   # Bold font face
   bold:
-    family: Bitstream Vera Sans Mono
+    family: Bitstream Vera Sans Mono NF
     style: Bold
 
   # Italic font face
   italic:
-    family: Bitstream Vera Sans Mono
+    family: Bitstream Vera Sans Mono NF
     style: Italic
 
   # Bold italic font face
   bold_italic:
-    family: Bitstream Vera Sans Mono
+    family: Bitstream Vera Sans Mono NF
     style: Bold Italic
 
   # Point size
-  size: 14.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
