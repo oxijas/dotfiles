@@ -1,0 +1,5 @@
+#!/usr/bin/sh
+echo "installs from temporary folder (current folder) into home"
+echo "delete after run"
+
+rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
