@@ -1,0 +1,22 @@
+#!/bin/sh
+
+sudo pacman -S git
+git --global user.email "oxijas@gmail.com"
+git --global user.name "oxijas"
+
+echo "again clone so it is installed in $HOME/.local/share.."
+echo "this is double.."
+git clone --separate-git-dir=$HOME/.local/share/dotfiles git@github.com:oxijas/dotfiles.git tmp
+rsync --recursive --verbose --exclude '.git' tmp/ $HOME/
+rm -r tmp
+
+echo " AUR helper paru install"
+sudo git clone https://aur.archlinux.org/paru.git
+cd paru
+makepkg -si
+
+ssh-keygen -t rsa -b 4096 -C "oxijas@gmail.com"
+
+
+paru -Syu
+paru -S lf-git vifm xsel xclip xorg-xsetroot
