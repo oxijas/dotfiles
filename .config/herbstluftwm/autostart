@@ -20,7 +20,7 @@ Mod=Mod1    # Use alt as the main modifier
 
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
-# zie ook mod-q verderop als close method
+hc keybind $Mod-q close_and_remove
 hc keybind $Mod-Shift-c close
 #hc keybind $Mod-Return spawn "${TERMINAL:-xterm}" # use your $TERMINAL with xterm as fallback
 hc keybind $Mod-Return spawn "${TERMINAL:-alacritty}" # use your $TERMINAL with xterm as fallback
@@ -48,9 +48,9 @@ hc keybind $Mod-Shift-l     shift right
 
 # splitting frames
 # create an empty frame at the specified direction
-hc keybind $Mod-u       split   bottom  0.5
+hc keybind $Mod-u       chain , split bottom 0.5 , focus -e d
 hc keybind $Mod-i       split   auto
-hc keybind $Mod-o       split   right   0.5
+hc keybind $Mod-o       chain , split right 0.5 , focus -e r
 # let the current frame explode into subframes
 hc keybind $Mod-Control-space split explode
 
@@ -88,7 +88,6 @@ hc keybind $Mod-comma  use_index -1 --skip-visible
 # let op remove haalt het frame weg, niet de windows die er in staan
 # die verplaatsen naar ander frame
 hc keybind $Mod-r remove
-hc keybind $Mod-q close_and_remove
 hc keybind $Mod-s floating toggle
 hc keybind $Mod-f fullscreen toggle
 hc keybind $Mod-Shift-f set_attr clients.focus.floating toggle
