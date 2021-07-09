@@ -61,7 +61,11 @@ set t_Co=256
 
 "theme related settings
 set background=dark
-"colorscheme onehalfdark
+
+
+let g:sonokai_style = 'default'
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
 colorscheme sonokai
 
 " overloop/wordwrap
@@ -94,6 +98,9 @@ augroup myau
 augroup END
 "========================== KEYS =====================
 
+"
+"
+"
 "quickly load and reload(source) vimrc file
 nnoremap <leader>ev :edit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -101,9 +108,8 @@ nnoremap <leader>bn :tabnew<cr>
 nnoremap <leader>bc :tabclose<cr>
 
 nnoremap ; :
-
-"Ranger plugin toggle on/off
-"nnoremap <leader>r :RnvimrToggle<CR>
+" remap escape to easier combination
+inoremap jj <Esc>
 
 "NNN override default die ook leader-n is
 nnoremap <leader>n :NnnPicker %:p:h<CR>
@@ -114,49 +120,53 @@ nnoremap <leader>n :NnnPicker %:p:h<CR>
 "fzf snelle toegang
 nnoremap <leader>f Files<cr>
 
-" remap escape to easier combination
-inoremap jj <Esc>
-"inoremap <esc> <nop>
-
-" Nerdtree
-"nnoremap <M-[> :NERDTreeToggle<CR>
-
-" Better windows management
-function! WinMove(key)
-	let t:curwin = winnr()
-	exec "wincmd ".a:key
-	if (t:curwin == winnr())
-		if (match(a:key,'[jk]'))
-			wincmd v
-		else
-			wincmd s
-		endif
-		exec "wincmd ".a:key
-	endif
-endfunction
-noremap <silent> <C-h> :call WinMove('h')<CR>
-nnoremap <silent> <C-j> :call WinMove('j')<CR>
-nnoremap <silent> <C-k> :call WinMove('k')<CR>
-nnoremap <silent> <C-l> :call WinMove('l')<CR>
-
 "custom scrolling
-nnoremap <M-j> <C-d>
-nnoremap <M-k> <C-u>
-
+"nnoremap <M-j> <C-d>
+"nnoremap <M-k> <C-u>
+"
 " Use alt + hjkl to resize windows
-" nnoremap <M-j>    :resize -2<CR>
-" nnoremap <M-k>    :resize +2<CR>
-" nnoremap <M-h>    :vertical resize -2<CR>
-" nnoremap <M-l>    :vertical resize +2<CR>
+nnoremap <M-j>    :resize -2<CR>
+nnoremap <M-k>    :resize +2<CR>
+nnoremap <M-h>    :vertical resize -2<CR>
+nnoremap <M-l>    :vertical resize +2<CR>
 
+"
 " Easy CAPS
 "inoremap <c-u> <ESC>viwUi
 "nnoremap <c-u> viwU<Esc>
 
+"================== BUFFERS - WINDOWS - TABS ===================
+" beter om met buffers/windows te werken dan met tabs, tabs is gewoon een layout
+" de 'tabs' boven in beeld kunnen zowel buffers als tabs weergeven, staat
+" erbij.
+"
+" buffer = in memory of a file
+"					<TAB> = ga naar volgende buffer! dus niet volgende tab
+" window = viewport on a buffer
+"					you can have multiple windows for same buffer
+"					ctrl-w c = close window
+"					ctrl-w v/h = vert/hor split
+"
+" tab    = layout of windows
+"					gt = gotab, ga naar volgende tab
+"					:tabnew = creer tab
+
+
+
 " TAB in normal mode will move to the next buffer
+" niet gekozen <tab> switch window want meestal werken met 1 window
 nnoremap <TAB> :bnext<CR>
 " SHIFT-TAB will go back
 nnoremap <S-TAB> :bprevious<CR>
+"gebruik leader-l om te switchen tussen windows
+"had ook w kunnen gebruiken maar l is makkelijker bereikbaar
+nnoremap <leader>l <C-w>w<CR>
+
+"shortcut splitting screen
+nnoremap <leader>h :split<space>
+nnoremap <leader>v :vsplit<space>
+
+"==============================================================
 
 " Alternate way to save
 nnoremap <C-s> :w<CR>
@@ -167,16 +177,9 @@ nnoremap <C-c> <Esc>
 " <TAB>: completion.
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
-" Better tabbing
-vnoremap < <gv
-vnoremap > >gv
-
 "nnoremap w!! w !sudo tee > /dev/null %
 nnoremap wss w !sudo tee > /dev/null %
 
-"shortcut splitting screen
-"nnoremap <leader>h :split<space>
-"nnoremap <leader>v :vsplit<space>
 
 "moet de cursor regel gehighlight worden? onderstaand zet dit uit.
 highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
@@ -212,12 +215,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
-
 "colortheme
-"let g:airline_theme='molokai'
-"let g:airline_theme='onedark'
 let g:airline_theme='sonokai'
-
 "this will automatically populate the g:airline symbols
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
