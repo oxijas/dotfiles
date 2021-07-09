@@ -26,17 +26,14 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 		Plug 'ryanoasis/vim-devicons'
 	"nnn plugin
 		Plug 'mcchrish/nnn.vim'
-	"vifm plugin
-		Plug 'vifm/vifm.vim'
+	"vifm plugin - niet gebruikt meer beter met nnn
+	 "Plug 'vifm/vifm.vim'
 		Plug 'preservim/nerdcommenter'
-	"fzf
 		Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 		Plug 'junegunn/fzf.vim'
-	"sudavim om in sudo mode te saven
 		Plug 'lambdalisue/suda.vim'
-		"iceberg is dark rustgevend colorscheme
-		Plug 'cocopon/iceberg.vim'
-"		Plug 'sonph/onehalf'
+		Plug 'sainnhe/sonokai'
+
 call plug#end()
 
 let mapleader=" "
@@ -64,7 +61,8 @@ set t_Co=256
 
 "theme related settings
 set background=dark
-colorscheme onehalfdark
+"colorscheme onehalfdark
+colorscheme sonokai
 
 " overloop/wordwrap
 "set nowrap
@@ -110,8 +108,8 @@ nnoremap ; :
 "NNN override default die ook leader-n is
 nnoremap <leader>n :NnnPicker %:p:h<CR>
 
-"VIFM plugin
-nnoremap <leader>v :VsplitVifm<cr>
+"VIFM plugin - niet meer in gebruik
+"nnoremap <leader>v :VsplitVifm<cr>
 
 "fzf snelle toegang
 nnoremap <leader>f Files<cr>
@@ -210,7 +208,6 @@ let g:NERDToggleCheckAllLines = 1"
 
 
 " ==== AIRLINE PLUGIN
-" let g:airline_theme = 'wombat'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -218,7 +215,8 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 "colortheme
 "let g:airline_theme='molokai'
-let g:airline_theme='onedark'
+"let g:airline_theme='onedark'
+let g:airline_theme='sonokai'
 
 "this will automatically populate the g:airline symbols
 let g:airline_powerline_fonts = 1
