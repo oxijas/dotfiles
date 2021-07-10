@@ -84,9 +84,10 @@ augroup myau
 	autocmd BufWritePre * %s/\s\+$//e
 "set filetype for chezmoi templates
 "	autocmd BufRead,BufNewFile *.tmpl setfiletype sh
-	autocmd BufEnter vifmrc.tmpl setfiletype vifm
+	autocmd BufEnter vifmrc setfiletype sh
 	autocmd BufEnter *.tmpl setfiletype sh
 	autocmd BufEnter configrc setfiletype sh
+	autocmd BufEnter lfrc setfiletype sh
 augroup END
 
 "========================== KEYS =====================
@@ -213,11 +214,6 @@ let g:airline_theme='sonokai'
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-
-" Display a short path in statusline: >
-let g:airline_stl_path_style = 'short'
-" Display a only file name in statusline: >
-"  let g:airline_section_c_only_filename = 1
 
 let g:airline_detect_modified=1
 let g:airline_symbols.whitespace = ' '

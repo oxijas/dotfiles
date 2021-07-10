@@ -8,8 +8,6 @@ set shell zsh
 set shellopts '-euy'
 set ifs "\n"
 set filesep "\n"  # default already
-
-
 set scrolloff 10
 set hidden true
 set ignorecase true
@@ -276,7 +274,6 @@ map '"'
 map <enter> shell-wait
 map <c-j> !$f
 map . set hidden!
-map DD delete
 
 map b open_config
 
