@@ -6,6 +6,7 @@ if [ -d "$HOME/.local/bin" ] ; then
 fi
 
 ## Alias section
+alias lf=lfrun      # optioneel
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias df='df -h'                                                # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB
