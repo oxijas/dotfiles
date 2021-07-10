@@ -46,6 +46,8 @@ set clipboard+=unnamedplus
 set termguicolors
 set splitbelow
 set splitright
+" Houdt 5 regels boven/onder vrij bijscrollen
+set scrolloff=5
 
 " Enables 256b colors for terminals
 set t_Co=256
