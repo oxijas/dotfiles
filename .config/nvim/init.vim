@@ -90,6 +90,11 @@ augroup myau
 	autocmd BufEnter lfrc setfiletype sh
 augroup END
 
+augroup vimrc_help
+	  autocmd!
+	  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+augroup END
+
 "========================== KEYS =====================
 nnoremap ; :
 " remap escape to easier combination
@@ -136,6 +141,7 @@ nnoremap <M-l>    :vertical resize +2<CR>
 " :ls om lijst van buffers te zien, % geeft huidige window aan
 " :bd om buffer te sluiten (=bdelete <nr>)
 " :bad <naam> maakt nwe buffer zonder window, naam verplicht (:badd zelfde)
+" :sav <fname> sla op onder een andere naam
 "
 " tab    = layout of windows
 "					gt = gotab, ga naar volgende tab
