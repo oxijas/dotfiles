@@ -64,7 +64,7 @@ set background=dark
 
 
 let g:sonokai_style = 'default'
-let g:sonokai_enable_italic = 1
+let g:sonokai_enable_italic = 0
 let g:sonokai_disable_italic_comment = 1
 colorscheme sonokai
 
@@ -147,6 +147,12 @@ nnoremap <M-l>    :vertical resize +2<CR>
 "					ctrl-w c = close window
 "					ctrl-w v/h = vert/hor split
 "
+" :n <naam> om een nieuwe buffer te openen,naam is optioneel
+" :vnew om verticale split te maken met nieuwe buffer
+" :ls om lijst van buffers te zien, % geeft huidige window aan
+" :bd om buffer te sluiten (=bdelete <nr>)
+" :bad <naam> maakt nwe buffer zonder window, naam verplicht (:badd zelfde)
+"
 " tab    = layout of windows
 "					gt = gotab, ga naar volgende tab
 "					:tabnew = creer tab
@@ -211,6 +217,7 @@ let g:NERDToggleCheckAllLines = 1"
 
 
 " ==== AIRLINE PLUGIN
+" dit geeft boven in beeld ofwel de buffers bij 1 tab ofwel de tabs
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
@@ -218,33 +225,23 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 "colortheme
 let g:airline_theme='sonokai'
 "this will automatically populate the g:airline symbols
-let g:airline_powerline_fonts = 1
+"let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 
-" unicode symbols
-" let g:airline_left_sep = '»'
-" let g:airline_left_sep = '▶'
-" let g:airline_right_sep = '«'
-" let g:airline_right_sep = '◀'
-" let g:airline_symbols.linenr = '␊'
-" let g:airline_symbols.linenr = '␤'
-" let g:airline_symbols.linenr = '¶'
-" let g:airline_symbols.branch = '⎇'
-" let g:airline_symbols.paste = 'ρ'
-" let g:airline_symbols.paste = 'Þ'
-" let g:airline_symbols.paste = '∥'
-" let g:airline_symbols.whitespace = 'Ξ'
-let g:airline_symbols.whitespace = ' '
+" Display a short path in statusline: >
+  let g:airline_stl_path_style = 'short'
+" Display a only file name in statusline: >
+"  let g:airline_section_c_only_filename = 1
 
-" airline symbols
+let g:airline_detect_modified=1
+let g:airline_symbols.whitespace = ' '
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
-" let g:airline_symbols.linenr = ''
-let g:airline_symbols.linenr = ''
-
+let g:airline_symbols.linenr = ' '
+let g:airline_symbols.maxlinenr = ''
