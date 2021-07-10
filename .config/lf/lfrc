@@ -8,7 +8,7 @@ set shell zsh
 set shellopts '-euy'
 set ifs "\n"
 set filesep "\n"  # default already
-set scrolloff 10
+set scrolloff 5
 set hidden true
 set ignorecase true
 set dirfirst on
@@ -42,16 +42,6 @@ cmd mkhardlink ${{
   unset file
 }}
 
-cmd fzf_dir ${{
-  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
-  if [ -f "$res" ]; then
-    cmd="select"
-  elif [ -d "$res" ]; then
-    cmd="cd"
-  fi
-  lf -remote "send $id $cmd \"$res\""
-}}
-
 cmd fasd_dir ${{
    res="$(fasd -dl | grep -iv cache | fzf 2>/dev/tty | sed 's/\\/\\\\/g;s/"/\\"/g')"
    if [ -d "$res" ]; then
@@ -70,7 +60,7 @@ cmd open ${{
     esac
 }}
 
-cmd delete ${{
+cmd delete_files ${{
     set -f
     clear
     printf "$fx\n"
@@ -92,6 +82,22 @@ cmd extract ${{
         *.7z) 7z x $f;;
     esac
 }}
+
+#extract in a folder with name of filename
+cmd extract_dir ${{
+    set -f
+  #create folder name without spaces
+  tmpname=${$f##*/}
+    case $f in
+        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+        *.tar.gz|*.tgz) tar xzvf $f;;
+        *.tar.xz|*.txz) tar xJvf $f;;
+        *.zip) unzip -d $tmpname  $f;;
+        *.rar) unrar x $f;;
+        *.7z) 7z x $f;;
+    esac
+}}
+
 
 
 # compress current file or selected files with zip
@@ -269,20 +275,25 @@ cmd bulk_rename ${{
 map "'"
 map '"'
 
-
 # new mappings ==================================
 map <enter> shell-wait
 map <c-j> !$f
 map . set hidden!
+map d delete_files
+map x cut
 
 map b open_config
 
+#map g - niet leegmaken, behoud gg(top) en gh(home)
 map gb cd /usr/bin
-map gc cd ~/.config
 map ge cd /etc
-map gl cd ~/.local
-map go fzf_dir
 map gu cd /usr/share
+#ook met g maar nu git commands
+map gc git_commit
+map gl git_log
+map gs git_status
+map ga git_add
+map gp git_push
 
 map o
 map ol dotfiles_log
@@ -299,6 +310,9 @@ map J half-down
 map K half-up
 map R bulkrename
 
+map ze extract_dir
+map zE extract
+map zz zip
 
 map m
 map md mkdir
@@ -306,14 +320,6 @@ map mf mkfile
 map mh mkhardlink
 map mb chmod_bits
 
-map t
-map tc git_commit
-map tl git_log
-map ts git_status
-map ta git_add
-map tp git_push
 map tr git_removefromindex
 
-map d delete
-map x cut
 

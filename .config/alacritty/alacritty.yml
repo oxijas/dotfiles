@@ -34,8 +34,8 @@ window:
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
   padding:
-    x: 8
-    y: 8
+    x: 0
+    y: 0
 
   # Spread additional padding evenly around the terminal content.
   #dynamic_padding: false
@@ -100,30 +100,31 @@ scrolling:
 #tabspaces: 8
 
 #family: Bitstream Vera Sans Mono
+#family: Bitstream Vera Sans Mono NF
 # Font configuration
 font:
   # Normal (roman) font face
   normal:
-    family: Bitstream Vera Sans Mono NF
+    family: FiraCode Nerd Font
     style: Regular
 
   # Bold font face
   bold:
-    family: Bitstream Vera Sans Mono NF
+    family: FiraCode Nerd Font
     style: Bold
 
   # Italic font face
   italic:
-    family: Bitstream Vera Sans Mono NF
+    family: FiraCode Nerd Font
     style: Italic
 
   # Bold italic font face
   bold_italic:
-    family: Bitstream Vera Sans Mono NF
+    family: FiraCode Nerd Font
     style: Bold Italic
 
   # Point size
-  size: 12.0
+  size: 14.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
