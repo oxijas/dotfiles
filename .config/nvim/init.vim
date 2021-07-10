@@ -11,29 +11,20 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.config/nvim/autoload/plugged')
-	"status regel onderin scherm - vervangen door airline
-		"Plug 'itchyny/lightline.vim'
-	"status bar
-		Plug 'vim-airline/vim-airline'
-		Plug 'vim-airline/vim-airline-themes'
-		"syntax highlighting many languages
-		Plug 'sheerun/vim-polyglot'
-	"file manageri - prefer to use vifm or NNN
-		"Plug 'scrooloose/NERDTree'
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+	"syntax highlighting many languages
+	Plug 'sheerun/vim-polyglot'
 	"auto pair {{()}}
-		Plug 'jiangmiao/auto-pairs'
-	"spice up iconen for Nerdtree and airline"
-		Plug 'ryanoasis/vim-devicons'
-	"nnn plugin
-		Plug 'mcchrish/nnn.vim'
-	"vifm plugin - niet gebruikt meer beter met nnn
-	 "Plug 'vifm/vifm.vim'
-		Plug 'preservim/nerdcommenter'
-		Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
-		Plug 'junegunn/fzf.vim'
-		Plug 'lambdalisue/suda.vim'
-		Plug 'sainnhe/sonokai'
-
+	Plug 'jiangmiao/auto-pairs'
+	"spice up iconen for Nerdtree and airline
+	Plug 'ryanoasis/vim-devicons'
+	Plug 'mcchrish/nnn.vim'
+	Plug 'preservim/nerdcommenter'
+	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
+	Plug 'junegunn/fzf.vim'
+	Plug 'lambdalisue/suda.vim'
+	Plug 'sainnhe/sonokai'
 call plug#end()
 
 let mapleader=" "
@@ -43,7 +34,7 @@ set mouse=a
 set tabstop=2
 set showtabline=2
 set expandtab
-set number
+set number relativenumber
 set smartindent
 set autoindent
 "multiple buffers kunnen editen zonder ze eerst te saven
@@ -95,18 +86,10 @@ augroup myau
 "	autocmd BufRead,BufNewFile *.tmpl setfiletype sh
 	autocmd BufEnter vifmrc.tmpl setfiletype vifm
 	autocmd BufEnter *.tmpl setfiletype sh
+	autocmd BufEnter configrc setfiletype sh
 augroup END
+
 "========================== KEYS =====================
-
-"
-"
-"
-"quickly load and reload(source) vimrc file
-nnoremap <leader>ev :edit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>bn :tabnew<cr>
-nnoremap <leader>bc :tabclose<cr>
-
 nnoremap ; :
 " remap escape to easier combination
 inoremap jj <Esc>
@@ -194,6 +177,7 @@ highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 let g:nnn#set_defaults_mappings = 0
 " let g:nnn#layout = { 'window': { 'width': 0.5, 'height': 0.95, 'highlight': 'Debug'  }  }
 let g:nnn#layout = { 'right': '~40%'  }
+let g:nnn#command = 'nnn -acRHU'
 
 " ==== NERD COMMENTER
 " Create default mappings
@@ -231,7 +215,7 @@ if !exists('g:airline_symbols')
 endif
 
 " Display a short path in statusline: >
-  let g:airline_stl_path_style = 'short'
+let g:airline_stl_path_style = 'short'
 " Display a only file name in statusline: >
 "  let g:airline_section_c_only_filename = 1
 
