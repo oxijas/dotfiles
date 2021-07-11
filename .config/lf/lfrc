@@ -336,6 +336,7 @@ map gl git_log
 map gs git_status
 map ga git_add
 map gp git_push
+map gr git_removefromindex
 
 map o
 map ol dotfiles_log
@@ -364,6 +365,5 @@ map ms mksoftlink
 map mb chmod_bits
 map mx chmod_toggle_x
 
-map tr git_removefromindex
 
 

@@ -54,7 +54,7 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+setopt shwordsplit
 source ~/.config/configrc
 afetch
 
