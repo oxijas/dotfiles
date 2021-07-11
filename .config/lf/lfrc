@@ -1,5 +1,6 @@
-#!/bin/sh
 # jga lf config file
+
+%[ $LF_LEVEL -eq 1 ] || echo "Warning: You're in a nested lf instance!"
 
 # basic settings ========================
 #set shell sh
@@ -7,7 +8,9 @@
 #aanpassingen voor zsh shell met spaties
 set shell zsh
 set shellopts '-euy'
+#ifs=internal field separator - shell parameter
 set ifs "\n"
+#filesep voor fs en fx
 set filesep "\n"  # default already
 set scrolloff 5
 set hidden true
@@ -18,6 +21,19 @@ set ratios 1:2:3
 set preview true
 set cleaner ~/.config/lf/cleaner
 set previewer ~/.config/lf/preview
+
+
+# f = current file
+# fs = selected file(s)
+# fx = selected file(s), if none then current
+
+# :  read (default)  builtin/custom command
+# $  shell           shell command
+# %  shell-pipe      shell command running with the ui
+# !  shell-wait      shell command waiting for key press
+# &  shell-async     shell command running asynchronously
+
+# set -f = disable file name extension dus als ? of * of [ is found dan niet expanden met alles wat matched
 
 cmd mkdir ${{
   clear
@@ -31,28 +47,30 @@ cmd mkfile %{{ printf "File Name: " ; read ans ; touch $ans }}
 cmd chmod_bits %{{
   printf "Mode Bits: "
   read ans
-  for file in "$fx"
+  for file in ${fx}
   do
     chmod $ans $file
   done
   lf -remote 'send reload'
 }}
 
-cmd chmod_toggle_x %{{
-  for file in "$fx"
+#lf -remote 'send unselect'
+cmd chmod_toggle_x ${{
+  #for FILE in $HOME/.config/myinstall/t*
+  for FILE in ${fx}
   do
-    if [[ -x "$file" ]]
+    if [[ -x "$FILE" ]]
     then
-      chmod -x $file
+      chmod -x $FILE
     else
-      chmod +x $file
+      chmod +x $FILE
     fi
   done
   lf -remote 'send reload'
 }}
 
 cmd mkhardlink ${{
-  for file in "$fx"
+  for file in ${fx}
   do
     ln $file $file.ln
   done
@@ -60,7 +78,7 @@ cmd mkhardlink ${{
 }}
 
 cmd mksoftlink ${{
-  for file in "$fx"
+  for file in ${fx}
   do
     ln -s $file $file.ln
   done
@@ -89,7 +107,7 @@ cmd delete_files ${{
     set -f
     clear
     printf "$fx\n"
-    printf "delete?[y/n]"
+    printf "delete?[y/n] "
     read ans
     [ $ans = "y" ] && rm -rf $fx
 }}
@@ -110,7 +128,6 @@ cmd extract ${{
 
 #extract in a folder with name of filename
 cmd extract_dir ${{
-    set -f
   #create folder name without spaces
   tmpname=${$f##*/}
     case $f in
@@ -301,7 +318,7 @@ map "'"
 map '"'
 
 # new mappings ==================================
-map <enter> shell-wait
+#map <enter> shell-wait
 map <c-j> !$f
 map . set hidden!
 map d delete_files
