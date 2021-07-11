@@ -38,6 +38,19 @@ cmd chmod_bits %{{
   lf -remote 'send reload'
 }}
 
+cmd chmod_toggle_x %{{
+  for file in "$fx"
+  do
+    if [[ -x "$file" ]]
+    then
+      chmod -x $file
+    else
+      chmod +x $file
+    fi
+  done
+  lf -remote 'send reload'
+}}
+
 cmd mkhardlink ${{
   for file in "$fx"
   do
@@ -332,6 +345,7 @@ map mf mkfile
 map mh mkhardlink
 map ms mksoftlink
 map mb chmod_bits
+map mx chmod_toggle_x
 
 map tr git_removefromindex
 
