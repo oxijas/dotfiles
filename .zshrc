@@ -56,6 +56,6 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 source ~/.config/configrc
-neofetch
+afetch
 
 
