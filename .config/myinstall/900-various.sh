@@ -12,6 +12,7 @@ case $ans in
     sudo pacman -S --needed --noconfirm zsh
     chsh -s /usr/bin/zsh  ;;
   2)
+    sudo pacman -S --needed --noconfirm git
     NAME=$(hostname|tr '[:upper:]' '[:lower:]')
     git config --global user.email "oxijas@gmail.com"
     git config --global user.name "$NAME"

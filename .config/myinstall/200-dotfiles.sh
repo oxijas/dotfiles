@@ -1,16 +1,9 @@
 #!/bin/sh
 
 sudo pacman -S --needed --noconfirm git
-NAAM=$(hostname)
+NAAM=$(hostname|tr '[:upper:]' '[:lower:]')
 git --global user.email "oxijas@gmail.com"
-git --global user.name "${NAAM}"
-
-
-#DIR="$HOME/.local/share"
-#if [ -d "$DIR" ]; then
-#  mkdir $HOME/.local
-#fi
-
+git --global user.name "$NAAM"
 
 cd $HOME
 git clone --separate-git-dir=$HOME/.local/share/dotfiles git@github.com:oxijas/dotfiles.git dottmp

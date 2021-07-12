@@ -16,7 +16,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	"syntax highlighting many languages
 	Plug 'sheerun/vim-polyglot'
 	"auto pair {{()}}
-	Plug 'jiangmiao/auto-pairs'
+	"Plug 'jiangmiao/auto-pairs'
 	"spice up iconen for Nerdtree and airline
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'mcchrish/nnn.vim'
