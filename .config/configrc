@@ -5,8 +5,11 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-## Alias section
-alias lf=lfrun      # optioneel
+# Alias section
+if [[ -f "/usr/bin/ueberzug" ]]; then
+    alias lf=lfrun      # optioneeldd
+fi
+
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias df='df -h'                                                # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB
