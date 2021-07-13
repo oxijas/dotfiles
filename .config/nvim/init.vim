@@ -187,9 +187,9 @@ let g:nnn#set_defaults_mappings = 0
 let g:nnn#layout = { 'right': '~40%'  }
 let g:nnn#command = 'nnn -acRHU'
 let g:nnn#action = {
-	\ '<c-t>': 'tab split',
-  \ '<c-h>': 'split',
-  \ '<c-v>': 'vsplit' }
+	\ '<leader>t': 'tab split',
+  \ '<leader>o': 'split',
+  \ '<leader>v': 'vsplit' }
 
 " ==== NERD COMMENTER
 " Create default mappings
