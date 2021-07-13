@@ -123,6 +123,9 @@ nnoremap <M-k>		:resize +2<CR>
 nnoremap <M-h>		:vertical resize -2<CR>
 nnoremap <M-l>		:vertical resize +2<CR>
 
+nnoremap <S-l>	<End>
+nnoremap <S-h>	<Home>
+
 "
 " Easy CAPS
 "inoremap <c-u> <ESC>viwUi
