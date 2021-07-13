@@ -1,5 +1,5 @@
-"  _   ___     _____ __  __
-" | \ | \ \   / /_ _|  \/  |
+"	_	 ___		_____ __  __
+" | \ | \ \   / /_ _|  \/	|
 " |  \| |\ \ / / | || |\/| |
 " | |\  | \ V /  | || |  | |
 " |_| \_|  \_/  |___|_|  |_|
@@ -9,7 +9,7 @@
 " auto-install vim-plug
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	 \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   "autocmd VimEnter * PlugInstall
   "autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
@@ -37,6 +37,7 @@ set ignorecase
 set mouse=a
 
 "je kan dit dynamisch aanpakken door live te veranderen
+"met retab! kan je spaties vervangen door tabs, uitkijken binnen quotes
 set tabstop=3
 set shiftwidth=3
 " zet tabs wel/niet om in spaces automatisch
@@ -117,10 +118,10 @@ nnoremap <leader>n :NnnPicker %:p:h<CR>
 "nnoremap <M-k> <C-u>
 "
 " Use alt + hjkl to resize windows
-nnoremap <M-j>    :resize -2<CR>
-nnoremap <M-k>    :resize +2<CR>
-nnoremap <M-h>    :vertical resize -2<CR>
-nnoremap <M-l>    :vertical resize +2<CR>
+nnoremap <M-j>		:resize -2<CR>
+nnoremap <M-k>		:resize +2<CR>
+nnoremap <M-h>		:vertical resize -2<CR>
+nnoremap <M-l>		:vertical resize +2<CR>
 
 "
 " Easy CAPS
@@ -147,7 +148,7 @@ nnoremap <M-l>    :vertical resize +2<CR>
 " :bad <naam> maakt nwe buffer zonder window, naam verplicht (:badd zelfde)
 " :sav <fname> sla op onder een andere naam
 "
-" tab    = layout of windows
+" tab		= layout of windows
 "					gt = gotab, ga naar volgende tab
 "					:tabnew = creer tab
 
@@ -188,7 +189,6 @@ highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 
 " ==== NNN
 let g:nnn#set_defaults_mappings = 0
-" let g:nnn#layout = { 'window': { 'width': 0.5, 'height': 0.95, 'highlight': 'Debug'  }  }
 let g:nnn#layout = { 'right': '~40%'  }
 let g:nnn#command = 'nnn -acRHU'
 let g:nnn#action = {
@@ -228,7 +228,7 @@ let g:airline_theme='sonokai'
 "this will automatically populate the g:airline symbols
 "let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+	 let g:airline_symbols = {}
 endif
 
 let g:airline_detect_modified=1
