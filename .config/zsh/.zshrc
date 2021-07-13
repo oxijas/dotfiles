@@ -130,8 +130,9 @@ source $ZDOTDIR/completion.zsh
 #fpath="$ZDOTDIR/plugins/jgprompt.zsh $fpath"
 autoload -Uz jgprompt.zsh-theme; jgprompt.zsh-theme
 
-[ ! -f "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntaxhighlighting.zsh" ] &&
+[ ! -f "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] &&
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZDOTDIR/plugins/zsh-syntax-highlighting
+
 
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
