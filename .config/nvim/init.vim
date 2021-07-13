@@ -1,4 +1,9 @@
-" JGA settings
+"     _  ____    _      _   ___     _____ __  __
+"    | |/ ___|  / \    | \ | \ \   / /_ _|  \/  |
+" _  | | |  _  / _ \   |  \| |\ \ / / | || |\/| |
+"| |_| | |_| |/ ___ \  | |\  | \ V /  | || |  | |
+" \___/ \____/_/   \_\ |_| \_|  \_/  |___|_|  |_|
+"
 
 "de autoload directory wordt automatisch aangemaakt en
 "gevuld met de plugings - niet in dotfiles meenemen.
@@ -84,8 +89,6 @@ augroup myau
 	autocmd!
 "remove trailing white spaces
 	autocmd BufWritePre * %s/\s\+$//e
-"set filetype for chezmoi templates
-"	autocmd BufRead,BufNewFile *.tmpl setfiletype sh
 	autocmd BufEnter vifmrc setfiletype sh
 	autocmd BufEnter *.tmpl setfiletype sh
 	autocmd BufEnter configrc setfiletype sh
@@ -104,12 +107,6 @@ inoremap jj <Esc>
 
 "NNN override default die ook leader-n is
 nnoremap <leader>n :NnnPicker %:p:h<CR>
-
-"VIFM plugin - niet meer in gebruik
-"nnoremap <leader>v :VsplitVifm<cr>
-
-"fzf snelle toegang
-nnoremap <leader>f Files<cr>
 
 "custom scrolling
 "nnoremap <M-j> <C-d>
@@ -150,7 +147,6 @@ nnoremap <M-l>    :vertical resize +2<CR>
 "					:tabnew = creer tab
 
 
-
 " TAB in normal mode will move to the next buffer
 " niet gekozen <tab> switch window want meestal werken met 1 window
 nnoremap <TAB> :bnext<CR>
@@ -158,10 +154,13 @@ nnoremap <TAB> :bnext<CR>
 nnoremap <S-TAB> :bprevious<CR>
 "gebruik leader-l om te switchen tussen windows
 "had ook w kunnen gebruiken maar l is makkelijker bereikbaar
-nnoremap <leader>l <C-w>w<CR>
+nnoremap <leader>l :wincmd w<CR>
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
 
 "shortcut splitting screen
-nnoremap <leader>h :split<space>
+nnoremap <leader>o :split<space>
 nnoremap <leader>v :vsplit<space>
 
 "==============================================================
@@ -187,6 +186,10 @@ let g:nnn#set_defaults_mappings = 0
 " let g:nnn#layout = { 'window': { 'width': 0.5, 'height': 0.95, 'highlight': 'Debug'  }  }
 let g:nnn#layout = { 'right': '~40%'  }
 let g:nnn#command = 'nnn -acRHU'
+let g:nnn#action = {
+	\ '<c-t>': 'tab split',
+  \ '<c-h>': 'split',
+  \ '<c-v>': 'vsplit' }
 
 " ==== NERD COMMENTER
 " Create default mappings
