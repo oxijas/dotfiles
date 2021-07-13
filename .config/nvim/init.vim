@@ -35,6 +35,7 @@ let mapleader=" "
 syntax enable
 set ignorecase
 set mouse=a
+set guicursor=i:block
 
 "je kan dit dynamisch aanpakken door live te veranderen
 "met retab! kan je spaties vervangen door tabs, uitkijken binnen quotes
