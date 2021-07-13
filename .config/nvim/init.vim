@@ -1,10 +1,9 @@
-"     _  ____    _      _   ___     _____ __  __
-"    | |/ ___|  / \    | \ | \ \   / /_ _|  \/  |
-" _  | | |  _  / _ \   |  \| |\ \ / / | || |\/| |
-"| |_| | |_| |/ ___ \  | |\  | \ V /  | || |  | |
-" \___/ \____/_/   \_\ |_| \_|  \_/  |___|_|  |_|
+"  _   ___     _____ __  __
+" | \ | \ \   / /_ _|  \/  |
+" |  \| |\ \ / / | || |\/| |
+" | |\  | \ V /  | || |  | |
+" |_| \_|  \_/  |___|_|  |_|
 "
-
 "de autoload directory wordt automatisch aangemaakt en
 "gevuld met de plugings - niet in dotfiles meenemen.
 " auto-install vim-plug
@@ -36,10 +35,15 @@ let mapleader=" "
 syntax enable
 set ignorecase
 set mouse=a
-set tabstop=2
-set showtabline=2
-set expandtab
-set number relativenumber
+
+"je kan dit dynamisch aanpakken door live te veranderen
+set tabstop=3
+set shiftwidth=3
+" zet tabs wel/niet om in spaces automatisch
+" bij wel, kan je met CTRL-V tab alsnog echte tab zetten
+set noexpandtab
+" verschillende betekenis tab, begin regel=shiftwidth, ander tabstop
+" verwarrend daarom uitgezte
 set smartindent
 set autoindent
 "multiple buffers kunnen editen zonder ze eerst te saven
@@ -47,19 +51,20 @@ set hidden
 set encoding=utf-8
 set cmdheight=1
 set cursorline
+" heeft niets met tabs in doc te maken maar of je de tabline bovenin
+" scherm laat zien
+set showtabline=2
 set clipboard+=unnamedplus
 set termguicolors
+set number relativenumber
 set splitbelow
 set splitright
 " Houdt 5 regels boven/onder vrij bijscrollen
 set scrolloff=5
-
 " Enables 256b colors for terminals
 set t_Co=256
-
 "theme related settings
 set background=dark
-
 
 let g:sonokai_style = 'default'
 let g:sonokai_enable_italic = 0
@@ -89,15 +94,14 @@ augroup myau
 	autocmd!
 "remove trailing white spaces
 	autocmd BufWritePre * %s/\s\+$//e
-	autocmd BufEnter vifmrc setfiletype sh
 	autocmd BufEnter *.tmpl setfiletype sh
 	autocmd BufEnter configrc setfiletype sh
 	autocmd BufEnter lfrc setfiletype sh
 augroup END
 
 augroup vimrc_help
-	  autocmd!
-	  autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
+	autocmd!
+	autocmd BufEnter *.txt if &buftype == 'help' | wincmd L | endif
 augroup END
 
 "========================== KEYS =====================
@@ -134,7 +138,8 @@ nnoremap <M-l>    :vertical resize +2<CR>
 "					you can have multiple windows for same buffer
 "					ctrl-w c = close window
 "					ctrl-w v/h = vert/hor split
-"
+" CTRL-W + hoofdletter HJKL verplaatst het hele window
+" bij nnn plugin is <leader>ho een plaating in een nw window
 " :n <naam> om een nieuwe buffer te openen,naam is optioneel
 " :vnew om verticale split te maken met nieuwe buffer
 " :ls om lijst van buffers te zien, % geeft huidige window aan
@@ -172,7 +177,7 @@ nnoremap <C-Q> :wq!<CR>
 " Use control-c instead of escape
 nnoremap <C-c> <Esc>
 " <TAB>: completion.
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
 "nnoremap w!! w !sudo tee > /dev/null %
 nnoremap wss w !sudo tee > /dev/null %
