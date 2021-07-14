@@ -34,9 +34,6 @@ bindkey -M menuselect '^xu' undo                           # Undo
 autoload -U compinit; compinit
 _comp_options+=(globdots) # With hidden files
 
-# Only work with the Zsh function vman
-# See $DOTFILES/zsh/scripts.zsh
-compdef vman="man"
 
 # +---------+
 # | Options |
