@@ -4,7 +4,8 @@ lf:~/.config/lf/lfrc
 vifm:~/.config/vifm/vifmrc
 alacritty:~/.config/alacritty/alacritty.yml
 neofetch:~/.config/neofetch/config.conf
-zshrc:~/.zshrc
+zshrc:~/.config/zsh/.zshrc
+zshenv:~/.zshenv
 mcini:~/.config/mc/ini
 mckeymap:~/.config/mc/mc.keymap
 neovim:~/.config/nvim/init.vim
