@@ -1,13 +1,16 @@
 #!/bin/sh
 
-sudo pacman -S --needed --noconfirm git
-NAAM=$(hostname|tr '[:upper:]' '[:lower:]')
-git --global user.email "oxijas@gmail.com"
-git --global user.name "$NAAM"
+printf "This will overwrite all config files locally, continue? [y/*]\n"
+read ans
 
-cd $HOME
-git clone --separate-git-dir=$HOME/.local/share/dotfiles git@github.com:oxijas/dotfiles.git dottmp
-rsync --recursive --verbose --exclude '.git' dottmp/ $HOME/
-rm -r dottmp
-
-
+if [ $ans != "y" ]; then
+	echo "no action taken"
+	exit 0
+else
+	sudo pacman -S --needed --noconfirm git zsh
+	cd $HOME
+	git clone --separate-git-dir=$HOME/.local/share/dotfiles git@github.com:oxijas/dotfiles.git dottmp
+	rsync --recursive --verbose --exclude '.git' dottmp/ $HOME/
+	rm -r dottmp
+	chsh -s /usr/bin/zsh
+fi
