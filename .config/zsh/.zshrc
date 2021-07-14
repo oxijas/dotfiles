@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 
 fpath=($ZDOTDIR/plugins $fpath)
 
@@ -49,6 +51,9 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 
 
+# USE LF TO SWITCH DIRECTORIES AND BIND IT TO CTRL-O
+bindkey -s '^[o' 'lfcd\n'
+
 # -------------- ALIASES ------------------------
 alias lf=lfrun
 alias cp="cp -i" # Confirm before overwriting something
@@ -85,42 +90,12 @@ alias jctl="journalctl -p 3 -xb"
 
 
 
-# ---------- FUNCTIONS --------------------------
-n () {
-	# Block nesting of nnn in subshells
-	if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
-		echo "nnn is already running"
-		return
-	fi
-	# NOTE: NNN_TMPFILE is fixed, should not be modified
-	export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
-	nnn -aceRHU "$@"
-	if [ -f "$NNN_TMPFILE" ]; then
-		. "$NNN_TMPFILE"
-		rm -f "$NNN_TMPFILE" > /dev/null
-	fi
-}
-
-# USE LF TO SWITCH DIRECTORIES AND BIND IT TO CTRL-O
-lfcd () {
-	tmp="$(mktemp)"
-	lf -last-dir-path="$tmp" "$@"
-	if [ -f "$tmp" ]; then
-		dir="$(cat "$tmp")"
-		rm -f "$tmp"
-		[ -d "$dir" ] && [ "$dir" != "$(pwd)" ] && cd "$dir"
-	fi
-}
-bindkey -s '^[o' 'lfcd\n'
-
+# ---------- SCRIPTS ----------------------------
+source $ZDOTDIR/scripts.zsh
 
 # ---------- PREP FOR GO-LIVE -------------------
 # Lines configured by zsh-newuser-install
 unsetopt autocd beep
-#bindkey -e
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-#zstyle :compinstall filename '/home/jga/.zshrc'
 
 autoload -Uz compinit
 compinit
