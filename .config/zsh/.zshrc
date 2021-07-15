@@ -55,40 +55,7 @@ fi
 bindkey -s '^[o' 'lfcd\n'
 
 # -------------- ALIASES ------------------------
-alias lf=lfrun
-alias cp="cp -i" # Confirm before overwriting something
-alias df='df -h' # Human-readable sizes
-alias free='free -m' # Show sizes in MB
-alias ls='ls --color=always --group-directories-first'
-alias l='ls --color=always -A --group-directories-first'
-alias la='ls -liAFh --group-directories-first --color=always'
-alias ll='ls -liFh --group-directories-first --color=always'
-alias gst='git status'
-alias pac='sudo pacman'
-alias vi='nvim'
-alias slf='sudo lf'
-alias fm='vifm'
-alias mi='micro'
-alias please='sudo'
-alias gh="git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci)' --abbrev-commit"
-alias gh2="git log --all --decorate --oneline --graph"
-alias gh3="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias gls="git ls-tree --full-tree -r --name-only HEAD |fzf"
-alias cdh="cd ~"
-alias cdc="cd ~/.config"
-alias update='sudo pacman -Syyu'
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
-alias cclip='xclip -selection clipboard'
-alias pclip='xclip -o -selection clipboard'
-# dot is defined in ~/.local/bin
-dot config --local status.showUntrackedFiles no
-alias dotl='dot log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset" --abbrev-commit'
-alias dots='dot status'
-alias dotlt='dot ls-tree --full-tree -r --name-only HEAD |fzf'
-alias dotcom='dot commit'
-alias jctl="journalctl -p 3 -xb"
-
-
+source $XDG_CONFIG_HOME/aliases/aliases
 
 # ---------- SCRIPTS ----------------------------
 source $ZDOTDIR/scripts.zsh
@@ -102,7 +69,9 @@ compinit
 _comp_optins+=(globdots) # With hidden files
 source $ZDOTDIR/completion.zsh
 
-#fpath="$ZDOTDIR/plugins/jgprompt.zsh $fpath"
+# option to use bd to go back directories quickly - not used much, just kept in
+#autoload -Uz bd; bd
+
 autoload -Uz jgprompt.zsh-theme; jgprompt.zsh-theme
 
 [ ! -f "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] &&

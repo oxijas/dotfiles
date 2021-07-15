@@ -164,7 +164,7 @@ cmd create_tar_gz %{{
 	read -r ans
 	local fnames=$(realpath --relative-to=$PWD  $fx)
 	#-C needs to be set before the files to be added to the archive
-	tar -czvf $ans.tar.gz -C $PWD $fnames
+	tar -czf $ans.tar.gz -C $PWD $fnames
 	printf "delete sourcefiles [y] : "
 	read ans
 	[ $ans = "y" ] && rm -rf $fx
@@ -226,7 +226,7 @@ cmd dotfiles_commit ${{
 cmd dotfiles_push !{{
   set -f
   clear
-  printf "Push dotfiles?[y/n]\n"
+  printf "Push dotfiles?[y/n]: "
   read ans
   if [ "$ans" = "y" ]; then
 		dot push
@@ -290,7 +290,7 @@ cmd git_commit ${{
   set -f
   clear
   git status
-  printf "These files will be committed, continue? [y/n]\n"
+  printf "These files will be committed, continue? [y/n] :"
   read ans
   if [ "$ans" = "y" ]; then
 		git commit
@@ -301,7 +301,7 @@ cmd git_commit ${{
 cmd git_push !{{
   set -f
   clear
-  printf "Push git?[y/n]\n"
+  printf "Push git?[y/n] :"
   read ans
   if [ "$ans" = "y" ]; then
 		git push

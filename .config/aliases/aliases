@@ -1,0 +1,44 @@
+#!/bin/bash
+
+alias lf=lfrun
+alias cp="cp -i" # Confirm before overwriting something
+alias df='df -h' # Human-readable sizes
+alias free='free -m' # Show sizes in MB
+alias ls='ls --color=always --group-directories-first'
+alias l='ls --color=always -A --group-directories-first'
+alias la='ls -liAFh --group-directories-first --color=always'
+alias ll='ls -liFh --group-directories-first --color=always'
+alias gst='git status'
+alias pac='sudo pacman'
+alias vi='nvim'
+alias slf='sudo lf'
+alias fm='vifm'
+alias mi='micro'
+alias please='sudo'
+alias cdh="cd ~"
+alias cdc="cd ~/.config"
+alias update='sudo pacman -Syyu'
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+alias cclip='xclip -selection clipboard'
+alias pclip='xclip -o -selection clipboard'
+alias jctl="journalctl -p 3 -xb"
+
+# git / dot
+alias ga="git add"
+alias gp="git push"
+alias gc="git commit"
+alias gs="git status"
+alias gl="git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci)' --abbrev-commit"
+alias gl2="git log --all --decorate --oneline --graph"
+alias gl3="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias glt="git ls-tree --full-tree -r --name-only HEAD |fzf"
+# dot is defined in ~/.local/bin
+dot config --local status.showUntrackedFiles no
+alias dotl='dot log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset" --abbrev-commit'
+alias dots='dot status'
+alias dota='dot add'
+alias dotlt='dot ls-tree --full-tree -r --name-only HEAD |fzf'
+alias dotc='dot commit'
+alias dotp='dot push'
+
+
