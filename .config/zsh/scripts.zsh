@@ -44,3 +44,20 @@ ex() {
 		*)			  echo "'$1' cannot be extracted" ;;
 	 esac
 }
+
+mkextract() {
+    for file in "$@"
+    do
+        if [ -f $file ]; then
+            local filename=${file%\.*}
+            mkdir -p $filename
+            cp $file $filename
+            cd $filename
+            ex $file
+            rm -f $file
+            cd -
+        else
+            echo "'$1' is not a valid file"
+        fi
+    done
+}

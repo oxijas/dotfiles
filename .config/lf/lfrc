@@ -11,7 +11,7 @@ set shellopts '-euy'
 #ifs=internal field separator - shell parameter
 set ifs "\n"
 #filesep voor fs en fx
-set filesep "\n"  # default already
+set filesep "\n"	# default already
 set scrolloff 5
 set hidden true
 set ignorecase true
@@ -27,135 +27,153 @@ set previewer ~/.config/lf/preview
 # fs = selected file(s)
 # fx = selected file(s), if none then current
 
-# :  read (default)  builtin/custom command
-# $  shell           shell command
-# %  shell-pipe      shell command running with the ui
-# !  shell-wait      shell command waiting for key press
-# &  shell-async     shell command running asynchronously
+# :  read (default)	builtin/custom command
+# $  shell				shell command
+# %  shell-pipe		shell command running with the ui
+# !  shell-wait		shell command waiting for key press
+# &  shell-async		shell command running asynchronously
 
 # set -f = disable file name extension dus als ? of * of [ is found dan niet expanden met alles wat matched
 
-cmd mkdir ${{
-  clear
-  printf "Directory Name: "
-  read ans
-  mkdir $ans
-}}
+# % = regel onder aan scherm, alleen laatst geprinte regel zichtbaar
+# $ = aparte window openen
 
-cmd mkfile %{{ printf "File Name: " ; read ans ; touch $ans }}
+cmd mkdiir %{{ printf "Directory Name: "; read ans; mkdir $ans; lf -remote 'send reload' }}
+cmd mkfile %{{ printf "File Name: " ; read ans ; touch $ans; lf -remote 'send reload' }}
 
 cmd chmod_bits %{{
   printf "Mode Bits: "
   read ans
   for file in ${fx}
   do
-    chmod $ans $file
+	 chmod $ans $file
   done
   lf -remote 'send reload'
 }}
 
 #lf -remote 'send unselect'
-cmd chmod_toggle_x ${{
-  #for FILE in $HOME/.config/myinstall/t*
+cmd chmod_toggle_x %{{
   for FILE in ${fx}
   do
-    if [[ -x "$FILE" ]]
-    then
-      chmod -x $FILE
-    else
-      chmod +x $FILE
-    fi
+	 if [[ -x "$FILE" ]]
+	 then
+		chmod -x $FILE
+	 else
+		chmod +x $FILE
+	 fi
   done
   lf -remote 'send reload'
 }}
 
-cmd mkhardlink ${{
+cmd mkhardlink %{{
   for file in ${fx}
   do
-    ln $file $file.ln
+	 ln $file $file.ln
   done
   unset file
 }}
 
-cmd mksoftlink ${{
+cmd mksoftlink %{{
   for file in ${fx}
   do
-    ln -s $file $file.ln
+	 ln -s $file $file.ln
   done
   unset file
 }}
 
 cmd fasd_dir ${{
-   res="$(fasd -dl | grep -iv cache | fzf 2>/dev/tty | sed 's/\\/\\\\/g;s/"/\\"/g')"
-   if [ -d "$res" ]; then
-      cmd="cd"
-   else
-      cmd="select"
-   fi
+	res="$(fasd -dl | grep -iv cache | fzf 2>/dev/tty | sed 's/\\/\\\\/g;s/"/\\"/g')"
+	if [ -d "$res" ]; then
+		cmd="cd"
+	else
+		cmd="select"
+	fi
  lf -remote "send $id $cmd \"$res\""
  }}
 
 cmd open ${{
-    test -L $f && f=$(readlink -f $f)
-    case $(file --mime-type $f -b) in
-        text/*) $EDITOR $fx;;
-        *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
-    esac
+	 test -L $f && f=$(readlink -f $f)
+	 case $(file --mime-type $f -b) in
+		  text/*) $EDITOR $fx;;
+		  *) for f in $fx; do setsid $OPENER $f > /dev/null 2> /dev/null & done;;
+	 esac
 }}
 
 cmd delete_files ${{
-    set -f
-    clear
-    printf "$fx\n"
-    printf "delete?[y/n] "
-    read ans
-    [ $ans = "y" ] && rm -rf $fx
+	 set -f
+	 clear
+	 printf "$fx\n"
+	 printf "delete?[y/n] "
+	 read ans
+	 [ $ans = "y" ] && rm -rf $fx
 }}
 
 # extract the current file with the right command
 # (xkcd link: https://xkcd.com/1168/)
-cmd extract ${{
-    set -f
-    case $f in
-        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
-        *.tar.gz|*.tgz) tar xzvf $f;;
-        *.tar.xz|*.txz) tar xJvf $f;;
-        *.zip) unzip $f;;
-        *.rar) unrar x $f;;
-        *.7z) 7z x $f;;
-    esac
+cmd extract %{{
+	if [ -f $f ]; then
+	 	case $f in
+		*.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+		*.tar.gz|*.tgz) tar xzvf $f;;
+		*.tar.xz|*.txz) tar xJvf $f;;
+		*.zip) unzip $f;;
+		*.rar) unrar x $f;;
+		*.7z) 7z x $f;;
+		*.gz) gunzip $f;;
+		*) printf "not a valid archive";;
+		esac
+	else
+		echo "Not a regular file"
+	fi
 }}
 
-#extract in a folder with name of filename
-cmd extract_dir ${{
-  #create folder name without spaces
-  tmpname=${$f##*/}
-    case $f in
-        *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
-        *.tar.gz|*.tgz) tar xzvf $f;;
-        *.tar.xz|*.txz) tar xJvf $f;;
-        *.zip) unzip -d $tmpname  $f;;
-        *.rar) unrar x $f;;
-        *.7z) 7z x $f;;
-    esac
+# ${variable#pattern}  Trim the shortest match from the beginning
+# ${variable##pattern} Trim the longest match from the beginning
+# ${variable%pattern}  Trim the shortest match from the end
+# ${variable%%pattern} Trim the longest match from the end
+# # = start from beginning
+# % = start from end
+
+cmd extract_todir %{{
+	if [ -f $f ]; then
+		fname=${f##*/}
+		dirname=${fname%%.*}
+		mkdir -p $dirname
+		cp $f $dirname/
+		cd $dirname
+		case $f in
+	   *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+	   *.tar.gz|*.tgz) tar xzvf $f;;
+	   *.tar.xz|*.txz) tar xJvf $f;;
+	   *.zip) unzip $f;;
+	   *.rar) unrar x $f;;
+	   *.7z) 7z x $f;;
+	   *.gz) gunzip $f;;
+		*) printf "$fname is not a valid archive";;
+		esac
+		rm -f $fname
+		cd -
+	else
+		echo "Not a regular file"
+	fi
 }}
 
-
-
-# compress current file or selected files with zip
-cmd zip ${{
-    set -f
-    mkdir $1
-    cp -r $fx $1
-    zip -r $1.zip $1
-    rm -rf $1
+# works with subdirs
+cmd create_tar_gz %{{
+	printf "tar.gz filename : "
+	read -r ans
+	local fnames=$(realpath --relative-to=$PWD  $fx)
+	#-C needs to be set before the files to be added to the archive
+	tar -czvf $ans.tar.gz -C $PWD $fnames
+	printf "delete sourcefiles [y] : "
+	read ans
+	[ $ans = "y" ] && rm -rf $fx
+	lf -remote 'send reload'
 }}
-
 
 cmd open_config  ${{
   $EDITOR $(bookmenu -b ~/.config/bookmenu/configs -f fzf -o)
 }}
-
 
 cmd dotfiles_log ${{
   clear
@@ -174,9 +192,9 @@ cmd dotfiles_removefromindex ${{
   printf "Remove these from the index? [y/n]"
   read ans
   if [ "$ans" = "y" ]; then
-    dot restore --staged $fx
-    printf "\nNieuwe status\n"
-    dot status -s;
+	 dot restore --staged $fx
+	 printf "\nNieuwe status\n"
+	 dot status -s;
   fi
 }}
 
@@ -188,8 +206,8 @@ cmd dotfiles_add ${{
   printf "These files are added, ok? [y/n]\n"
   read ans
   if [ "$ans" = "y" ]; then
-      dot add $fx
-      dot status;
+		dot add $fx
+		dot status;
   fi
 }}
 
@@ -200,8 +218,8 @@ cmd dotfiles_commit ${{
   printf "These files will be committed, continue? [y/n]\n"
   read ans
   if [ "$ans" = "y" ]; then
-      dot commit
-      dot status;
+		dot commit
+		dot status;
   fi
 }}
 
@@ -211,7 +229,7 @@ cmd dotfiles_push !{{
   printf "Push dotfiles?[y/n]\n"
   read ans
   if [ "$ans" = "y" ]; then
-      dot push
+		dot push
   fi
 }}
 
@@ -221,7 +239,7 @@ cmd dotfiles_amend ${{
   printf "Amend last commit?[y/n]\n"
   read ans
   if [ "$ans" = "y" ]; then
-      dot commit --amend
+		dot commit --amend
   fi
 }}
 
@@ -243,8 +261,8 @@ cmd git_add ${{
   printf "These files are added, ok? [y/n]\n"
   read ans
   if [ "$ans" = "y" ]; then
-      git add $fx
-      git status;
+		git add $fx
+		git status;
   fi
 }}
 
@@ -256,9 +274,9 @@ cmd git_removefromindex ${{
   printf "Remove these from the index? [y/n]"
   read ans
   if [ "$ans" = "y" ]; then
-    git restore --staged $fx
-    printf "\nNieuwe status\n"
-    git status -s;
+	 git restore --staged $fx
+	 printf "\nNieuwe status\n"
+	 git status -s;
   fi
 }}
 
@@ -275,8 +293,8 @@ cmd git_commit ${{
   printf "These files will be committed, continue? [y/n]\n"
   read ans
   if [ "$ans" = "y" ]; then
-      git commit
-      git status;
+		git commit
+		git status;
   fi
 }}
 
@@ -286,30 +304,30 @@ cmd git_push !{{
   printf "Push git?[y/n]\n"
   read ans
   if [ "$ans" = "y" ]; then
-      git push
+		git push
   fi
 }}
 
 cmd bulkrename $vidir $fx
 
 cmd bulk_rename ${{
-    old="$(mktemp)"
-    new="$(mktemp)"
-    [ -n "$fs" ] && fs="$(ls)"
-    printf '%s\n' "$fs" >"$old"
-    printf '%s\n' "$fs" >"$new"
-    $EDITOR "$new"
-    [ "$(wc -l "$new")" -ne "$(wc -l "$old")" ] && exit
-    paste "$old" "$new" | while IFS= read -r names; do
-        src="$(printf '%s' "$names" | cut -f1)"
-        dst="$(printf '%s' "$names" | cut -f2)"
-        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
-            continue
-        fi
-        mv -- "$src" "$dst"
-    done
-    rm -- "$old" "$new"
-    lf -remote "send $id unselect"
+	 old="$(mktemp)"
+	 new="$(mktemp)"
+	 [ -n "$fs" ] && fs="$(ls)"
+	 printf '%s\n' "$fs" >"$old"
+	 printf '%s\n' "$fs" >"$new"
+	 $EDITOR "$new"
+	 [ "$(wc -l "$new")" -ne "$(wc -l "$old")" ] && exit
+	 paste "$old" "$new" | while IFS= read -r names; do
+		  src="$(printf '%s' "$names" | cut -f1)"
+		  dst="$(printf '%s' "$names" | cut -f2)"
+		  if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+				continue
+		  fi
+		  mv -- "$src" "$dst"
+	 done
+	 rm -- "$old" "$new"
+	 lf -remote "send $id unselect"
 }}
 
 # Bindings=======================================
@@ -353,17 +371,17 @@ map J half-down
 map K half-up
 map R bulkrename
 
-map ze extract_dir
-map zE extract
-map zz zip
-
+# make file commands
 map m
-map md mkdir
+map md mkdiir
 map mf mkfile
 map mh mkhardlink
 map ms mksoftlink
 map mb chmod_bits
 map mx chmod_toggle_x
 
-
-
+# archive commands
+map a
+map ac create_tar_gz
+map ad extract_todir
+map ae extract
