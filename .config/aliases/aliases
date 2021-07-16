@@ -42,5 +42,5 @@ alias dotc='dot commit'
 alias dotp='dot push'
 
 # local to the machine aliases
-[ -f $XDH_CONFIG_HOME/aliases/local ] && source $XDG_CONFIG_HOME/aliases/local
+[ -f $XDG_CONFIG_HOME/aliases/local ] && source $XDG_CONFIG_HOME/aliases/local
 
