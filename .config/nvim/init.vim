@@ -152,6 +152,7 @@ nnoremap <S-h>	<Home>
 " :bd om buffer te sluiten (=bdelete <nr>)
 " :bad <naam> maakt nwe buffer zonder window, naam verplicht (:badd zelfde)
 " :sav <fname> sla op onder een andere naam
+" :close alleen window closen, buffer behouden
 "
 " tab		= layout of windows
 "					gt = gotab, ga naar volgende tab
