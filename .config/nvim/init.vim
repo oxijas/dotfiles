@@ -25,8 +25,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'mcchrish/nnn.vim'
 	Plug 'tpope/vim-commentary'
-	Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
-	Plug 'junegunn/fzf.vim'
+	" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
+	" Plug 'junegunn/fzf.vim'
 	Plug 'lambdalisue/suda.vim'
 	Plug 'sainnhe/sonokai'
 call plug#end()
