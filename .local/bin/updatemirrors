@@ -1,1 +1,4 @@
-reflector --latest 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist
+#!/bin/sh
+
+#reflector --latest 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist
+reflector --verbose -c NL --protocol https --sort rate --latest 10
