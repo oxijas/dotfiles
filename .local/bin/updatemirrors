@@ -1,0 +1,1 @@
+reflector --latest 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist
