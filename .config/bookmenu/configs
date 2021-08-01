@@ -13,3 +13,5 @@ herbstluftwm:~/.config/herbstluftwm/autostart
 spectrwm:~/.config/spectrwm/spectrwm.conf
 promptzsh:~/.config/zsh/plugins/jgprompt.zsh-theme
 scripts:~/.config/zsh/scripts.zsh
+bspwm:~/.config/bspwm/bspwmrc
+sxhkd_bsp:~/.config/bspwm/sxhkd/sxhkdrc

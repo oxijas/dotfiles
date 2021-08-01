@@ -26,11 +26,15 @@ super + F12
 super + Return
 	alacritty
 
-# cycle through window states
+# Cycle door de windows
 super + space
-	bspc node -t {floating, tiled}
+    bspc node --focus next.leaf.local
 
-# Move focus to other monitor
+#swap with biggest window on the screen
+super + backslash
+	bspc node -s biggest.local
+
+# Move foous to other monitor
 # only change focus - let nodes as is
 super + BackSpace
 		bspc monitor -f next
@@ -63,9 +67,6 @@ super + d
 super + e
 	alacritty -e nvim
 
-#swap with biggest wi5ndow on the screen
-super + backslash
-	bspc node -s biggest
 
 # Alternate between the tiled and monocle layout:
 # this works because there is only2 layouts: tiled or monocle
@@ -74,7 +75,7 @@ super + m
 
 #rofi
 super + p
-    rofi -show
+    rofi -show run
 
 #duplicate uitzoeken
 # focus the node for the given path jump
@@ -83,7 +84,7 @@ super + p
 
 #kill current window/node
 super + {q, x}
-	bspc node {-c, -k}
+	bspc node -{c, k}
 
 #Toggle fullscreen of window
 #pseudo tiled not used at all - removed
@@ -123,11 +124,14 @@ super + {_,shift +}{Left,Down,Up,Right}
 
 # alternatief: verplaats het hele window
 # omdat je een kant moet aangeven gekozen voor
-# h en j = linkerkant kleiner/groter
-# k en l = rechterkant kleiner/groter
-super + alt + {h,j,k,l}
-	bspc node -z {left -20 0, left 20 0, right -20 0, right 20 0}
+# h en j = linker window kleiner/groter (=rechter grens +-)
+# k en l = rechter window kleiner/groter (=linker grens +-)
+#super + alt + {h,j,k,l}
+#	bspc node -z {right -20 0, right 20 0, left -20 0, left 20 0}
 
+# Resize
+super + alt + {h,l}
+	~/.config/bspwm/scripts/bspwm_node_resize {west,east}
 
 #################################################################
 # SUPER + SHIFT KEYS

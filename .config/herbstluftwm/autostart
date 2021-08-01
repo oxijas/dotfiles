@@ -15,7 +15,7 @@ hc keyunbind --all
 
 # keybindings
 # if you have a super key you will be much happier with Mod set to Mod4
-Mod=Mod1    # Use alt as the main modifier
+Mod=Mod4    # Use alt as the main modifier
 #Mod=Mod4   # Use the super key as the main modifier
 
 hc keybind $Mod-Shift-q quit
@@ -24,6 +24,7 @@ hc keybind $Mod-q close_and_remove
 hc keybind $Mod-Shift-c close
 #hc keybind $Mod-Return spawn "${TERMINAL:-xterm}" # use your $TERMINAL with xterm as fallback
 hc keybind $Mod-Return spawn "${TERMINAL:-alacritty}" # use your $TERMINAL with xterm as fallback
+hc keybind $Mod-backslash spawn "${TERMINAL:-alacritty}" # use your $TERMINAL with xterm as fallback
 
 # basic movement in tiling and floating mode
 # focusing clients
