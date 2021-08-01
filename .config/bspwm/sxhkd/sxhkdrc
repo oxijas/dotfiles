@@ -3,10 +3,8 @@
 #################################################################
 
 #myTerm = urxvt
-myTerm="st"
+myTerm="alacritty"
 myEditor=code
-
-
 
 #################################################################
 # SUPER + FUNCTION KEYS
@@ -32,7 +30,7 @@ super + Return
 super + space
 	bspc node -t {floating, tiled}
 
-# Move focus to other monitor 
+# Move focus to other monitor
 # only change focus - let nodes as is
 super + BackSpace
 		bspc monitor -f next
@@ -45,13 +43,13 @@ super {_,shift +} + Tab
 super + shift + {1-9,0}
     id=$(bspc query -N -n); bspc node -d ^{1-9,10}; bspc node -f ${id}}
 
-#Xkill
+#Xkill : selecteer met muis window to kill
 super + Escape
     xkill
 
 # Increase/decrease window gap on focused desktop
 super + bracket{left,right}
-	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {-,+} 5 ))
+	bspc config -d focused window_gap $((`bspc config -d focused window_gap` {+,-} 5 ))
 
 #focus desktop
 super + {1-9,0}
@@ -59,34 +57,33 @@ super + {1-9,0}
 
 #dmenu
 super + d
-	dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'Hack:bold:pixelsize=18'
+	dmenu_run -i -nb '#191919' -nf '#fea63c' -sb '#fea63c' -sf '#191919' -fn 'FiraCode Nerd Font:pixelsize=20'
 
 #VS Code
 super + e
-    code
+	alacritty -e nvim
 
-#swap with biggest window on the screen 
-super + g
-	bspc node -s biggest 
- 
+#swap with biggest wi5ndow on the screen
+super + backslash
+	bspc node -s biggest
+
 # Alternate between the tiled and monocle layout:
 # this works because there is only2 layouts: tiled or monocle
 super + m
  	bspc desktop --layout next
 
-
 #rofi
 super + p
-    rofi -show 
+    rofi -show
 
-#duplicate uitzoeken 
+#duplicate uitzoeken
 # focus the node for the given path jump
 #super + {p,z,comma,period}
 #	bspc node -f @{parent,brother,first,second}
 
-#kill
-super + q
-	bspc node -c
+#kill current window/node
+super + {q, x}
+	bspc node {-c, -k}
 
 #Toggle fullscreen of window
 #pseudo tiled not used at all - removed
@@ -117,6 +114,22 @@ super + {_,shift +}{Left,Down,Up,Right}
 	bspc node --{focus,swap} {west,south,north,east}
 
 #################################################################
+# SUPER + ALT KEYS
+#################################################################
+
+#resize the windows
+#super + alt + {h,j,k,l}
+#	bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
+
+# alternatief: verplaats het hele window
+# omdat je een kant moet aangeven gekozen voor
+# h en j = linkerkant kleiner/groter
+# k en l = rechterkant kleiner/groter
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0, left 20 0, right -20 0, right 20 0}
+
+
+#################################################################
 # SUPER + SHIFT KEYS
 #################################################################
 # WATCH OUT OVERLAPPING WITH WM
@@ -128,16 +141,20 @@ super + shift + q
 #Reload bspwm
 super + shift + r
 	~/.config/bspwm/bspwmrc
+# of bspc wm -r  is beter?
 
 #reload sxhkd:
 super + shift + s
 	pkill -USR1 -x sxhkd
 
-#reload tint2 bar
-super + shift + i
-	killall -SIGUSR1 tint2
 
-#backup different terminal - safety
+
+#reload tint2 bar
+#super + shift + i
+#	killall -SIGUSR1 tint2
+
+#backup to start different terminal - safety
+#in case alacritty not installed
 super + shift + t
 	st
 
@@ -207,7 +224,7 @@ alt + b
 #Midnight Commander
 #niet te verwarren met super+m=monocle mode
 alt + m
-    alacritty -e mc    
+    alacritty -e mc
 
 #sound
 alt + s
@@ -307,14 +324,14 @@ XF86MonBrightnessDown
 #
 #
 #  Principles:
-#  super key    =  1) moves focus/cursor around no movement of 
+#  super key    =  1) moves focus/cursor around no movement of
 #  		   nodes/leaves on screen or between monitors
 #
 #  super+shift  =  1) (vim/arrows) move nodes around,
 #   	 	   grab node/window and move
-#  		   on same screen or 
+#  		   on same screen or
 #  		   between monitors (comma/period)
-#  		   2) shift can be reverse direction of 
+#  		   2) shift can be reverse direction of
 #  		   super key (e.g. 1-9)
 #  		   3) combo with letters to quickly change state
 #

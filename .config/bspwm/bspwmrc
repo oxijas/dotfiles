@@ -14,7 +14,7 @@ _check() {
 #set resolution
 #$HOME/.screenlayout/setres.h
 #$HOME/.screenlayout/HP.sh
-
+xrandr --output Virtual-1 --mode 1920x1080
 #xbacklight -d eDP-1 -set 100%
 #xrandr --output eDP-1 --brightness 1.1
 
@@ -22,21 +22,23 @@ _check() {
 setxkbmap -option caps:super
 
 #polybar
-$HOME/.config/polybar/launch.sh &
+pgrep -x polybar && pkill -x polybar
+#$HOME/.config/polybar/launch.sh &
+polybar jga &
 
 #alternative tint2 panel
 #killall -SIGUSR1 tint2
-#tint2 & 
+#tint2 &
 
 #Some ways to set your wallpaper besides variety or nitrogen
 #feh --bg-fill $HOME/Pictures/citylife.jpg &
-feh --bg-fill $HOME/.config/wallpaper/worldmap.jpg &
-wal -i $HOME/Downloads/jp-green.jpg &
+#wal -i $HOME/Downloads/jp-green.jpg &
+nitrogen --restore &
 
 xsetroot -cursor_name left_ptr &
-pgrep -x sxhdk && pkill -x sxhdk
 
 #killall sxhdk
+pgrep -x sxhkd && pkill -x sxhdk
 run sxhkd -c ~/.config/bspwm/sxhkd/sxhkdrc &
 
 #conky -c $HOME/.config/bspwm/system-overview &
@@ -54,11 +56,11 @@ picom --experimental-backends &
 
 #bspc config border_radius       8
 bspc config border_width         0
-bspc config window_gap           10
-bspc config top_padding          30
-bspc config bottom_padding       10
-bspc config left_padding         10
-bspc config right_padding        10
+bspc config window_gap           5
+bspc config top_padding          5
+bspc config bottom_padding       5
+bspc config left_padding         5
+bspc config right_padding        5
 bspc config single_monocle       true
 bspc config click_to_focus       true
 bspc config split_ratio          0.52

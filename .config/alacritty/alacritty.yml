@@ -99,32 +99,35 @@ scrolling:
 # change the `it` value in terminfo when altering this setting.
 #tabspaces: 8
 
+#werkende font spelling
 #family: Bitstream Vera Sans Mono
 #family: Bitstream Vera Sans Mono NF
+#family: Terminus
+#family: FiraCode Nerd Font
 # Font configuration
 font:
   # Normal (roman) font face
   normal:
-    family: FiraCode Nerd Font
+    family: CaskaydiaCove NF
     style: Regular
 
   # Bold font face
   bold:
-    family: FiraCode Nerd Font
-    style: Medium
+    family: CaskaydiaCove NF
+    style: Bold
 
   # Italic font face
   italic:
-    family: FiraCode Nerd Font
+    family: CaskaydiaCove NF
     style: Italic
 
   # Bold italic font face
   bold_italic:
-    family: FiraCode Nerd Font
+    family: CaskaydiaCove NF
     style: Bold Italic
 
   # Point size
-  size: 14.0
+  size: 15.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
