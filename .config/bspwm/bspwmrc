@@ -37,15 +37,12 @@ nitrogen --restore &
 
 xsetroot -cursor_name left_ptr &
 
-#~/.config/bspwm/masterlayout.sh &
-#bspc config external_rules_command  ~/.config/bspwm/external_rules.sh
+~/.config/bspwm/masterlayout.sh &
+bspc config external_rules_command  ~/.config/bspwm/external_rules.sh
 
 #killall sxhdk
 pgrep -x sxhkd && pkill -x sxhdk
 run sxhkd -c ~/.config/bspwm/sxhkd/sxhkdrc &
-
-#conky -c $HOME/.config/bspwm/system-overview &
-#blueberry-tray &
 
 # automatisch gebruik picom config in .config/picom.picom.conf
 # dit is de https://github.com/ibhagwan/picom versie met rounded corners
@@ -78,7 +75,7 @@ bspc config pointer_action2 resize_side
 bspc config pointer_action3 resize_corner
 bspc config remove_disabled_monitors true
 bspc config merge_overlapping_monitors true
-#bspc config removal_adjustment false
+bspc config removal_adjustment false
 
 #BSPWM coloring
 bspc config normal_border_color		"#4c566a"

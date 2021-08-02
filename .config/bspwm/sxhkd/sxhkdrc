@@ -26,7 +26,7 @@ super + F12
 super + Return
 	alacritty
 
-# Cycle door de windows
+# Cycle windows
 super + space
     bspc node --focus next.leaf.local
 
@@ -34,10 +34,13 @@ super + space
 super + backslash
 	bspc node -s biggest.local
 
-# Move foous to other monitor
-# only change focus - let nodes as is
 super + BackSpace
-		bspc monitor -f next
+	bspc node --focus biggest.local
+
+# Move focus to other monitor
+# only change focus - let nodes as is
+#super + BackSpace
+#		bspc monitor -f next
 
 #cycle through desktops
 super {_,shift +} + Tab
@@ -138,20 +141,13 @@ super + alt + {h,l}
 #################################################################
 # WATCH OUT OVERLAPPING WITH WM
 
-#Logout
-super + shift + q
-	bspc quit
-
-#Reload bspwm
-super + shift + r
-	~/.config/bspwm/bspwmrc
-# of bspc wm -r  is beter?
+#Logout and reload
+super + shift + {q, r}
+	bspc {quit, wm -r}
 
 #reload sxhkd:
 super + shift + s
 	pkill -USR1 -x sxhkd
-
-
 
 #reload tint2 bar
 #super + shift + i
@@ -166,6 +162,9 @@ super + shift + t
 super + shift + {comma,period}
 	bspc node -m {prev,next} --follow
 
+# Promote to master
+super + shift + space
+    bspc node -s biggest.local
 
 #################################################################
 # SUPER + CONTROL KEYS
