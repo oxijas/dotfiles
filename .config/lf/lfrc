@@ -346,6 +346,7 @@ map b open_config
 
 #map g - niet leegmaken, behoud gg(top) en gh(home)
 map gb cd /usr/bin
+map g. cd ~/.config
 map ge cd /etc
 map gu cd /usr/share
 #ook met g maar nu git commands
