@@ -86,8 +86,8 @@ super + p
 #	bspc node -f @{parent,brother,first,second}
 
 #kill current window/node
-super + {q, x}
-	bspc node -{c, k}
+super + {q,x}
+	bspc node -{c,k}
 
 #Toggle fullscreen of window
 #pseudo tiled not used at all - removed

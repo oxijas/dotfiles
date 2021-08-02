@@ -12,23 +12,25 @@ _check() {
 }
 
 #set resolution
+# best to set in lightdm
 #$HOME/.screenlayout/setres.h
 #$HOME/.screenlayout/HP.sh
-xrandr --output Virtual-1 --mode 1920x1080
+#xrandr --output Virtual-1 --mode 1920x1080
 #xbacklight -d eDP-1 -set 100%
 #xrandr --output eDP-1 --brightness 1.1
 
 #Assign capslock key as an additional superkey
 setxkbmap -option caps:super
 
-#polybar
-pgrep -x polybar && pkill -x polybar
-#$HOME/.config/polybar/launch.sh &
-polybar jga &
+#killall sxhdk and restart
+pgrep -x sxhkd > /dev/null || sxhkd -c ~/.config/bspwm/sxhkd/sxhkdrc &
 
-#alternative tint2 panel
-#killall -SIGUSR1 tint2
-#tint2 &
+# automatisch gebruik picom config in .config/picom.picom.conf
+# dit is de https://github.com/ibhagwan/picom versie met rounded corners
+# wel blur uitzetten - trekt zware wissel
+pgrep -x picom && pkill -x picom
+picom --experimental-backends &
+
 
 #Some ways to set your wallpaper besides variety or nitrogen
 #feh --bg-fill $HOME/Pictures/citylife.jpg &
@@ -37,27 +39,21 @@ nitrogen --restore &
 
 xsetroot -cursor_name left_ptr &
 
-~/.config/bspwm/masterlayout.sh &
-bspc config external_rules_command  ~/.config/bspwm/external_rules.sh
+#polybar
+#pgrep -x polybar && pkill -x polybar
+~/.config/polybar/launch.sh &
 
-#killall sxhdk
-pgrep -x sxhkd && pkill -x sxhdk
-run sxhkd -c ~/.config/bspwm/sxhkd/sxhkdrc &
-
-# automatisch gebruik picom config in .config/picom.picom.conf
-# dit is de https://github.com/ibhagwan/picom versie met rounded corners
-# wel blur uitzetten - trekt zware wissel
-pgrep -x picom && pkill -x picom
-picom --experimental-backends &
 
 ############################################################
 # BSPWM configuration
 ############################################################
+~/.config/bspwm/masterlayout.sh &
+bspc config external_rules_command  ~/.config/bspwm/external_rules.sh
 
 #bspc config border_radius       8
 bspc config border_width         2
 bspc config window_gap           5
-bspc config top_padding          1
+bspc config top_padding          0
 bspc config bottom_padding       0
 bspc config left_padding         0
 bspc config right_padding        0
@@ -86,7 +82,7 @@ bspc config presel_feedback_color	"#5e81ac"
 #bspc config urgent_border_color 	"#dd2727"
 
 #Single monitor
-bspc monitor -d 1 2 3 4 5 6 7 8 9
+bspc monitor -d I II III IV V
 
 #Dual monitor
 #find out names with arandr or xrandr
@@ -127,7 +123,7 @@ bspc rule -a Arandr state=floating
 #bspc rule -a Xfce4-settings-manager state=tiled
 
 #open applications on specific workspaces
-#bspc rule -a Firefox desktop='^1' follow=on
+bspc rule -a firefox desktop='^3' follow=on
 #bspc rule -a Google-chrome desktop='^1' follow=on
 #bspc rule -a Chromium desktop='^1'  follow=on
 #bspc rule -a Subl3 desktop='^2' follow=on

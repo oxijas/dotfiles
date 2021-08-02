@@ -98,6 +98,7 @@ augroup myau
 	autocmd BufWritePre * %s/\s\+$//e
 	autocmd BufEnter *.tmpl setfiletype sh
 	autocmd BufEnter configrc setfiletype sh
+	autocmd BufEnter tint2rc setfiletype sh
 	autocmd BufEnter lfrc setfiletype sh
 	autocmd BufEnter *.zsh-theme setfiletype zsh
 augroup END
