@@ -71,7 +71,8 @@ set background=dark
 let g:sonokai_style = 'default'
 let g:sonokai_enable_italic = 0
 let g:sonokai_disable_italic_comment = 1
-colorscheme sonokai
+"colorscheme sonokai
+colorscheme onehalfdark
 
 " overloop/wordwrap
 "set nowrap
@@ -117,12 +118,12 @@ inoremap jj <Esc>
 nnoremap <leader>n :NnnPicker %:p:h<CR>
 
 "custom scrolling
-"nnoremap <M-j> <C-d>
-"nnoremap <M-k> <C-u>
+nnoremap <M-j> <C-d>
+nnoremap <M-k> <C-u>
 "
 " Use alt + hjkl to resize windows
-nnoremap <M-j>		:resize -2<CR>
-nnoremap <M-k>		:resize +2<CR>
+"nnoremap <M-j>		:resize -2<CR>
+"nnoremap <M-k>		:resize +2<CR>
 nnoremap <M-h>		:vertical resize -2<CR>
 nnoremap <M-l>		:vertical resize +2<CR>
 
