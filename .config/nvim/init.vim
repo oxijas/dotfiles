@@ -29,6 +29,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	" Plug 'junegunn/fzf.vim'
 	Plug 'lambdalisue/suda.vim'
 	Plug 'sainnhe/sonokai'
+	Plug 'simeji/winresizer'
 call plug#end()
 
 let mapleader=" "
