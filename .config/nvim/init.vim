@@ -53,7 +53,7 @@ set autoindent
 set hidden
 set encoding=utf-8
 set cmdheight=1
-set cursorline
+set nocursorline
 " heeft niets met tabs in doc te maken maar of je de tabline bovenin
 " scherm laat zien
 set showtabline=2
@@ -103,6 +103,7 @@ augroup myau
 	autocmd BufEnter tint2rc setfiletype sh
 	autocmd BufEnter lfrc setfiletype sh
 	autocmd BufEnter *.zsh-theme setfiletype zsh
+	autocmd BufEnter vifmrc setfiletype vim
 augroup END
 
 augroup vimrc_help
