@@ -182,45 +182,46 @@ cmd dotfiles_log ${{
 
 cmd dotfiles_status !{{
 	clear
-	dot status -b -s
+	# je kan niet dots gebruiken want aliases niet defined inside lf
+	dot status -s -b
 	echo ""
 }}
 
 cmd dotfiles_removefromindex ${{
-  clear
-  dot status -s
-  printf "$fx\n"
-  printf "Remove these from the index? [y/n]"
-  read ans
-  if [ "$ans" = "y" ]; then
-	dot restore --staged $fx
-	printf "\nNieuwe status\n"
-	dot status -s -b;
-	echo ""
-  fi
-}}
-
-cmd dotfiles_add ${{
-  set -f
-  clear
-  printf "$fx\n"
-  printf "\n"
-  printf "These files are added, ok? [y/n]\n"
-  read ans
-  if [ "$ans" = "y" ]; then
-		dot add $fx
-		dot status;
+	clear
+	dot status -s -b
+	printf "$fx\n"
+	printf "Remove these from the index? [y/n]"
+	read ans
+	if [ "$ans" = "y" ]; then
+		dot restore --staged $fx
+		printf "\nNieuwe status\n"
+		dot status -s -b;
 		echo ""
   fi
 }}
 
+cmd dotfiles_add ${{
+	set -f
+	clear
+	printf "$fx\n"
+	printf "\n"
+	printf "These files are added, ok? [y/n]\n"
+	read ans
+	if [ "$ans" = "y" ]; then
+		dot add $fx
+		dot status -s -b;
+		echo ""
+	fi
+}}
+
 cmd dotfiles_commit ${{
-  set -f
-  clear
-  dot status
-  printf "These files will be committed, continue? [y/n]\n"
-  read ans
-  if [ "$ans" = "y" ]; then
+	set -f
+	clear
+	dot status
+	printf "These files will be committed, continue? [y/n]\n"
+	read ans
+	if [ "$ans" = "y" ]; then
 		dot commit
 		dot status -b -s;
 		echo ""
@@ -228,23 +229,23 @@ cmd dotfiles_commit ${{
 }}
 
 cmd dotfiles_push !{{
-  set -f
-  clear
-  printf "Push dotfiles?[y/n]: "
-  read ans
-  if [ "$ans" = "y" ]; then
+	set -f
+	clear
+	printf "Push dotfiles?[y/n]: "
+	read ans
+	if [ "$ans" = "y" ]; then
 		dot push
-  fi
+	fi
 }}
 
 cmd dotfiles_amend ${{
-  set -f
-  clear
-  printf "Amend last commit?[y/n]\n"
-  read ans
-  if [ "$ans" = "y" ]; then
+	set -f
+	clear
+	printf "Amend last commit?[y/n]\n"
+	read ans
+	if [ "$ans" = "y" ]; then
 		dot commit --amend
-  fi
+	fi
 }}
 
 
@@ -255,17 +256,17 @@ cmd git_log !{{
 }}
 
 cmd git_add !{{
-  set -f
-  clear
-  printf "$fx\n"
-  printf "\n"
-  printf "These files are added, ok? [y/n]\n"
-  read ans
-  if [ "$ans" = "y" ]; then
+	set -f
+	clear
+	printf "$fx\n"
+	printf "\n"
+	printf "These files are added, ok? [y/n]\n"
+	read ans
+	if [ "$ans" = "y" ]; then
 		git add $fx
 		git status -b -s;
 		echo ""
-  fi
+	fi
 }}
 
 
@@ -344,7 +345,6 @@ map '"'
 #map <enter> shell-wait
 map <c-j> !$f
 map . set hidden!
-map d delete_files
 map x cut
 
 map b open_config
@@ -363,14 +363,15 @@ map ga git_add
 map gp git_push
 map gr git_removefromindex
 
-map o
-map ol dotfiles_log
-map os dotfiles_status
-map oa dotfiles_add
-map oc dotfiles_commit
-map oC dotfiles_amend
-map or dotfiles_removefromindex
-map op dotfiles_push
+map d
+map dd delete_files
+map dl dotfiles_log
+map ds dotfiles_status
+map da dotfiles_add
+map dc dotfiles_commit
+map dC dotfiles_amend
+map dr dotfiles_removefromindex
+map dp dotfiles_push
 
 map H top
 map L bottom
