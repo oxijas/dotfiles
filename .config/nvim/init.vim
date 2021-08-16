@@ -30,6 +30,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'lambdalisue/suda.vim'
 	Plug 'sainnhe/sonokai'
 	Plug 'simeji/winresizer'
+	" alternatieve colors
+	" Plug 'drewtempelmeyer/palenight.vim'
+	Plug 'ayu-theme/ayu-vim'
 call plug#end()
 
 let mapleader=" "
@@ -37,6 +40,10 @@ syntax enable
 set ignorecase
 set mouse=a
 set guicursor=i:block
+
+let ayucolor="dark"
+" let ayucolor="mirage"
+" let ayucolor="light"
 
 "je kan dit dynamisch aanpakken door live te veranderen
 "met retab! kan je spaties vervangen door tabs, uitkijken binnen quotes
@@ -218,6 +225,7 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 "colortheme
 let g:airline_theme='sonokai'
+" let g:airline_theme = "palenight"
 "this will automatically populate the g:airline symbols
 "let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')

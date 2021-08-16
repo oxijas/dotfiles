@@ -102,7 +102,7 @@ cmd open ${{
 cmd delete_files ${{
 	 set -f
 	 clear
-	 printf "$fx\n"
+	 printf "$fx\n\n"
 	 printf "delete?[y/n] "
 	 read ans
 	 [ $ans = "y" ] && rm -rf $fx
@@ -336,6 +336,11 @@ cmd bulk_rename ${{
 	 lf -remote "send $id unselect"
 }}
 
+cmd refresh %{{
+	lf -remote 'send reload'
+}}
+
+
 # Bindings=======================================
 # Remove some defaults
 map "'"
@@ -372,6 +377,7 @@ map dc dotfiles_commit
 map dC dotfiles_amend
 map dr dotfiles_removefromindex
 map dp dotfiles_push
+map dq refresh
 
 map H top
 map L bottom
