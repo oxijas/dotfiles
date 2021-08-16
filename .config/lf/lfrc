@@ -176,13 +176,14 @@ cmd open_config  ${{
 }}
 
 cmd dotfiles_log ${{
-  clear
-  dot log --graph --oneline --abbrev-commit
+	clear
+	dot log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit
 }}
 
 cmd dotfiles_status !{{
-  clear
-  dot status
+	clear
+	dot status -b -s
+	echo ""
 }}
 
 cmd dotfiles_removefromindex ${{
@@ -192,9 +193,10 @@ cmd dotfiles_removefromindex ${{
   printf "Remove these from the index? [y/n]"
   read ans
   if [ "$ans" = "y" ]; then
-	 dot restore --staged $fx
-	 printf "\nNieuwe status\n"
-	 dot status -s;
+	dot restore --staged $fx
+	printf "\nNieuwe status\n"
+	dot status -s -b;
+	echo ""
   fi
 }}
 
@@ -208,6 +210,7 @@ cmd dotfiles_add ${{
   if [ "$ans" = "y" ]; then
 		dot add $fx
 		dot status;
+		echo ""
   fi
 }}
 
@@ -219,7 +222,8 @@ cmd dotfiles_commit ${{
   read ans
   if [ "$ans" = "y" ]; then
 		dot commit
-		dot status;
+		dot status -b -s;
+		echo ""
   fi
 }}
 
@@ -244,16 +248,13 @@ cmd dotfiles_amend ${{
 }}
 
 
-#log met $, niet ! want zit al less stop op
-cmd git_log ${{
-  #clear
-  #git log --graph --pretty=format:'\''%Cred%h%Creset -%C(yellow)%d%Creset \
-  #%s %Cgreen(%cs) %C(bold blue)<%an>%Creset'\'' --abbrev-commit'
-  git log --oneline --graph
+cmd git_log !{{
+	clear
+	git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ci) %C(bold blue)<%an>%Creset' --abbrev-commit
+	# git log --oneline --graph
 }}
 
-
-cmd git_add ${{
+cmd git_add !{{
   set -f
   clear
   printf "$fx\n"
@@ -262,50 +263,54 @@ cmd git_add ${{
   read ans
   if [ "$ans" = "y" ]; then
 		git add $fx
-		git status;
+		git status -b -s;
+		echo ""
   fi
 }}
 
 
-cmd git_removefromindex ${{
-  clear
-  git status -s
-  printf "$fx\n"
-  printf "Remove these from the index? [y/n]"
-  read ans
-  if [ "$ans" = "y" ]; then
-	 git restore --staged $fx
-	 printf "\nNieuwe status\n"
-	 git status -s;
+cmd git_removefromindex !{{
+	clear
+	git status -s
+	printf "$fx\n"
+	printf "Remove these from the index? [y/n]"
+	read ans
+	if [ "$ans" = "y" ]; then
+		git restore --staged $fx
+		printf "\nNew status after removal:\n"
+		git status -b -s;
+		echo ""
   fi
 }}
-
 
 cmd git_status !{{
-  clear
-  git status
+	clear
+	git status -b -s
+	echo ""
 }}
 
 cmd git_commit ${{
-  set -f
-  clear
-  git status
-  printf "These files will be committed, continue? [y/n] :"
-  read ans
-  if [ "$ans" = "y" ]; then
+	set -f
+	clear
+	git status
+	printf "These files will be committed, continue? [y/n] :"
+	read ans
+	if [ "$ans" = "y" ]; then
 		git commit
-		git status;
+		printf "\nNew status after commit:\n"
+		git status -b -s;
+		echo ""
   fi
 }}
 
 cmd git_push !{{
-  set -f
-  clear
-  printf "Push git?[y/n] :"
-  read ans
-  if [ "$ans" = "y" ]; then
+	set -f
+	clear
+	printf "Push git?[y/n] :"
+	read ans
+	if [ "$ans" = "y" ]; then
 		git push
-  fi
+	fi
 }}
 
 cmd bulkrename $vidir $fx
