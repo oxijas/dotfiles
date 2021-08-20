@@ -340,6 +340,11 @@ cmd refresh %{{
 	lf -remote 'send reload'
 }}
 
+cmd myview !{{
+	clear
+	bat $f
+
+}}
 
 # Bindings=======================================
 # Remove some defaults
@@ -385,8 +390,7 @@ map J half-down
 map K half-up
 map R bulkrename
 
-map i
-map i $bat $f
+map i myview
 
 # make file commands
 map m
