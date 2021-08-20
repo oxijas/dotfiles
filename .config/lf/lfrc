@@ -385,6 +385,9 @@ map J half-down
 map K half-up
 map R bulkrename
 
+map i
+map i $bat $f
+
 # make file commands
 map m
 map md mkdiir
