@@ -340,11 +340,16 @@ cmd refresh %{{
 	lf -remote 'send reload'
 }}
 
-cmd myview !{{
+cmd gitdiff !{{
 	clear
-	bat $f
-
+	git diff
 }}
+
+cmd batdiff !{{
+	clear
+	bat -d $f
+}}
+
 
 # Bindings=======================================
 # Remove some defaults
@@ -357,21 +362,12 @@ map <c-j> !$f
 map . set hidden!
 map x cut
 
+# archive commands
+map a
+map ac create_tar_gz
+map ad extract_todir
+map ae extract
 map b open_config
-
-#map g - niet leegmaken, behoud gg(top) en gh(home)
-map gb cd /usr/bin
-map g. cd ~/.config
-map ge cd /etc
-map gu cd /usr/share
-map gw cd /mnt/c/Users/jga
-#ook met g maar nu git commands
-map gc git_commit
-map gl git_log
-map gs git_status
-map ga git_add
-map gp git_push
-map gr git_removefromindex
 
 map d
 map dd delete_files
@@ -384,13 +380,28 @@ map dr dotfiles_removefromindex
 map dp dotfiles_push
 map dq refresh
 
+#map g - niet leegmaken, behoud gg(top) en gh(home)
+map gb cd /usr/bin
+map g. cd ~/.config
+map ge cd /etc
+map gu cd /usr/share
+map gw cd /mnt/c/Users/jga
+#ook met g maar nu git commands
+map gc git_commit
+map gd batdiff
+map gi gitdiff
+map gl git_log
+map gs git_status
+map ga git_add
+map gp git_push
+map gr git_removefromindex
+
+
 map H top
 map L bottom
 map J half-down
 map K half-up
 map R bulkrename
-
-map i myview
 
 # make file commands
 map m
@@ -401,8 +412,3 @@ map ms mksoftlink
 map mb chmod_bits
 map mx chmod_toggle_x
 
-# archive commands
-map a
-map ac create_tar_gz
-map ad extract_todir
-map ae extract
