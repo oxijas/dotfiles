@@ -66,7 +66,8 @@ set nocursorline
 set showtabline=2
 set clipboard+=unnamedplus
 set termguicolors
-set number relativenumber
+"set number relativenumber
+set number
 set splitbelow
 set splitright
 " Houdt 5 regels boven/onder vrij bijscrollen
