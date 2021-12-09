@@ -1,5 +1,8 @@
 #!/bin/sh
 
-/usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME "$@"
+[ -d .git/ ] && echo "Do not use DOT inside another git repo." && exit 1
 
+[ $# -gt 1 ] && [ $1 == "add" ] && [ $2 == '.' ] && echo "Do not add all files!" && exit 1
+
+/usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME "$@"
 
