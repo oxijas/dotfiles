@@ -412,3 +412,4 @@ map ms mksoftlink
 map mb chmod_bits
 map mx chmod_toggle_x
 
+map o open

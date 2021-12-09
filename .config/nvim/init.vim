@@ -23,6 +23,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	"Plug 'jiangmiao/auto-pairs'
 	"spice up iconen for Nerdtree and airline
 	Plug 'ryanoasis/vim-devicons'
+	" nnn integratie, standaard is <leader>n
 	Plug 'mcchrish/nnn.vim'
 	Plug 'tpope/vim-commentary'
 	" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
@@ -33,6 +34,12 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	" alternatieve colors
 	" Plug 'drewtempelmeyer/palenight.vim'
 	Plug 'ayu-theme/ayu-vim'
+
+	" Volgende 2 plugins voor integration lf
+	" standaard key is <leader> f, om te openen moet met lf open command,
+	" standaard onder 'o' gemapped
+	Plug 'ptzz/lf.vim'
+   Plug 'voldikss/vim-floaterm'
 call plug#end()
 
 let mapleader=" "
@@ -213,6 +220,11 @@ let g:nnn#action = {
 	\ '<leader>t': 'tab split',
   \ '<leader>o': 'split',
   \ '<leader>v': 'vsplit' }
+
+
+" ==== lf
+let g:lf_width = 0.8
+let g:lf_height = 0.9
 
 " nerd commenter vervangen door vim commentary - simpler
 " <num>gcc  en <visual>gc
