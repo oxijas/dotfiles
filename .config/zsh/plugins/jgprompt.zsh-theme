@@ -136,7 +136,8 @@ prompt_purification_setup() {
 	 # color number is the number from eg. neofetch, starting at 0
     prompt_git_branch
     RPROMPT='$(prompt_git_info) $(git_prompt_status)'
-    PROMPT=$'%F{15}%n@%F{#ef9104}%m%F{15}:%F{cyan}%~ %F{10}%%%f '
+    PROMPT=$'%F{15}%n@%F{#ef9104}%m%F{15}:%F{cyan}%2~ %F{10}%%%f '
+    #PROMPT=$'%F{15}%n@%F{#ef9104}%m%F{15}:%F{cyan}%~ %F{10}%%%f '
 }
 
 prompt_purification_setup
