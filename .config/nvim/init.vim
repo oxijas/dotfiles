@@ -25,6 +25,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 	Plug 'ryanoasis/vim-devicons'
 	" nnn integratie, standaard is <leader>n
 	Plug 'mcchrish/nnn.vim'
+	" om iets als comment om te zetten gebruik gcc, of in visual gc
 	Plug 'tpope/vim-commentary'
 	" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
 	" Plug 'junegunn/fzf.vim'

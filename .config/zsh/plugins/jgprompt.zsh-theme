@@ -125,8 +125,8 @@ prompt_purification_setup() {
 
     ZSH_THEME_GIT_PROMPT_ADDED="%F{green}%f "
     ZSH_THEME_GIT_PROMPT_MODIFIED="%F{cyan}%f "
-    ZSH_THEME_GIT_PROMPT_DELETED="%F{red}﫧%f "
-    ZSH_THEME_GIT_PROMPT_RENAMED="%F{magenta}%f "
+    ZSH_THEME_GIT_PROMPT_DELETED="%F{red}%f "
+    ZSH_THEME_GIT_PROMPT_RENAMED="%F{magenta}%f "
     ZSH_THEME_GIT_PROMPT_UNMERGED="%F{yellow}═%f "
     ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{white}%f "
     ZSH_THEME_GIT_PROMPT_STASHED="%B%F{red}%f%b "
@@ -141,3 +141,13 @@ prompt_purification_setup() {
 }
 
 prompt_purification_setup
+
+    # # ZSH_THEME_GIT_PROMPT_ADDED="%F{green}%f "
+    # ZSH_THEME_GIT_PROMPT_MODIFIED="%F{cyan}%f "
+    # ZSH_THEME_GIT_PROMPT_DELETED="%F{red}%f "
+    # ZSH_THEME_GIT_PROMPT_RENAMED="%F{magenta}%f "
+    # ZSH_THEME_GIT_PROMPT_UNMERGED="%F{yellow}═%f "
+    # # ZSH_THEME_GIT_PROMPT_UNTRACKED="%F{white}%f "
+    # ZSH_THEME_GIT_PROMPT_STASHED="%B%F{red}%f%b "
+    # ZSH_THEME_GIT_PROMPT_BEHIND="%B%F{red}%f%b "
+    # ZSH_THEME_GIT_PROMPT_AHEAD="%B%F{green}%f%b "
