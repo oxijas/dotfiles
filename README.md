@@ -9,10 +9,13 @@ In bashrc/zshrc set 'dot config --local status.ShowUntrackedFiles no'.
 Otherwise all files and folders from the home directory reported as new files in the repo.
 
 For initial installation clone into the dotfiles folder: 
-git clone --separate-git-dir=$HOME/.local/share/dotfiles git@github.com:oxijas/dotfiles.git ~
+> git clone --separate-git-dir=$HOME/.local/share/dotfiles git@github.com:oxijas/dotfiles.git ~
+
 (note the ~ at the end). This will overwrite existing config files in the home folder!
 
 otherwise clone into temp folder first
 > git clone --separate-git-dir=$HOME/.local/share/dotfiles https://github.com/oxijas/dotfiles.git tmpdotfiles
+  
 > rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
-> rm -r tmpdotfiles
+
+  > rm -r tmpdotfiles
