@@ -224,7 +224,7 @@ let g:nnn#action = {
 
 
 " ==== lf
-let g:lf_width = 0.8
+let g:lf_width = 0.9
 let g:lf_height = 0.9
 
 " nerd commenter vervangen door vim commentary - simpler
