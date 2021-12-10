@@ -36,7 +36,7 @@ alias gl3="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset 
 alias glt="git ls-tree --full-tree -r --name-only HEAD |fzf"
 # dot is defined in ~/.local/bin
 dot config --local status.showUntrackedFiles no
-alias dotl='dot log --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset" --abbrev-commit --date=format:'%y-%m-%d %H:%M'"
+alias dotl="dot log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=format:'%y-%m-%d %H:%M'"
 alias dots='dot status -b -s'
 alias dota='dot add'
 alias dotlt='dot ls-tree --full-tree -r --name-only HEAD |fzf'
