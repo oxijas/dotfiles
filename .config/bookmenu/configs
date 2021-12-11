@@ -14,5 +14,7 @@ spectrwm:~/.config/spectrwm/spectrwm.conf
 promptzsh:~/.config/zsh/plugins/jgprompt.zsh-theme
 scripts:~/.config/zsh/scripts.zsh
 bspwm:~/.config/bspwm/bspwmrc
-sxhkd_bsp:~/.config/bspwm/sxhkd/sxhkdrc
+sxhkd-bsp:~/.config/bspwm/sxhkd/sxhkdrc
 zshprompt:~/.config/zsh/plugins/jgprompt.zsh-theme
+aliases:~/.config/aliases/aliases
+local-aliases:~/.config/aliases/local
