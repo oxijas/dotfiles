@@ -2,7 +2,6 @@
 #jga edited
 # fzf reversed top
 
-
 ConfigFolder=${XDG_CONFIG_HOME:-"$HOME/.config"}/bookmenu
 
 VerticalLines=
@@ -140,7 +139,7 @@ SelectFinder() {
     dmenu) dmenu -i -p "$Prompt" -fn "$Font" -l "$VerticalLines" \
       -m "$Monitor" -nb "$BackgroundColor" -nf "$ForegroundColor" \
       -sb "$SelectedBackgroundColor" -sf "$SelectedForegroundColor" ;;
-    fzf) fzf --reverse --header='Select config file';;
+    fzf) fzf --reverse --header='Select config file' ;;
     *) Err 1 "$FuzzyFinder in not a supported fuzzy finder"
 esac
 }

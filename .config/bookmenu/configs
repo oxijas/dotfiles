@@ -1,4 +1,5 @@
 bookmenu:~/.config/bookmenu/configs
+bookmenu-script:~/.local/bin/bookmenu
 configrc:~/.config/configrc
 lf:~/.config/lf/lfrc
 vifm:~/.config/vifm/vifmrc
@@ -17,4 +18,6 @@ bspwm:~/.config/bspwm/bspwmrc
 sxhkd-bsp:~/.config/bspwm/sxhkd/sxhkdrc
 zshprompt:~/.config/zsh/plugins/jgprompt.zsh-theme
 aliases:~/.config/aliases/aliases
-local-aliases:~/.config/aliases/local
+aliases_local:~/.config/aliases/local
+ssh:~/.ssh/config
+dot-script:~/.local/bin/dot
