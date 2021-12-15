@@ -20,6 +20,10 @@ export NNN_FIFO=/tmp/nnn.fifo
 export NNN_OPENER=/usr/share/nnn/plugins/nuke
 export CUR_CTX=1
 
+#voorkomt dubbleladen, default in usr/share/doc/ranger/config
+#naar .config/ranger kopieren
+export RANGER_LOAD_DEFAULT_RC=FALSE
+
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 
 #avoid duplicates
