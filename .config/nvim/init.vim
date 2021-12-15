@@ -195,6 +195,9 @@ nnoremap <leader>k :wincmd k<CR>
 nnoremap <leader>o :split<space>
 nnoremap <leader>v :vsplit<space>
 
+" nnoremap   <silent>   <F12>    :FloatermNew hexer %:p<CR>
+nnoremap   <leader>\  :FloatermNew hexer %:p<CR>
+nnoremap   <leader>t  :FloatermNew<CR>
 "==============================================================
 
 " Alternate way to save
@@ -215,16 +218,20 @@ highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 
 " ==== NNN
 let g:nnn#set_defaults_mappings = 0
-let g:nnn#layout = { 'right': '~40%'  }
+let g:nnn#layout = { 'right': '~25%'  }
 let g:nnn#command = 'nnn -acRHU'
 let g:nnn#action = {
 	\ '<leader>t': 'tab split',
   \ '<leader>o': 'split',
   \ '<leader>v': 'vsplit' }
 
+" ===== floaterm
+
+let g:floaterm_wintype='vsplit'
+let g:floaterm_autoclose=1
 
 " ==== lf
-let g:lf_width = 0.9
+let g:lf_width = 0.7
 let g:lf_height = 0.9
 
 " nerd commenter vervangen door vim commentary - simpler
