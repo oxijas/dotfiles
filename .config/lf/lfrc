@@ -202,9 +202,9 @@ cmd dotfiles_clearindex !{{
 
 cmd dotfiles_update !{{
 	clear
-	printf "These files are updated\n"
 	dot add -u
-	dot status -s -b;
+	printf "New status:\n"
+	dot status -s
 	echo ""
 }}
 
@@ -217,7 +217,7 @@ cmd dotfiles_add !{{
 	read ans
 	if [ "$ans" = "y" ]; then
 		dot add $fx
-		dot status -s -b
+		dot status -s
 		echo ""
 	fi
 }}
@@ -230,7 +230,7 @@ cmd dotfiles_commit !{{
 	read ans
 	if [ "$ans" = "y" ]; then
 		dot commit
-		dot status -b -s
+		dot status -s
 		echo ""
 	fi
 }}
@@ -271,10 +271,19 @@ cmd git_add !{{
 	read ans
 	if [ "$ans" = "y" ]; then
 		git add $fx
-		git status -b -s
+		git status -s
 		echo ""
 	fi
 }}
+
+cmd git_update !{{
+	clear
+	git add -u
+	printf "New status:\n"
+	git status -s
+	echo ""
+}}
+
 
 
 cmd git_clearindex !{{
@@ -285,7 +294,7 @@ cmd git_clearindex !{{
 	if [ "$ans" = "y" ]; then
 		git reset
 		printf "\nNew status after removal:\n"
-		git status -b -s
+		git status -s
 		echo ""
   fi
 }}
@@ -391,7 +400,6 @@ map dq refresh
 map gb cd /usr/bin
 map g. cd ~/.config
 map ge cd /etc
-map gu cd /usr/share
 map gw cd /mnt/c/Users/jga
 #ook met g maar nu git commands
 map gc git_commit
@@ -402,6 +410,7 @@ map gs git_status
 map ga git_add
 map gp git_push
 map gr git_clearindex
+map gu git_update
 
 
 map H top

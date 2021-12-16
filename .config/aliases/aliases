@@ -44,6 +44,7 @@ alias dota='dot add'
 alias dotlt='dot ls-tree --full-tree -r --name-only HEAD |fzf'
 alias dotc='dot commit'
 alias dotp='dot push'
+alias dotu='dot add -u'
 
 # local to the machine aliases
 [ -f $XDG_CONFIG_HOME/aliases/local ] && source $XDG_CONFIG_HOME/aliases/local
