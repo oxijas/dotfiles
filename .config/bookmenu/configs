@@ -21,3 +21,4 @@ aliases:~/.config/aliases/aliases
 aliases_local:~/.config/aliases/local
 ssh:~/.ssh/config
 dot-script:~/.local/bin/dot
+ranger_rc:~/.config/ranger/rc.conf
