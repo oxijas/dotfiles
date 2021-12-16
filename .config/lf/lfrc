@@ -187,21 +187,28 @@ cmd dotfiles_status !{{
 	echo ""
 }}
 
-cmd dotfiles_removefromindex ${{
+cmd dotfiles_clearindex !{{
 	clear
 	dot status -s -b
-	printf "$fx\n"
 	printf "Remove these from the index? [y/n]"
 	read ans
 	if [ "$ans" = "y" ]; then
-		dot restore --staged $fx
+		dot reset
 		printf "\nNieuwe status\n"
-		dot status -s -b;
+		dot status -s -b
 		echo ""
   fi
 }}
 
-cmd dotfiles_add ${{
+cmd dotfiles_update !{{
+	clear
+	printf "These files are updated\n"
+	dot add -u
+	dot status -s -b;
+	echo ""
+}}
+
+cmd dotfiles_add !{{
 	set -f
 	clear
 	printf "$fx\n"
@@ -210,12 +217,12 @@ cmd dotfiles_add ${{
 	read ans
 	if [ "$ans" = "y" ]; then
 		dot add $fx
-		dot status -s -b;
+		dot status -s -b
 		echo ""
 	fi
 }}
 
-cmd dotfiles_commit ${{
+cmd dotfiles_commit !{{
 	set -f
 	clear
 	dot status
@@ -223,9 +230,9 @@ cmd dotfiles_commit ${{
 	read ans
 	if [ "$ans" = "y" ]; then
 		dot commit
-		dot status -b -s;
+		dot status -b -s
 		echo ""
-  fi
+	fi
 }}
 
 cmd dotfiles_push !{{
@@ -264,22 +271,21 @@ cmd git_add !{{
 	read ans
 	if [ "$ans" = "y" ]; then
 		git add $fx
-		git status -b -s;
+		git status -b -s
 		echo ""
 	fi
 }}
 
 
-cmd git_removefromindex !{{
+cmd git_clearindex !{{
 	clear
 	git status -s
-	printf "$fx\n"
-	printf "Remove these from the index? [y/n]"
+	printf "Clear the index? [y/n]"
 	read ans
 	if [ "$ans" = "y" ]; then
-		git restore --staged $fx
+		git reset
 		printf "\nNew status after removal:\n"
-		git status -b -s;
+		git status -b -s
 		echo ""
   fi
 }}
@@ -376,8 +382,9 @@ map ds dotfiles_status
 map da dotfiles_add
 map dc dotfiles_commit
 map dC dotfiles_amend
-map dr dotfiles_removefromindex
+map dr dotfiles_clearindex
 map dp dotfiles_push
+map du dotfiles_update
 map dq refresh
 
 #map g - niet leegmaken, behoud gg(top) en gh(home)
@@ -394,7 +401,7 @@ map gl git_log
 map gs git_status
 map ga git_add
 map gp git_push
-map gr git_removefromindex
+map gr git_clearindex
 
 
 map H top
