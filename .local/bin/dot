@@ -1,6 +1,6 @@
 #!/bin/sh
 
-[ -d .git/ ] && echo "Do not use DOT inside another git repo." && exit 1
+# [ -d .git/ ] && echo "Do not use DOT inside another git repo." && exit 1
 
 [ $# -gt 1 ] && [ $1 == "add" ] && [ $2 == '.' ] && echo "Do not add all files!" && exit 1
 
