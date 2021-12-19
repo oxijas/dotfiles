@@ -416,7 +416,9 @@ map gu git_update
 map H top
 map L bottom
 map J half-down
+map <a-j> half-down
 map K half-up
+map <a-k> half-up
 map R bulkrename
 
 # make file commands
