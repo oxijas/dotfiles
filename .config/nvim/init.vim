@@ -196,8 +196,8 @@ nnoremap <leader>o :split<space>
 nnoremap <leader>v :vsplit<space>
 
 " nnoremap   <silent>   <F12>    :FloatermNew hexer %:p<CR>
-nnoremap   <leader>\  :FloatermNew hexer %:p<CR>
-nnoremap   <leader>t  :FloatermNew<CR>
+nnoremap   <leader>\  :FloatermNew --height=0.9 --title=Hexer --width=0.6 hexer %:p<CR>
+nnoremap   <leader>t  :FloatermNew --height=0.9 --title=Shell<CR>
 "==============================================================
 
 " Alternate way to save
@@ -227,11 +227,16 @@ let g:nnn#action = {
 
 " ===== floaterm
 
-let g:floaterm_wintype='vsplit'
+" let g:floaterm_wintype='vsplit'
 let g:floaterm_autoclose=1
+let g:floaterm_position="bottomright"
+let g:floaterm_borderchars="─│─│┌┐┘└"
+" let g:floaterm_title="($1\\$2)"
+" hi Floaterm guibg=black
+" hi loatermBorder guibg=lightblue guifg=black
 
 " ==== lf
-let g:lf_width = 0.7
+let g:lf_width = 0.8
 let g:lf_height = 0.9
 
 " nerd commenter vervangen door vim commentary - simpler
