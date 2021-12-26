@@ -103,7 +103,7 @@ cmd delete_files ${{
 	 set -f
 	 clear
 	 printf "$fx\n\n"
-	 printf "delete?[y/n] "
+	 printf "delete?[y/N]: "
 	 read ans
 	 [ $ans = "y" ] && rm -rf $fx
 }}
@@ -165,7 +165,7 @@ cmd create_tar_gz %{{
 	local fnames=$(realpath --relative-to=$PWD  $fx)
 	#-C needs to be set before the files to be added to the archive
 	tar -czf $ans.tar.gz -C $PWD $fnames
-	printf "delete sourcefiles [y] : "
+	printf "delete sourcefiles [y/N]: "
 	read ans
 	[ $ans = "y" ] && rm -rf $fx
 	lf -remote 'send reload'
@@ -190,7 +190,7 @@ cmd dotfiles_status !{{
 cmd dotfiles_clearindex !{{
 	clear
 	dot status -s -b
-	printf "Remove these from the index? [y/n]"
+	printf "Remove these from the index? [y/N]: "
 	read ans
 	if [ "$ans" = "y" ]; then
 		dot reset
@@ -213,7 +213,7 @@ cmd dotfiles_add !{{
 	clear
 	printf "$fx\n"
 	printf "\n"
-	printf "These files are added, ok? [y/n]\n"
+	printf "These files are added, ok? [y/N]: "
 	read ans
 	if [ "$ans" = "y" ]; then
 		dot add $fx
@@ -226,7 +226,7 @@ cmd dotfiles_commit !{{
 	set -f
 	clear
 	dot status
-	printf "These files will be committed, continue? [y/n]\n"
+	printf "These files will be committed, continue? [y/N]: "
 	read ans
 	if [ "$ans" = "y" ]; then
 		dot commit
@@ -238,7 +238,7 @@ cmd dotfiles_commit !{{
 cmd dotfiles_push !{{
 	set -f
 	clear
-	printf "Push dotfiles?[y/n]: "
+	printf "Push dotfiles?[y/N]: "
 	read ans
 	if [ "$ans" = "y" ]; then
 		dot push
@@ -248,7 +248,7 @@ cmd dotfiles_push !{{
 cmd dotfiles_amend ${{
 	set -f
 	clear
-	printf "Amend last commit?[y/n]\n"
+	printf "Amend last commit?[y/N]: "
 	read ans
 	if [ "$ans" = "y" ]; then
 		dot commit --amend
@@ -267,7 +267,7 @@ cmd git_add !{{
 	clear
 	printf "$fx\n"
 	printf "\n"
-	printf "These files are added, ok? [y/n]\n"
+	printf "These files are added, ok? [y/N]: "
 	read ans
 	if [ "$ans" = "y" ]; then
 		git add $fx
@@ -289,7 +289,7 @@ cmd git_update !{{
 cmd git_clearindex !{{
 	clear
 	git status -s
-	printf "Clear the index? [y/n]"
+	printf "Clear the index? [y/N]: "
 	read ans
 	if [ "$ans" = "y" ]; then
 		git reset
@@ -309,7 +309,7 @@ cmd git_commit ${{
 	set -f
 	clear
 	git status
-	printf "These files will be committed, continue? [y/n] :"
+	printf "These files will be committed, continue? [y/N]: "
 	read ans
 	if [ "$ans" = "y" ]; then
 		git commit
@@ -431,3 +431,5 @@ map mb chmod_bits
 map mx chmod_toggle_x
 
 map o open
+
+map r push :rename<enter><home>
