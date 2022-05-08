@@ -13,12 +13,14 @@ export EDITOR="/usr/bin/nvim"
 export VISUAL="/usr/bin/nvim"
 
 export NNN_BMS='h:~/;c:~/.config/;d:~/Downloads/;e:/etc/;u:/usr/share'
-export NNN_PLUG='c:fzcd;h:hexview;i:imgview;o:fzopen;m:nmount;x:togglex;S:suedit;u:uidgid'
+export NNN_PLUG='c:cdpath;h:hexview;i:imgview;o:fzopen;m:nmount;x:togglex;S:suedit;u:uidgid'
 export NNN_FCOLORS='c1e2272e006033f7c6d6abc4'
 export NNN_COLORS='1267'
 export NNN_FIFO=/tmp/nnn.fifo
 export NNN_OPENER=/usr/share/nnn/plugins/nuke
 export CUR_CTX=1
+
+export CDPATH="$XDG_CONFIG_HOME/nnn/bookmarks"
 
 #voorkomt dubbleladen, default in usr/share/doc/ranger/config
 #naar .config/ranger kopieren

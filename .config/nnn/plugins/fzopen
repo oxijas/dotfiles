@@ -17,6 +17,9 @@
 # Shell: POSIX compliant
 # Author: Arun Prakash Jana
 
+NUKE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/plugins/nuke"
+USE_NUKE=0
+
 . "$(dirname "$0")"/.nnn-plugin-helper
 
 if type fzf >/dev/null 2>&1; then
@@ -38,16 +41,25 @@ fi
 # Check for picker mode
 if [ "$3" ]; then
     if [ "$entry" ]; then
+        case "$entry" in
+            /*) fullpath="$entry" ;;
+            *)  fullpath="$PWD/$entry" ;;
+        esac
         if [ "-" = "$3" ]; then
-            printf "%s\n" "$entry"
+            printf "%s\n" "$fullpath"
         else
-            printf "%s\n" "$entry" > "$3"
+            printf "%s\n" "$fullpath" > "$3"
         fi
 
         # Tell `nnn` to clear its internal selection
         printf "%s" "0p" > "$NNN_PIPE"
     fi
 
+    exit 0
+fi
+
+if [ "$USE_NUKE" -ne 0 ]; then
+    "$NUKE" "$entry"
     exit 0
 fi
 
