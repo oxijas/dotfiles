@@ -4,5 +4,7 @@
 
 [ $# -gt 1 ] && [ $1 == "add" ] && [ $2 == '.' ] && echo "Do not add all files!" && exit 1
 
+[ $1 == "unstage" ] && /usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME restore --staged . && exit 0
+
 /usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME "$@"
 
