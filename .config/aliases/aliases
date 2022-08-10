@@ -31,7 +31,7 @@ alias gp="git push"
 alias gc="git commit"
 alias gs="git status"
 alias gu="git add -u"
-alias lg='lazygit'
+alias gunstage="git restore --staged ."
 # %cd = respecteer date format as stated in --date=format
 alias gl="git log --graph --all --pretty=format:'%Cred%h %Cgreen%cd%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=format:'%d%b%y %H:%M'"
 #alias gl="git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=format:'%d%b%y %H:%M'"

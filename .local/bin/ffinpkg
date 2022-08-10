@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# zoek filenaam, geef weer in welk pakket het zich bevindt
+echo "Find in what package the file is included.."
+sudo pacman -Fy "$1"
+

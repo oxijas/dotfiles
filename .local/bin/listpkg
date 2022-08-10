@@ -1,6 +1,0 @@
-#!/bin/sh
-# list all files in a package
-
-#pacman -Qlq $1 | grep -v '/$' | xargs -r du -h | sort -h
-# pacman -Qlq $1 | grep -v '/$' | xargs -r du -h | sort -h | fzf
-paru -Q |fzf
