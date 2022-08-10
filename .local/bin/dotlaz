@@ -1,0 +1,6 @@
+#!/bin/sh
+
+
+lazygit -g=$HOME/.local/share/dotfiles/ -w=$HOME
+
+
