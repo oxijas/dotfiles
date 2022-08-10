@@ -1,0 +1,9 @@
+gui:
+  sidePanelWidth: 0.3 # number from 0 to 1
+  showIcons: true
+
+git:
+  showGraph: 'always'
+  branchLogCmd: "git log --graph --all --color=always --abbrev-commit --decorate  --pretty=format:'%Cred%h %Cgreen%cd %C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --date=format:'%d%b%y %H:%M' {{branchName}} --"
+    #branchLogCmd: "git log --graph --all --color=always --abbrev-commit --decorate  --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --date=format:'%d%b%y %H:%M' {{branchName}} --"
+    #  branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
