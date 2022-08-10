@@ -1,0 +1,6 @@
+#!/bin/sh
+
+
+gitui -d=$HOME/.local/share/dotfiles/ -w=$HOME
+
+
