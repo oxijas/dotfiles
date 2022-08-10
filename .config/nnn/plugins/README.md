@@ -13,7 +13,7 @@ Plugins extend the capabilities of `nnn`. They are _executable_ scripts (or bina
 
 | Plugin (a-z) | Description [Clears selection<sup>1</sup>] | Lang | Dependencies |
 | --- | --- | --- | --- |
-| [autojump](autojump) | Navigate to dir/path | sh | [jump](https://github.com/gsamokovarov/jump)/autojump/<br>zoxide/z (needs fzf) |
+| [autojump](autojump) | Navigate to dir/path | sh | [jump](https://github.com/gsamokovarov/jump)/autojump/<br>zoxide/z/[z.lua](https://github.com/skywind3000/z.lua) |
 | [boom](boom) | Play random music from dir | sh | [moc](http://moc.daper.net/) |
 | [bulknew](bulknew) | Create multiple files/dirs at once | bash | sed, xargs, mktemp |
 | [cdpath](cdpath) | `cd` to the directory from `CDPATH` | sh | fzf |
@@ -66,9 +66,10 @@ Plugins extend the capabilities of `nnn`. They are _executable_ scripts (or bina
 | [x2sel](x2sel) | Copy file list from system clipboard to selection | sh | _see in-file docs_ |
 | [xdgdefault](xdgdefault) | Set the default app for the hovered file type | sh | xdg-utils, fzf/dmenu |
 
-Note:
+Notes:
 
 1. A plugin has to explicitly request `nnn` to clear the selection e.g. after operating on the selected files.
+2. Files starting with a dot in the `plugins` directory are internal files and should not be used as plugins.
 
 ### Table of contents
 
@@ -102,7 +103,7 @@ Plugins are installed to `${XDG_CONFIG_HOME:-$HOME/.config}/nnn/plugins`.
 Set environment variable `NNN_PLUG` to assign keybinds and invoke plugins directly using the plugin shortcut (<kbd>;</kbd>) followed by the assigned key character. E.g., with the below config:
 
 ```sh
-export NNN_PLUG='f:finder;o:fzopen;p:mocplay;d:diffs;t:nmount;v:imgview'
+export NNN_PLUG='f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview'
 ```
 
 plugin `finder` can be invoked with the keybind <kbd>;f</kbd>, `fzopen` can be run with <kbd>;o</kbd> and so on... The key vs. plugin pairs are shown in the help and config screen.
@@ -130,7 +131,7 @@ Note:
 - A keybinding definition of more than 1 character will prevent nnn from starting.
 
 
-#### Skip directory refresh after running a plugin
+#### Skip directory refresh after running a plugin [`-`]
 
 `nnn` refreshes the directory after running a plugin to reflect any changes by the plugin. To disable this add a `-` before the plugin name:
 
@@ -138,7 +139,7 @@ Note:
 export NNN_PLUG='p:-plugin'
 ```
 
-## Running commands as plugin
+## Running commands as plugin [`!`]
 
 To assign keys to arbitrary non-background cli commands and invoke like plugins, add `!` (underscore) before the command.
 
@@ -148,7 +149,7 @@ export NNN_PLUG='x:!chmod +x $nnn;g:!git log;s:!smplayer $nnn'
 
 Now <kbd>;x</kbd> can be used to make a file executable, <kbd>;g</kbd> can be used to the git log of a git project directory, <kbd>;s</kbd> can be used to preview a partially downloaded media file.
 
-#### Skip user confirmation after command execution
+#### Skip user confirmation after command execution [`*`]
 
 `nnn` waits for user confirmation (the prompt `Press Enter to continue`) after it executes a command as plugin (unlike plugins which can add a `read` to wait). To skip this, add a `*` after the command.
 
@@ -160,7 +161,7 @@ Now there will be no prompt after <kbd>;s</kbd> and <kbd>;n</kbd>.
 
 Note: Do not use `*` with programs those run and exit e.g. cat.
 
-#### Run a GUI app as plugin
+#### Run a GUI app as plugin [`&`]
 
 To run a GUI app as plugin, add a `&` after `!`.
 
@@ -170,7 +171,7 @@ export NNN_PLUG='m:-!&mousepad $nnn'
 
 Note: `$nnn` must be the last argument in this case.
 
-#### Page non-interactive command output
+#### Page non-interactive command output [`|`]
 
 To show the output of run-and-exit commands which do not need user input, add `|` (pipe) after `!`.
 
@@ -183,8 +184,9 @@ This option is incompatible with `&` (terminal output is masked for GUI programs
 Notes:
 
 1. Use single quotes for `$NNN_PLUG` so `$nnn` is not interpreted
-2. (_Again_) add `!` before the command
-3. To disable directory refresh after running a _command as plugin_, prefix with `-!`
+2. `$nnn` must be the last argument (if used) to run a _command as plugin_
+3. (_Again_) add `!` before the command
+4. To disable directory refresh after running a _command as plugin_, prefix with `-!`
 
 #### Some useful key-command examples
 
@@ -230,6 +232,7 @@ The plugin should write a single string in the format `(<->)<ctxcode><opcode><da
 The optional `-` at the **beginning of the stream** instructs `nnn` to clear the selection.
 In cases where the data transfer to `nnn` has to happen while the selection file is being read (e.g. in a loop), the plugin should
 create a tmp copy of the selection file, inform `nnn` to clear the selection and then do the subsequent processing with the tmp file.
+A paged [`|`] or GUI [`&`] cmd run as plugin cannot clear selection.
 
 The `ctxcode` indicates the context to change the active directory of.
 
@@ -317,6 +320,23 @@ done < "$NNN_FIFO" &
 disown
 ```
 
+#### Quick `find` the first match in subtree and open in `nuke`
+
+```sh
+#!/usr/bin/env sh
+
+NUKE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/plugins/nuke"
+
+printf "file name: "
+read -r pattern
+
+entry=$(find . -type f -iname "$pattern" -print -quit 2>/dev/null)
+
+if [ -n "$entry" ]; then
+    "$NUKE" "$entry"
+fi
+```
+
 #### Quick find (using `fd`)
 
 ```sh
@@ -352,7 +372,7 @@ fi
 ## Contributing plugins
 
 1. Add informative sections like _Description_, _Notes_, _Dependencies_, _Shell_, _Author_ etc. in the plugin.
-2. Add an entry in the table above.
+2. Add an entry in the table above. Note that the list is alphabetically ordered by plugin name.
 3. Keep non-portable commands (like `notify-send`) commented so users from any other OS/DE aren't surprised.
 4. The plugin file should be executable.
 5. If your plugin stores data, use `${XDG_CACHE_HOME:-$HOME/.cache}/nnn`. Document it _in-file_.
