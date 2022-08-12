@@ -1,0 +1,3 @@
+#!/bin/sh
+# fix pacman keyring in case of errors
+sudo pacman -Sy archlinux-keyring
