@@ -3,6 +3,7 @@
 # [ -d .git/ ] && echo "Do not use DOT inside another git repo." && exit 1
 
 [ $# -gt 1 ] && [ $1 == "add" ] && [ $2 == '.' ] && echo "Do not add all files!" && exit 1
+[ $# -gt 1 ] && [ $1 == "add" ] && [ $2 == '-A' ] && echo "Do not add all files with -A!" && exit 1
 
 [ $1 == "unstage" ] && git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME restore --staged . && exit 0
 

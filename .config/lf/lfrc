@@ -365,6 +365,9 @@ cmd batdiff !{{
 	bat -d $f
 }}
 
+cmd teehee_hexedit ${{
+	teehee $f
+}}
 
 # Bindings=======================================
 # Remove some defaults
@@ -431,5 +434,6 @@ map mb chmod_bits
 map mx chmod_toggle_x
 
 map o open
+map t teehee_hexedit
 
 map r push :rename<enter><home>
