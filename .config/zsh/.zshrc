@@ -75,6 +75,8 @@ source $ZDOTDIR/completion.zsh
 autoload -Uz jgprompt.zsh-theme; jgprompt.zsh-theme
 
 [ ! -f "$ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] &&
+	sudo pacman -S zsh &&
+	chsh -s /bin/zsh &&
 	git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZDOTDIR/plugins/zsh-syntax-highlighting
 
 
