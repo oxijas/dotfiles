@@ -5,10 +5,14 @@ alias rn='ranger'
 alias cp="cp -i" # Confirm before overwriting something
 alias df='df -h' # Human-readable sizes
 alias free='free -m' # Show sizes in MB
-alias ls='ls --color=always --group-directories-first'
-alias l='ls --color=always -A --group-directories-first'
-alias la='ls -liAFh --group-directories-first --color=always'
-alias ll='ls -liFh --group-directories-first --color=always'
+alias ls='ls --color=always '
+alias l='exa -F'
+#alias l='ls --color=always -A --group-directories-first'
+#alias la='ls -liAFh --group-directories-first --color=always'
+#alias ll='ls -liFh --group-directories-first --color=always'
+alias la='exa -lFa'
+alias ll='exa -lF'
+alias li='exa -lFia'
 alias ..='cd ..'
 alias gst='git status'
 alias pac='sudo pacman'
