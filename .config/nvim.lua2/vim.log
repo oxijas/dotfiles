@@ -1,0 +1,150 @@
+
+
+times in msec
+ clock   self+sourced   self:  sourced script
+ clock   elapsed:              other lines
+
+000.006  000.006: --- NVIM STARTING ---
+000.119  000.113: event init
+000.197  000.078: early init
+000.247  000.050: locale set
+000.276  000.030: init first window
+000.552  000.275: inits 1
+000.563  000.011: window checked
+000.564  000.002: parsing arguments
+001.018  000.077  000.077: require('vim.shared')
+001.128  000.039  000.039: require('vim._meta')
+001.129  000.108  000.069: require('vim._editor')
+001.131  000.214  000.030: require('vim._init_packages')
+001.132  000.353: init lua interpreter
+001.162  000.029: expanding arguments
+001.205  000.043: inits 2
+001.438  000.233: init highlight
+001.439  000.001: waiting for UI
+002.363  000.924: done waiting for UI
+002.375  000.011: init screen for UI
+002.558  000.184: init default mappings
+002.594  000.035: init default autocommands
+003.281  000.064  000.064: sourcing /usr/share/nvim/runtime/ftplugin.vim
+003.411  000.045  000.045: sourcing /usr/share/nvim/runtime/indent.vim
+003.465  000.014  000.014: sourcing /usr/share/nvim/archlinux.vim
+003.479  000.046  000.033: sourcing /etc/xdg/nvim/sysinit.vim
+005.411  000.217  000.217: require('packer.util')
+005.460  001.729  001.511: require('packer')
+005.731  000.269  000.269: require('packer.log')
+006.314  000.148  000.148: require('packer.async')
+006.603  000.098  000.098: require('packer.result')
+006.606  000.290  000.192: require('packer.jobs')
+006.611  000.842  000.404: require('packer.plugin_utils')
+006.821  000.198  000.198: require('packer.snapshot')
+007.855  000.482  000.482: require('options')
+007.864  000.005  000.005: require('vim.keymap')
+008.193  000.288  000.288: require('keymap')
+008.348  000.152  000.152: require('onedark')
+009.159  000.160  000.160: require('onedark')
+011.014  000.199  000.199: require('onedark.palette')
+011.114  000.380  000.181: require('onedark.colors')
+011.253  000.133  000.133: require('onedark.util')
+011.458  001.684  001.172: require('onedark.highlights')
+015.243  000.142  000.142: require('onedark.terminal')
+015.258  006.367  004.380: sourcing /home/jga/.config/local/share/nvim/site/pack/packer/start/onedark.nvim/colors/onedark.lua
+015.863  000.109  000.109: require('lualine_require')
+016.162  000.897  000.788: require('lualine')
+018.282  000.123  000.123: require('lualine.utils.mode')
+021.386  000.116  000.116: require('Comment')
+021.459  000.069  000.069: require('Comment.config')
+022.118  000.227  000.227: require('Comment.ft')
+022.129  000.513  000.286: require('Comment.utils')
+022.280  000.149  000.149: require('Comment.opfunc')
+022.396  000.114  000.114: require('Comment.extra')
+022.401  000.939  000.163: require('Comment.api')
+023.842  000.336  000.336: require('indent_blankline/utils')
+023.846  001.209  000.874: require('indent_blankline')
+024.834  000.840  000.840: require('nnn')
+029.861  000.007  000.007: require('vim.F')
+029.886  000.969  000.963: require('nvim-web-devicons')
+039.024  000.046  000.046: require('bufferline.lazy')
+039.094  000.061  000.061: require('bufferline.constants')
+039.438  000.341  000.341: require('bufferline.commands')
+039.445  005.196  004.748: require('bufferline')
+039.839  000.392  000.392: require('bufferline.utils')
+040.357  000.511  000.511: require('bufferline.config')
+040.747  000.385  000.385: require('bufferline.groups')
+040.981  000.111  000.111: require('bufferline.colors')
+041.460  000.205  000.205: require('bufferline.highlights')
+042.686  000.124  000.124: require('bufferline.hover')
+043.398  000.652  000.652: require('bufferline.ui')
+043.870  000.426  000.426: require('fm-nvim')
+045.854  000.108  000.108: require('vim.treesitter.language')
+045.868  000.835  000.727: require('vim.treesitter.query')
+048.951  000.783  000.783: require('vim.treesitter.languagetree')
+049.031  001.373  000.590: require('vim.treesitter')
+049.366  002.711  001.338: require('nvim-treesitter.parsers')
+049.678  000.310  000.310: require('nvim-treesitter.utils')
+049.685  003.486  000.465: require('nvim-treesitter.ts_utils')
+049.692  003.823  000.337: require('nvim-treesitter.tsrange')
+049.789  000.076  000.076: require('nvim-treesitter.caching')
+049.799  005.230  000.496: require('nvim-treesitter.query')
+049.809  005.739  000.509: require('nvim-treesitter.configs')
+050.428  000.147  000.147: require('nvim-treesitter.info')
+050.616  000.185  000.185: require('nvim-treesitter.shell_command_selectors')
+050.644  000.825  000.492: require('nvim-treesitter.install')
+051.335  047.834  017.775: sourcing /home/jga/.config/nvim/init.lua
+051.343  000.760: sourcing vimrc file(s)
+051.682  000.038  000.038: sourcing /usr/share/vim/vimfiles/ftdetect/lf.vim
+051.781  000.333  000.295: sourcing /usr/share/nvim/runtime/filetype.lua
+051.815  000.014  000.014: sourcing /usr/share/nvim/runtime/filetype.vim
+052.009  000.090  000.090: sourcing /usr/share/nvim/runtime/syntax/synload.vim
+052.091  000.244  000.154: sourcing /usr/share/nvim/runtime/syntax/syntax.vim
+052.786  000.125  000.125: sourcing /usr/share/nvim/runtime/plugin/gzip.vim
+052.812  000.008  000.008: sourcing /usr/share/nvim/runtime/plugin/health.vim
+053.253  000.174  000.174: sourcing /usr/share/nvim/runtime/pack/dist/opt/matchit/plugin/matchit.vim
+053.339  000.511  000.337: sourcing /usr/share/nvim/runtime/plugin/matchit.vim
+053.509  000.154  000.154: sourcing /usr/share/nvim/runtime/plugin/matchparen.vim
+053.846  000.318  000.318: sourcing /usr/share/nvim/runtime/plugin/netrwPlugin.vim
+054.035  000.010  000.010: sourcing /home/jga/.config/local/share/nvim/rplugin.vim
+054.043  000.165  000.156: sourcing /usr/share/nvim/runtime/plugin/rplugin.vim
+054.120  000.058  000.058: sourcing /usr/share/nvim/runtime/plugin/shada.vim
+054.169  000.021  000.021: sourcing /usr/share/nvim/runtime/plugin/spellfile.vim
+054.298  000.094  000.094: sourcing /usr/share/nvim/runtime/plugin/tarPlugin.vim
+054.402  000.077  000.077: sourcing /usr/share/nvim/runtime/plugin/tohtml.vim
+054.440  000.015  000.015: sourcing /usr/share/nvim/runtime/plugin/tutor.vim
+054.608  000.137  000.137: sourcing /usr/share/nvim/runtime/plugin/zipPlugin.vim
+055.233  000.516  000.516: sourcing /usr/share/vim/vimfiles/plugin/fzf.vim
+055.769  000.440  000.440: sourcing /home/jga/.config/nvim/plugin/packer_compiled.lua
+056.077  000.108  000.108: sourcing /usr/share/nvim/runtime/plugin/man.lua
+056.135  001.452: loading rtp plugins
+056.854  000.475  000.475: sourcing /home/jga/.config/local/share/nvim/site/pack/packer/start/Comment.nvim/plugin/Comment.lua
+1550.622  1493.602  1493.602: sourcing /home/jga/.config/local/share/nvim/site/pack/packer/start/fm-nvim/plugin/fm-nvim.lua
+1551.690  000.633  000.633: require('indent_blankline.commands')
+1551.781  000.994  000.361: sourcing /home/jga/.config/local/share/nvim/site/pack/packer/start/indent-blankline.nvim/plugin/indent_blankline.vim
+1552.159  000.085  000.085: require('nvim-treesitter.statusline')
+1552.353  000.191  000.191: require('nvim-treesitter.query_predicates')
+1552.356  000.357  000.081: require('nvim-treesitter')
+1552.828  000.865  000.508: sourcing /home/jga/.config/local/share/nvim/site/pack/packer/start/nvim-treesitter/plugin/nvim-treesitter.lua
+1552.959  000.039  000.039: sourcing /home/jga/.config/local/share/nvim/site/pack/packer/start/nvim-web-devicons/plugin/nvim-web-devicons.vim
+1553.115  001.004: loading packages
+1553.117  000.002: loading after plugins
+1553.127  000.009: inits 3
+1554.798  001.671: reading ShaDa
+1554.973  000.049  000.049: require('vim.inspect')
+1555.203  000.356: opening buffers
+1555.351  000.060  000.060: require('bufferline.state')
+1555.379  000.115: BufEnter autocommands
+1555.381  000.002: editing files in windows
+1555.977  000.597: VimEnter autocommands
+1555.983  000.006: UIEnter autocommands
+2696.158  1140.080  1140.080: sourcing /usr/share/nvim/runtime/autoload/provider/clipboard.vim
+2696.200  000.137: before starting main loop
+2696.667  000.111  000.111: require('bufferline.pick')
+2696.793  000.122  000.122: require('bufferline.duplicates')
+2697.045  000.249  000.249: require('bufferline.diagnostics')
+2697.331  000.283  000.283: require('bufferline.models')
+2697.336  000.999  000.234: require('bufferline.buffers')
+2697.770  000.117  000.117: require('bufferline.numbers')
+2698.143  000.148  000.148: require('bufferline.sorters')
+2698.462  000.186  000.186: require('bufferline.tabpages')
+2698.744  000.171  000.171: require('bufferline.offset')
+2698.843  000.094  000.094: require('bufferline.custom_area')
+2699.580  001.666: first screen update
+2699.584  000.004: --- NVIM STARTED ---
