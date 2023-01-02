@@ -46,7 +46,15 @@ require('packer').startup(function(use)
 	-- use {'romgrk/barbar.nvim', wants = 'nvim-web-devicons'}
 	use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
 
-	-- use {'is0n/fm-nvim'}
+	use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+  			require("toggleterm").setup()
+	end}
+
+
+	use "nvim-lua/plenary.nvim"
+
+
+	use  {"lmburns/lf.nvim"}
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -183,108 +191,6 @@ require("bufferline").setup({
     numbers = ordinal,
   }
 })
--- =============================================================================
--- =============================================================================
-
-
--- Enable telescope fzf native, if installed
--- pcall(require('telescope').load_extension, 'fzf')
-
--- See `:help telescope.builtin`
--- vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
--- vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
--- vim.keymap.set('n', '<leader>/', function()
---   -- You can pass additional configuration to telescope to change theme, layout, etc.
---   require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
---     winblend = 10,
---     previewer = false,
---   })
--- end, { desc = '[/] Fuzzily search in current buffer]' })
---
--- vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
--- vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
--- vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
--- vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
--- vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-
-
--- require('fm-nvim').setup{
---   -- (Vim) Command used to open files
---   edit_cmd = "edit",
---
---   -- See `Q&A` for more info
---   on_close = {},
---   on_open = {},
---
---   -- UI Options
---   ui = {
---     -- Default UI (can be "split" or "float")
---     default = "float",
---
---     float = {
---       -- Floating window border (see ':h nvim_open_win')
---       border    = "solid",
---
---       -- Highlight group for floating window/border (see ':h winhl')
---       float_hl  = "Normal",
---       border_hl = "FloatBorder",
---
---       -- Floating Window Transparency (see ':h winblend')
---       blend     = 0,
---
---       -- Num from 0 - 1 for measurements
---       height    = 0.8,
---       width     = 0.8,
---
---       -- X and Y Axis of Window
---       x = 0.5,
---       y = 0.5
---     },
---
---     split = {
---       -- Direction of split
---       direction = "topleft",
---
---       -- Size of split
---       size      = 24
---     }
---   },
---
---     -- Terminal commands used w/ file manager (have to be in your $PATH)
---     cmds = {
---     lf_cmd      = "lf", -- eg: lf_cmd = "lf -command 'set hidden'"
---     fm_cmd      = "fm",
---     nnn_cmd     = "nnn",
---     fff_cmd     = "fff",
---     twf_cmd     = "twf",
---     fzf_cmd     = "fzf", -- eg: fzf_cmd = "fzf --preview 'bat --style=numbers --color=always --line-range :500 {}'"
---     fzy_cmd     = "find . | fzy",
---     xplr_cmd    = "xplr",
---     vifm_cmd    = "vifm",
---     skim_cmd    = "sk",
---     broot_cmd   = "broot",
---     gitui_cmd   = "gitui",
---     ranger_cmd  = "ranger",
---     joshuto_cmd = "joshuto",
---     lazygit_cmd = "lazygit",
---     neomutt_cmd = "neomutt",
---     taskwarrior_cmd = "taskwarrior-tui"
---   },
---
---   -- Mappings used with the plugin
---   mappings = {
---   vert_split = "<C-v>",
---   horz_split = "<C-h>",
---   tabedit    = "<C-t>",
---   edit       = "<C-e>",
---   ESC        = "<ESC>"
---   },
---
---   -- Path to broot config
---   broot_conf = vim.fn.stdpath("data") .. "/site/pack/packer/start/fm-nvim/assets/broot_conf.hjson"
--- }
---
-
 
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
@@ -346,3 +252,16 @@ require('nvim-treesitter.configs').setup {
     },
   },
 }
+
+
+require("lf").setup({
+	default_cmd = "lf", -- default `lf` command
+	default_action = "edit", -- default action when `Lf` opens a file
+	default_actions = { -- default action keybindings
+    ["<C-t>"] = "tabedit",
+    ["<C-x>"] = "split",
+    ["<C-v>"] = "vsplit",
+    ["<C-o>"] = "tab drop",
+	}
+})
+
