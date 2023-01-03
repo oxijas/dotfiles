@@ -9,6 +9,10 @@ keymap.set("i", "jj", "<ESC>", opts)
 -- niet silent maken
 keymap.set("n", ";", ":")
 
+-- Keymaps for better default experience
+-- See `:help vim.keymap.set()`
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
 -- custom scrolling
 keymap.set("n", "M-j", "<PageUp>")
 -- keymap.set("n", "<leader>p", "<PageUp>")
@@ -19,6 +23,7 @@ keymap.set("n", "M-h",  ":vertical resize -2<CR>", opts)
 keymap.set("n", "M-l",  ":vertical resize +2<CR>", opts)
 
 -- Remap for dealing with word wrap
+-- geen idee wat dit doet
 -- vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 -- vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
@@ -79,7 +84,8 @@ keymap.set("n", "<leader>bd", ":bd<CR>", opts)
 keymap.set("n", "<leader>o", ":split<CR>", opts)
 keymap.set("n", "<leader>v", ":vsplit<CR>", opts)
 
-keymap.set("n", "<leader>[", ":NnnPicker %:p:h<CR>")
+keymap.set("n", "<leader>[", ":Lf<CR>")
+-- keymap.set("n", "<leader>[", ":NnnPicker %:p:h<CR>")
 -- keymap.set("n", "<leader>f", ":NnnExplorer %:p:h<CR>")
 keymap.set("n", "<leader>f", ":Lf<CR>")
 -- keymap.set("n", "<leader>f", ":NnnExplorer<CR>")

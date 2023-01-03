@@ -9,13 +9,7 @@ end
 
 require('packer').startup(function(use)
   -- Package manager
-	
 	use 'wbthomason/packer.nvim'
-
-	-- use { -- Autocompletion
-  	--   'hrsh7th/nvim-cmp',
-  	--   requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
-  	-- }
 
 	use { -- Highlight, edit, and navigate code
     	'nvim-treesitter/nvim-treesitter',
@@ -24,23 +18,12 @@ require('packer').startup(function(use)
     	end,
   	}
 
-
 	use 'navarasu/onedark.nvim' -- Theme inspired by Atom
 	use 'nvim-lualine/lualine.nvim' -- Fancier statusline	
 	use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
 	use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   	-- use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
-  	-- Fuzzy Finder (files, lsp, etc)
-  	-- use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
-
-  	-- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-  	-- use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
-
-  	use {'luukvbaal/nnn.nvim',
-   	config = function() require("nnn").setup() end
-  	}
-  
 	use 'nvim-tree/nvim-web-devicons'
 
 	-- use {'romgrk/barbar.nvim', wants = 'nvim-web-devicons'}
@@ -50,9 +33,7 @@ require('packer').startup(function(use)
   			require("toggleterm").setup()
 	end}
 
-
 	use "nvim-lua/plenary.nvim"
-
 
 	use  {"lmburns/lf.nvim"}
 
@@ -90,42 +71,16 @@ vim.api.nvim_create_autocmd('BufWritePost', {
  
 require('options')
 
-
--- Keymaps for better default experience
--- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
-
--- Remap for dealing with word wrap
-vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
-vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-
-
 -- load keyboard jga
--- kan zijn dat sommige dingen dubbel gedefineerd zijn
 require('keymap')
-
--- [[ Highlight on yank ]]
--- See `:help vim.highlight.on_yank()`
--- local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
--- vim.api.nvim_create_autocmd('TextYankPost', {
---   callback = function()
---     vim.highlight.on_yank()
---   end,
---   group = highlight_group,
---   pattern = '*',
--- })
---
--- Set lualine as statusline
--- See `:help lualine.txt`
---
 
 -- Lua
 require('onedark').setup {
     -- style = 'cool'
     style = 'deep'
+    -- style = 'darker'
 }
 require('onedark').load()
-
 
 require('lualine').setup {
   options = {
@@ -146,43 +101,6 @@ require('indent_blankline').setup {
   char = '┊',
   show_trailing_blankline_indent = false,
 }
-
--- [[ Configure Telescope ]]
--- See `:help telescope` and `:help telescope.setup()`
--- require('telescope').setup {
---   defaults = {
---     mappings = {
---       i = {
---         ['<C-u>'] = false,
---         ['<C-d>'] = false,
---       },
---     },
---   },
-
-require ('nnn').setup({
-  explorer = {
-		cmd = "nnn -cRHUp",       -- command overrride (-F1 flag is implied, -a flag is invalid!)
-		width = 36,        -- width of the vertical split
-		side = "botright",  -- or "botright", location of the explorer window
-		session = "",      -- or "global" / "local" / "shared"
-		tabs = true,       -- seperate nnn instance per tab
-		fullscreen = true, -- whether to fullscreen explorer window when current tab is empty
-	},
-  picker = {
-		cmd = "nnn -cRHU",       -- command override (-p flag is implied)
-		style = {
-			width = 0.25,     -- percentage relative to terminal size when < 1, absolute otherwise
-			height = 1.0,    -- ^
-			xoffset = 1.0,   -- ^
-			yoffset = 0.0,   -- ^
-			-- border = "single"-- border decoration for example "rounded"(:h nvim_open_win)
-			border = "solid"-- border decoration for example "rounded"(:h nvim_open_win)
-		},
-		session = "",      -- or "global" / "local" / "shared"
-		fullscreen = true, -- whether to fullscreen picker window when current tab is empty
-	},
-  auto_close = true
-})
 
 require ('nvim-web-devicons').setup()
 
@@ -253,12 +171,12 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
-
 require("lf").setup({
 	default_cmd = "lf", -- default `lf` command
 	default_action = "edit", -- default action when `Lf` opens a file
 	default_actions = { -- default action keybindings
-    ["<C-t>"] = "tabedit",
+    -- ["<C-t>"] = "tabedit",
+    ["<CR>"] = "tabedit",
     ["<C-x>"] = "split",
     ["<C-v>"] = "vsplit",
     ["<C-o>"] = "tab drop",
