@@ -87,7 +87,7 @@ keymap.set("n", "<leader>v", ":vsplit<CR>", opts)
 keymap.set("n", "<leader>[", ":Lf<CR>")
 -- keymap.set("n", "<leader>[", ":NnnPicker %:p:h<CR>")
 -- keymap.set("n", "<leader>f", ":NnnExplorer %:p:h<CR>")
-keymap.set("n", "<leader>f", ":Lf<CR>")
+-- keymap.set("n", "<leader>f", ":Lf<CR>")
 -- keymap.set("n", "<leader>f", ":NnnExplorer<CR>")
 
 
