@@ -84,7 +84,7 @@ keymap.set("n", "<leader>bd", ":bd<CR>", opts)
 keymap.set("n", "<leader>o", ":split<CR>", opts)
 keymap.set("n", "<leader>v", ":vsplit<CR>", opts)
 
-keymap.set("n", "<leader>[", ":Lf<CR>")
+keymap.set("n", "<leader>,", ":NvimTreeToggle<CR>")
 -- keymap.set("n", "<leader>[", ":NnnPicker %:p:h<CR>")
 -- keymap.set("n", "<leader>f", ":NnnExplorer %:p:h<CR>")
 -- keymap.set("n", "<leader>f", ":Lf<CR>")
