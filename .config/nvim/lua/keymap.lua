@@ -6,6 +6,7 @@ local opts = { noremap = true, silent = true }
 
 -- general keymap
 keymap.set("i", "jj", "<ESC>", opts)
+keymap.set("n", "-", "<End>", opts)
 -- niet silent maken
 keymap.set("n", ";", ":")
 
