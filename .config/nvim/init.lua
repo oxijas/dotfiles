@@ -1,3 +1,7 @@
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
@@ -22,20 +26,21 @@ require('packer').startup(function(use)
 	use 'nvim-lualine/lualine.nvim' -- Fancier statusline	
 	use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
 	use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  	-- use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
-
 	use 'nvim-tree/nvim-web-devicons'
-
-	-- use {'romgrk/barbar.nvim', wants = 'nvim-web-devicons'}
 	use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
+	use "nvim-lua/plenary.nvim"
 
 	use {"akinsho/toggleterm.nvim", tag = '*', config = function()
   			require("toggleterm").setup()
 	end}
 
-	use "nvim-lua/plenary.nvim"
-
-	use  {"lmburns/lf.nvim"}
+	use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+  	 },
+    -- tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  	}
 
 	-- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
 	local has_plugins, plugins = pcall(require, 'custom.plugins')
@@ -171,15 +176,40 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
-require("lf").setup({
-	default_cmd = "lf", -- default `lf` command
-	default_action = "edit", -- default action when `Lf` opens a file
-	default_actions = { -- default action keybindings
-    -- ["<C-t>"] = "tabedit",
-    ["<CR>"] = "tabedit",
-    ["<C-x>"] = "split",
-    ["<C-v>"] = "vsplit",
-    ["<C-o>"] = "tab drop",
-	}
+-- require("lf").setup({
+-- 	default_cmd = "lf", -- default `lf` command
+-- 	default_action = "edit", -- default action when `Lf` opens a file
+-- 	default_actions = { -- default action keybindings
+--     -- ["<C-t>"] = "tabedit",
+--     ["<CR>"] = "tabedit",
+--     ["<C-x>"] = "split",
+--     ["<C-v>"] = "vsplit",
+--     ["<C-o>"] = "tab drop",
+-- 	}
+-- })
+
+require("nvim-tree").setup({
+  sort_by = "case_insensitive",
+  view = {
+    adaptive_size = true,
+    mappings = {
+      list = {
+        { key = "l", action = "<CR>", action_cb = edit_or_open },
+        { key = "h", action = "dir_up" },
+      --  { key = "H", action = "collapse_all", action_cb = collapse_all }
+      },
+    },
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = false,
+  },
+  actions = {
+    open_file = {
+        quit_on_open = true
+    }
+  }
 })
 
