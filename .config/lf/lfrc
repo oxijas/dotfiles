@@ -403,7 +403,7 @@ map dq refresh
 map gb cd /usr/bin
 map g. cd ~/.config
 map ge cd /etc
-map gw cd /mnt/c/Users/jga
+map gw cd /mnt/c/Users/jvdga
 #ook met g maar nu git commands
 map gc git_commit
 map gd batdiff
