@@ -95,11 +95,14 @@ local function on_attach(bufnr)
   --
   -- You will need to insert "your code goes here" for any mappings with a custom action_cb
   vim.keymap.set('n', 'l', function()
-    local node = api.tree.get_node_under_cursor()
+    -- local node = api.tree.get_node_under_cursor()
+    local node = api.node.open.edit()
     -- your code goes here
   end, opts('<CR>'))
 
-  vim.keymap.set('n', 'h', api.tree.change_root_to_parent, opts('Up'))
+  vim.keymap.set('n', 'h', function()
+		local node = api.node.navigate.parent()
+	end, opts('Parent Directory'))
 
 end
 
