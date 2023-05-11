@@ -2,7 +2,8 @@
 
 # source this file in .zshrc when zsh shell is used 
 source ~/.config/myprofile/myenv
-source ~/.config/myprofile/myalias
+source $XDG_CONFIG_HOME/myprofile/myalias
+source $XDG_CONFIG_HOME/myprofile/myscripts
 
 fpath=($ZDOTDIR/plugins $fpath)
 
@@ -61,11 +62,6 @@ fi
 # USE LF TO SWITCH DIRECTORIES AND BIND IT TO CTRL-O
 bindkey -s '^[o' 'lfcd\n'
 
-# -------------- ALIASES ------------------------
-source $XDG_CONFIG_HOME/aliases/aliases
-
-# ---------- SCRIPTS ----------------------------
-source $ZDOTDIR/scripts.zsh
 
 # ---------- PREP FOR GO-LIVE -------------------
 # Lines configured by zsh-newuser-install

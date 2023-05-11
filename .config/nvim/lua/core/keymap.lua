@@ -1,8 +1,9 @@
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.mapleader = ","
+vim.g.maplocalleader = ","
 
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
+local opts2 = { noremap = true }
 
 -- general keymap
 keymap.set("i", "jj", "<ESC>", opts)
@@ -14,14 +15,6 @@ keymap.set("n", ";", ":")
 -- See `:help vim.keymap.set()`
 keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
--- custom scrolling
-keymap.set("n", "M-j", "<PageUp>")
--- keymap.set("n", "<leader>p", "<PageUp>")
-keymap.set("n", "M-k", "<PageDown>")
-
--- use alt + hjkl to resize window
-keymap.set("n", "M-h",  ":vertical resize -2<CR>", opts)
-keymap.set("n", "M-l",  ":vertical resize +2<CR>", opts)
 
 -- Remap for dealing with word wrap
 -- geen idee wat dit doet
@@ -69,26 +62,40 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- tab		= layout of windows
 --					gt = gotab, ga naar volgende tab
 --					:tabnew = creer tab
-keymap.set("n", "<TAB>",  ":bnext<CR>", opts)
-keymap.set("n", "<S-TAB>",  ":bprevious<CR>", opts)
--- switchen tussen windows
-keymap.set("n", "<leader>l", ":wincmd w<CR>", opts)
-keymap.set("n", "<leader>h", ":wincmd h<CR>", opts)
-keymap.set("n", "<leader>j", ":wincmd j<CR>", opts)
-keymap.set("n", "<leader>k", ":wincmd k<CR>", opts)
--- close window
-keymap.set("n", "<leader>wc", "<C-w>c", opts)
--- close buffer
-keymap.set("n", "<leader>bd", ":bd<CR>", opts)
+-- keymap.set("n", "<TAB>",  ":bnext<CR>", opts)
+-- keymap.set("n", "<S-TAB>",  ":bprevious<CR>", opts)
 
--- splitting screen
-keymap.set("n", "<leader>o", ":split<CR>", opts)
-keymap.set("n", "<leader>v", ":vsplit<CR>", opts)
+
+-- we hebben het omgedraaid - tab is naar volgende window
+-- en leader+TAB is naar volgende buffer
+keymap.set("n", "<TAB>",  "<C-W>w", opts)
+keymap.set("n", "<S-TAB>",  "<C-W>W", opts)
+keymap.set("n", "<leader><TAB>", ":bnext<CR>", opts)
+keymap.set("n", "<leader><S-TAB>", ":bprevious<CR>", opts)
+
+-- windows
+keymap.set("n", "<leader>wc", "<C-w>q", opts)
+keymap.set("n", "<leader>wn", ":vne<CR>", opts)
+
+--buffers
+keymap.set("n", "<leader>bc", ":bd<CR>", opts)
+keymap.set("n", "<leader>bn", ":vne<CR>", opts)
+
+
+-- splitting screen horizontal / vertical = window new
+keymap.set("n", "<leader>wh", ":split<CR>", opts)
+keymap.set("n", "<leader>wv", ":vsplit<CR>", opts)
+-- use resize the window
+-- keymap.set("n", "M-j",  ":vertical resize -2<CR>", opts)
+-- keymap.set("n", "M-k",  ":vertical resize +2<CR>", opts)
+-- keymap.set("n", "M-h",  ":horizontal resize -2<CR>", opts)
+-- keymap.set("n", "M-l",  ":horizontal resize +2<CR>", opts)
 
 keymap.set("n", "<leader>,", ":NvimTreeToggle<CR>")
--- keymap.set("n", "<leader>[", ":NnnPicker %:p:h<CR>")
--- keymap.set("n", "<leader>f", ":NnnExplorer %:p:h<CR>")
--- keymap.set("n", "<leader>f", ":Lf<CR>")
--- keymap.set("n", "<leader>f", ":NnnExplorer<CR>")
+
+-- custom scrolling
+-- halve pagina is standaard ctrl-u / ctrl-d
+keymap.set("n", "<leader>k", "<PageUp>", opts)
+keymap.set("n", "<leader>j", "<PageDown>", opts)
 
 

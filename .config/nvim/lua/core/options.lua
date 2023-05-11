@@ -32,7 +32,9 @@ vim.opt.smartcase = true
 vim.opt.cursorline = false
 vim.opt.termguicolors = true
 -- vim.cmd [[colorscheme onedark]]
-vim.opt.background = "dark"
+--vim.opt.background = "dark"
+--vim.cmd [[ colorscheme quantum]]
+
 vim.opt.mouse = "a"
 --vim.opt.guicursor=i:block
 
