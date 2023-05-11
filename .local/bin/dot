@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # [ -d .git/ ] && echo "Do not use DOT inside another git repo." && exit 1
 
