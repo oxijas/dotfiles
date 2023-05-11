@@ -12,7 +12,7 @@ keymap.set("n", ";", ":")
 
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
-vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 -- custom scrolling
 keymap.set("n", "M-j", "<PageUp>")

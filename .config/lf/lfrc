@@ -3,11 +3,14 @@
 %[ $LF_LEVEL -eq 1 ] || echo "Warning: You're in a nested lf instance!"
 
 # basic settings ========================
+
+# shell hardcoded omdat dat snelste is
 #set shell sh
 #set shellopts '-eu'
 #aanpassingen voor zsh shell met spaties
-set shell zsh
-set shellopts '-euy'
+#set shell zsh
+#set shellopts '-euy'
+set shell bash
 #ifs=internal field separator - shell parameter
 set ifs "\n"
 #filesep voor fs en fx
@@ -15,7 +18,7 @@ set filesep "\n"	# default already
 set scrolloff 5
 set hidden true
 set ignorecase true
-set dirfirst on
+set dirfirst true
 set info size:time
 set ratios 1:3:4
 set preview true

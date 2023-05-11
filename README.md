@@ -17,3 +17,9 @@ Then overwrite existing config
 
 And remove temp folder
 > rm -r tmpdotfiles
+
+add to existing bashrc
+source ~/.config/myprofile/mybash
+
+in case of zsh, then .zshenv in home folder will be read automatically
+

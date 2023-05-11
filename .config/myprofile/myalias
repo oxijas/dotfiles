@@ -1,21 +1,14 @@
 #!/bin/bash
 
-alias lf=lfrun
-alias rn='ranger'
+
+# generieke aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 alias cp="cp -i" # Confirm before overwriting something
 alias df='df -h' # Human-readable sizes
 alias free='free -m' # Show sizes in MB
-alias ls='ls --color=always '
-alias l='exa -F'
-#alias l='ls --color=always -A --group-directories-first'
-#alias la='ls -liAFh --group-directories-first --color=always'
-#alias ll='ls -liFh --group-directories-first --color=always'
-alias la='exa -lFga'
-alias ll='exa -lFg'
-alias li='exa -lFiag'
 alias ..='cd ..'
-alias gst='git status'
-alias pac='sudo pacman'
 alias vi='nvim'
 alias slf='sudo lf'
 alias fm='vifm'
@@ -23,25 +16,39 @@ alias mi='micro'
 alias please='sudo'
 alias cdh="cd ~"
 alias cdc="cd ~/.config"
-alias update='sudo pacman -Syyu'
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
-alias cclip='xclip -selection clipboard'
-alias pclip='xclip -o -selection clipboard'
-alias jctl="journalctl -p 3 -xb"
 
-# git / dot
+# git 
+alias gst='git status'
 alias ga="git add"
 alias gp="git push"
 alias gc="git commit"
 alias gs="git status"
 alias gu="git add -u"
 alias gunstage="git restore --staged ."
-# %cd = respecteer date format as stated in --date=format
 alias gl="git log --graph --all --pretty=format:'%Cred%h %Cgreen%cd%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset' --abbrev-commit --date=format:'%d%b%y %H:%M'"
 #alias gl="git log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=format:'%d%b%y %H:%M'"
 alias gl2="git log --all --decorate --oneline --graph"
 alias gl3="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cs) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias glt="git ls-tree --full-tree -r --name-only HEAD |fzf"
+
+alias cclip='xclip -selection clipboard'
+alias pclip='xclip -o -selection clipboard'
+
+
+
+if [[ $(cat /etc/issue) =~ "Ubuntu" ]]; then
+	echo "Ubuntu detected, Ubuntu settings applied."
+   echo " "
+   alias update='sudo apt update'
+else
+	echo "Arch detected, Ubuntu settings applied."
+   echo " "
+	alias update='sudo pacman -Syyu'
+fi
+
+
+# dot management
+# %cd = respecteer date format as stated in --date=format
 # dot is defined in ~/.local/bin
 dot config --local status.showUntrackedFiles no
 alias dotl="dot log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=format:'%d%b%y %H:%M'"
@@ -51,7 +58,4 @@ alias dotlt='dot ls-tree --full-tree -r --name-only HEAD |fzf'
 alias dotc='dot commit'
 alias dotp='dot push'
 alias dotu='dot add -u'
-
-# local to the machine aliases
-[ -f $XDG_CONFIG_HOME/aliases/local ] && source $XDG_CONFIG_HOME/aliases/local
 
