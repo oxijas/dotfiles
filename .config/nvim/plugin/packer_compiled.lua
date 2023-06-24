@@ -94,6 +94,11 @@ _G.packer_plugins = {
     path = "/home/jga/.config/local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  ["midnight.nvim"] = {
+    loaded = true,
+    path = "/home/jga/.config/local/share/nvim/site/pack/packer/start/midnight.nvim",
+    url = "https://github.com/dasupradyumna/midnight.nvim"
+  },
   ["nvim-tree.lua"] = {
     loaded = true,
     path = "/home/jga/.config/local/share/nvim/site/pack/packer/start/nvim-tree.lua",
