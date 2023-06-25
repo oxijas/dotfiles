@@ -16,9 +16,12 @@ Options:
   a                similar to add -u
   c                similar to commit
   s                similar to status
+  p                similar to push
+  l                log in pretty format
   forcepull        Undo/delete all local changes and force the pull 
   undoall          Remove all local changes, clean stage and restore worktree
   unstage          Unstage all files from stage area
+  search           Search for files in dotfiles using fzf
 "
 
 [ $# == 0 ] && echo "$__usage" && exit 0
@@ -28,9 +31,12 @@ Options:
 [ $# == 1 ] && [ $1 == "forcepull" ] && echo "Forcing pull.." && dot stash && dot pull && dot stash drop && exit 0
 [ $# == 1 ] && [ $1 == "undoall" ] && echo "Undo all changes.. clean stage area and restore worktree.." && dot restore --staged --worktree . && exit 0
 [ $# == 1 ] && [ $1 == "unstage" ] && dot restore --staged . && exit 0
+[ $# == 1 ] && [ $1 == "search" ] && dot ls-tree --full-tree -r --name-only HEAD |fzf && exit 0
 [ $# == 1 ] && [ $1 == "a" ] && dot add -u && exit 0
-[ $# == 1 ] && [ $1 == "c" ] && dot commit && exit 0
-[ $# == 1 ] && [ $1 == "s" ] && dot status && exit 0
+[ $1 == "c" ] && dot commit $2 $3 && exit 0
+[ $# == 1 ] && [ $1 == "s" ] && dot status -b -s && exit 0
+[ $# == 1 ] && [ $1 == "p" ] && dot push && exit 0
+[ $# == 1 ] && [ $1 == "l" ] && dot log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --abbrev-commit --date=format:'%d%b%y %H:%M' && exit 0
 
 
 /usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME "$@"
