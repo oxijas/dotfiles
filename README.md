@@ -12,33 +12,39 @@ Otherwise all files and folders from the home directory reported as new files in
 For initial installation clone into a temporary folder:
 
 	git clone --separate-git-dir=$HOME/.local/share/dotfiles https://github.com/oxijas/dotfiles.git tmpdotfiles 
-  
-or
+
+or SSH:
+
 	git clone --separate-git-dir=$HOME/.local/share/dotfiles git@github.com:oxijas/dotfiles.git tmpdotfiles
+ 
   
 Then overwrite existing config
-> rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
+	rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
 
 And remove temp folder
-> rm -r tmpdotfiles
+	rm -r tmpdotfiles
 
 add to existing bashrc
-source ~/.config/myprofile/mybash
+	source ~/.config/myprofile/mybash
 
 in case of zsh, then .zshenv in home folder will be read automatically
   
 first time git config:
-> git config --global user.name "John Doe"
 
-> git config --global user.email johndoe@example.com
+	git config --global user.name "John Doe"
+
+	git config --global user.email johndoe@example.com
 
 some other options  
-> dot config pull.rebase true
+
+	dot config pull.rebase true
 
 to force a pull and ignore local changes
-> dot pull -f
+
+	dot pull -f
 
 to set ssh instead of http later
-> dot remote set-url origin git@github.com:oxijas/dotfiles.git
+
+	dot remote set-url origin git@github.com:oxijas/dotfiles.git
 
 set local settings/aliases in  ~/.config/myprofile/thismachine
