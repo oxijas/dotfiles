@@ -11,11 +11,11 @@ Usage: dot [OPTIONS]
 All regular git commands work, in addition:
 
 Options:
-  a                similar to add -u
   c                similar to commit
-  s                similar to status
-  p                similar to push
   l                log in pretty format
+  p                similar to push
+  s                similar to status
+  u                similar to add -u (update)
   forcepull        Undo/delete all local changes and force the pull
   undoall          Remove all local changes, clean stage and restore worktree
   unstage          Unstage all files from stage area
