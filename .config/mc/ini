@@ -89,7 +89,7 @@ filepos_max_saved_entries=1024
 
 [Layout]
 output_lines=0
-left_panel_size=73
+left_panel_size=70
 top_panel_size=0
 message_visible=false
 keybar_visible=true
@@ -106,7 +106,7 @@ timeformat_recent=%b %e %H:%M
 timeformat_old=%b %e  %Y
 ftp_proxy_host=gate
 ftpfs_password=anonymous@
-display_codepage=ASCII
+display_codepage=UTF-8
 source_codepage=Other_8_bit
 autodetect_codeset=
 spell_language=en
@@ -144,6 +144,9 @@ simple_swap=false
 [terminal:xterm-256color]
 up=\\ek
 down=\\ej
+
+left=\\eh
+right=\\el
 
 [Panelize]
 Find *.orig after patching=find . -name \\*.orig -print
