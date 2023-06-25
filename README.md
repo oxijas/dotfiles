@@ -33,9 +33,9 @@ first time git config:
 > git config --global user.email johndoe@example.com
 
 some other options  
-dot config pull.rebase true
+> dot config pull.rebase true
 
 to set ssh instead of http later
-dot remote set-url origin git@github.com:oxijas/dotfiles.git
+> dot remote set-url origin git@github.com:oxijas/dotfiles.git
 
 set local settings/aliases in  ~/.config/myprofile/thismachine
