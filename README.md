@@ -27,10 +27,14 @@ source ~/.config/myprofile/mybash
 
 in case of zsh, then .zshenv in home folder will be read automatically
   
-first time git:
+first time git config:
 > git config --global user.name "John Doe"
-  
 > git config --global user.email johndoe@example.com
-  
 
+some other options  
+dot config pull.rebase true
 
+to set ssh instead of http later
+dot remote set-url origin git@github.com:oxijas/dotfiles.git![image](https://github.com/oxijas/dotfiles/assets/20925087/606e5f18-6fdf-42f1-8c59-62f50afa6ce5)
+
+set local settings/aliases in  ~/.config/myprofile/thismachine
