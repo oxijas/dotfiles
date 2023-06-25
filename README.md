@@ -2,8 +2,8 @@
 
 Dotfiles are managed with standard git tools. No symlinks.
 It uses a simple shell script called 'dot' stored in ~/.local/bin and this folder should be in the path.
-'dot'is a simple wrapper around git that sets the working tree to the $HOME directory and the git repository to $HOME/.local/share/dotfiles.
-Any git command will work as it just calls git under the hood. SOme shortcuts have been added.
+Dot is a simple wrapper around git that sets the working tree to the $HOME directory and the git repository to $HOME/.local/share/dotfiles.
+Any git command will work as it just calls git under the hood. 
 
 ```dos
 Usage: dot [OPTIONS]
