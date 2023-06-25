@@ -35,6 +35,13 @@ first time git config:
 some other options  
 > dot config pull.rebase true
 
+to force a pull and ignore local changes
+> dot stash
+>
+> dot pull
+>
+> dot stash drop
+
 to set ssh instead of http later
 > dot remote set-url origin git@github.com:oxijas/dotfiles.git
 
