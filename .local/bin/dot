@@ -2,15 +2,36 @@
 
 # [ -d .git/ ] && echo "Do not use DOT inside another git repo." && exit 1
 
-[ $# -gt 1 ] && [ $1 == "add" ] && [ $2 == '.' ] && echo "Do not add all files!" && exit 1
-[ $# -gt 1 ] && [ $1 == "add" ] && [ $2 == '-A' ] && echo "Do not add all files with -A!" && exit 1
+Err() {
+  echo "$2" 1>&2
+  exit "$1"
+}
 
-[ $# -gt 1 ] && [ $1 == "pull" ] && [ $2 == '-f' ] && echo "Forcing pull.." && dot stash && dot pull && dot stash drop && exit 0
+__usage="
+Usage: dot [OPTIONS]
 
-[ $1 == "unstage" ] && git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME restore --staged . && exit 0
+All regular git commands work, in addition:
 
-[ $1 == "discard" ] && echo "discard file(s).." && \
-	git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME restore --source "$2" && exit 0
+Options:
+  a                similar to add -u
+  c                similar to commit
+  s                similar to status
+  forcepull        Undo/delete all local changes and force the pull 
+  undoall          Remove all local changes, clean stage and restore worktree
+  unstage          Unstage all files from stage area
+"
+
+[ $# == 0 ] && echo "$__usage" && exit 0
+[ $# -gt 1 ] && [ $1 == "add" ] && [ $2 == '.' ] && Err 1 "Do not add all files!"
+[ $# -gt 1 ] && [ $1 == "add" ] && [ $2 == '-A' ] && Err 1 "Do not add all files with -A!"
+
+[ $# == 1 ] && [ $1 == "forcepull" ] && echo "Forcing pull.." && dot stash && dot pull && dot stash drop && exit 0
+[ $# == 1 ] && [ $1 == "undoall" ] && echo "Undo all changes.. clean stage area and restore worktree.." && dot restore --staged --worktree . && exit 0
+[ $# == 1 ] && [ $1 == "unstage" ] && dot restore --staged . && exit 0
+[ $# == 1 ] && [ $1 == "a" ] && dot add -u && exit 0
+[ $# == 1 ] && [ $1 == "c" ] && dot commit && exit 0
+[ $# == 1 ] && [ $1 == "s" ] && dot status && exit 0
+
 
 /usr/bin/git --git-dir=$HOME/.local/share/dotfiles/ --work-tree=$HOME "$@"
 

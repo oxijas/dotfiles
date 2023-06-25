@@ -41,7 +41,7 @@ some other options
 
 to force a pull and ignore local changes
 
-	dot pull -f
+ dot pull -f
 
 to set ssh instead of http later
 
