@@ -13,11 +13,11 @@ Usage: dot [OPTIONS]
 All regular git commands work, in addition:
 
 Options:
-  a                similar to add -u
   c                similar to commit
-  s                similar to status
-  p                similar to push
   l                log in pretty format
+  p                similar to push
+  s                similar to status
+  u                similar to add -u (update)
   forcepull        Undo/delete all local changes and force the pull 
   undoall          Remove all local changes, clean stage and restore worktree
   unstage          Unstage all files from stage area
@@ -32,7 +32,7 @@ Options:
 [ $# == 1 ] && [ $1 == "undoall" ] && echo "Undo all changes.. clean stage area and restore worktree.." && dot restore --staged --worktree . && exit 0
 [ $# == 1 ] && [ $1 == "unstage" ] && dot restore --staged . && exit 0
 [ $# == 1 ] && [ $1 == "search" ] && dot ls-tree --full-tree -r --name-only HEAD |fzf && exit 0
-[ $# == 1 ] && [ $1 == "a" ] && dot add -u && dot s && exit 0
+[ $# == 1 ] && [ $1 == "u" ] && dot add -u && dot s && exit 0
 [ $1 == "c" ] && dot commit $2 $3 && exit 0
 [ $# == 1 ] && [ $1 == "s" ] && dot status -b -s && exit 0
 [ $# == 1 ] && [ $1 == "p" ] && dot push && exit 0
