@@ -32,7 +32,7 @@ Options:
 [ $# == 1 ] && [ $1 == "undoall" ] && echo "Undo all changes.. clean stage area and restore worktree.." && dot restore --staged --worktree . && exit 0
 [ $# == 1 ] && [ $1 == "unstage" ] && dot restore --staged . && exit 0
 [ $# == 1 ] && [ $1 == "search" ] && dot ls-tree --full-tree -r --name-only HEAD |fzf && exit 0
-[ $# == 1 ] && [ $1 == "a" ] && dot add -u && exit 0
+[ $# == 1 ] && [ $1 == "a" ] && dot add -u && dot s && exit 0
 [ $1 == "c" ] && dot commit $2 $3 && exit 0
 [ $# == 1 ] && [ $1 == "s" ] && dot status -b -s && exit 0
 [ $# == 1 ] && [ $1 == "p" ] && dot push && exit 0
