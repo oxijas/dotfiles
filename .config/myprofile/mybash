@@ -5,6 +5,8 @@
 source ~/.config/myprofile/myenv
 source $XDG_CONFIG_HOME/myprofile/myalias
 source $XDG_CONFIG_HOME/myprofile/myscripts
+# local to the machine settings if defined
+[ -f $XDG_CONFIG_HOME/myprofile/thismachine ] && source $XDG_CONFIG_HOME/myprofile/thismachine
 
 
 # -------------- KEYBOARD -----------------------
@@ -40,12 +42,10 @@ key[Shift-Tab]="${terminfo[kcbt]}"
 [[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}"  reverse-menu-complete
 
 
-# local to the machine settings if defined
-[ -f $XDG_CONFIG_HOME/myprofile/thismachine ] && source $XDG_CONFIG_HOME/myprofile/thismachine
 
 # make a default colorprompt
 PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
 cd $HOME
-#neofetch
-pfetch
+neofetch
+#pfetch

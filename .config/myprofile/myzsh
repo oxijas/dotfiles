@@ -4,6 +4,8 @@
 source ~/.config/myprofile/myenv
 source $XDG_CONFIG_HOME/myprofile/myalias
 source $XDG_CONFIG_HOME/myprofile/myscripts
+# local to the machine settings if defined
+[ -f $XDG_CONFIG_HOME/myprofile/thismachine ] && source $XDG_CONFIG_HOME/myprofile/thismachine
 
 fpath=($ZDOTDIR/plugins $fpath)
 
@@ -86,5 +88,5 @@ autoload -Uz jgprompt.zsh-theme; jgprompt.zsh-theme
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 cd $HOME
-pfetch
-
+#pfetch
+neofetch

@@ -89,7 +89,7 @@ filepos_max_saved_entries=1024
 
 [Layout]
 output_lines=0
-left_panel_size=70
+left_panel_size=64
 top_panel_size=0
 message_visible=false
 keybar_visible=true
@@ -147,6 +147,8 @@ down=\\ej
 
 left=\\eh
 right=\\el
+
+f10=\\eq
 
 [Panelize]
 Find *.orig after patching=find . -name \\*.orig -print

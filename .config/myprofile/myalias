@@ -36,15 +36,15 @@ alias pclip='xclip -o -selection clipboard'
 
 
 
-if [[ $(cat /etc/issue) =~ "Ubuntu" ]]; then
-	echo "Ubuntu detected, Ubuntu settings applied."
-   echo " "
-   alias update='sudo apt update'
-else
-	echo "Arch detected, Ubuntu settings applied."
-   echo " "
-	alias update='sudo pacman -Syyu'
-fi
+# if [[ $(cat /etc/issue) =~ "Ubuntu" ]]; then
+# 	echo "Ubuntu detected, settings applied."
+#    echo " "
+#    alias update='sudo apt update'
+# else
+# 	echo "Arch detected, settings applied."
+#    echo " "
+# 	alias update='sudo pacman -Syyu'
+# fi
 
 
 # dot management
