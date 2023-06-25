@@ -35,6 +35,6 @@ some other options
 dot config pull.rebase true
 
 to set ssh instead of http later
-dot remote set-url origin git@github.com:oxijas/dotfiles.git![image](https://github.com/oxijas/dotfiles/assets/20925087/606e5f18-6fdf-42f1-8c59-62f50afa6ce5)
+dot remote set-url origin git@github.com:oxijas/dotfiles.git
 
 set local settings/aliases in  ~/.config/myprofile/thismachine
