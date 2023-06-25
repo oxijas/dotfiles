@@ -29,6 +29,7 @@ in case of zsh, then .zshenv in home folder will be read automatically
   
 first time git config:
 > git config --global user.name "John Doe"
+
 > git config --global user.email johndoe@example.com
 
 some other options  
