@@ -6,17 +6,20 @@ It uses a simple shell script called 'dot' stored in ~/.local/bin and this folde
 Any git command will work as it just calls git under the hood. SOme shortcuts have been added.
 
 
-Usage: dot [OPTIONS]
-
-All regular git commands work, in addition:
-
-Options:
-  a                similar to add -u
-  c                similar to commit
-  s                similar to status
-  forcepull        Undo/delete all local changes and force the pull 
-  undoall          Remove all local changes, clean stage and restore worktree
-  unstage          Unstage all files from stage area
+> Usage: dot [OPTIONS]
+>
+> All regular git commands work, in addition:
+>
+> Options:
+> a                similar to add -u
+> c                similar to commit
+> s                similar to status
+> 
+> forcepull        Undo/delete all local changes and force the pull
+> 
+> undoall          Remove all local changes, clean stage and restore worktree
+> 
+> unstage          Unstage all files from stage area
 
   
 
