@@ -3,9 +3,25 @@
 Dotfiles are managed with standard git tools. No symlinks.
 It uses a simple shell script called 'dot' stored in ~/.local/bin and this folder should be in the path.
 'dot'is a simple wrapper around git that sets the working tree to the $HOME directory and the git repository to $HOME/.local/share/dotfiles.
+Any git command will work as it just calls git under the hood. SOme shortcuts have been added.
+
+
+Usage: dot [OPTIONS]
+
+All regular git commands work, in addition:
+
+Options:
+  a                similar to add -u
+  c                similar to commit
+  s                similar to status
+  forcepull        Undo/delete all local changes and force the pull 
+  undoall          Remove all local changes, clean stage and restore worktree
+  unstage          Unstage all files from stage area
+
+  
 
 Adding files to the repo, just do with 'dot add <filename>' then 'dot commit/push' etc.
-Any git command will work as it just calls git underneath and uses your home folder as the root of the git repo.
+
 In bashrc/zshrc set 'dot config --local status.ShowUntrackedFiles no'.
 Otherwise all files and folders from the home directory reported as new files in the repo.
 
