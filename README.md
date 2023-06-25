@@ -5,23 +5,19 @@ It uses a simple shell script called 'dot' stored in ~/.local/bin and this folde
 'dot'is a simple wrapper around git that sets the working tree to the $HOME directory and the git repository to $HOME/.local/share/dotfiles.
 Any git command will work as it just calls git under the hood. SOme shortcuts have been added.
 
+```dos
+Usage: dot [OPTIONS]
 
-> Usage: dot [OPTIONS]
->
-> All regular git commands work, in addition:
->
-> Options:
-> a                similar to add -u
-> c                similar to commit
-> s                similar to status
-> 
-> forcepull        Undo/delete all local changes and force the pull
-> 
-> undoall          Remove all local changes, clean stage and restore worktree
-> 
-> unstage          Unstage all files from stage area
+All regular git commands work, in addition:
 
-  
+Options:
+a                similar to add -u
+c                similar to commit
+s                similar to status
+forcepull        Undo/delete all local changes and force the pull
+undoall          Remove all local changes, clean stage area and restore worktree
+unstage          Unstage all files from stage area
+```  
 
 Adding files to the repo, just do with 'dot add <filename>' then 'dot commit/push' etc.
 
