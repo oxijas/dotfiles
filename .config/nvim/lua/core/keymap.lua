@@ -68,10 +68,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- we hebben het omgedraaid - tab is naar volgende window
 -- en leader+TAB is naar volgende buffer
-keymap.set("n", "<TAB>",  "<C-W>w", opts)
-keymap.set("n", "<S-TAB>",  "<C-W>W", opts)
-keymap.set("n", "<leader><TAB>", ":bnext<CR>", opts)
-keymap.set("n", "<leader><S-TAB>", ":bprevious<CR>", opts)
+-- keymap.set("n", "<TAB>",  "<C-W>w", opts)
+-- keymap.set("n", "<S-TAB>",  "<C-W>W", opts)
+
+-- buffer
+keymap.set("n", "<TAB>",  ":bnext<CR>", opts)
+keymap.set("n", "<S-TAB>",  ":bprev<CR>", opts)
 
 -- windows
 keymap.set("n", "<leader>wc", "<C-w>q", opts)
@@ -95,7 +97,7 @@ keymap.set("n", "<leader>,", ":NvimTreeToggle<CR>")
 
 -- custom scrolling
 -- halve pagina is standaard ctrl-u / ctrl-d
-keymap.set("n", "<leader>k", "<PageUp>", opts)
-keymap.set("n", "<leader>j", "<PageDown>", opts)
+keymap.set("n", "{", "<PageUp>", opts)
+keymap.set("n", "}", "<PageDown>", opts)
 
 
