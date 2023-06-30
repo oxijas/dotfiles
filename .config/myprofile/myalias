@@ -43,7 +43,8 @@ if [[ $(cat /etc/issue) =~ "Ubuntu" ]]; then
 else
  	echo "Arch detected, settings applied."
    echo " "
-
+   alias update='sudo pacman -Syu'
+fi
 
 # dot management
 # %cd = respecteer date format as stated in --date=format
