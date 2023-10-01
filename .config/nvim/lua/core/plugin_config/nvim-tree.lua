@@ -110,7 +110,7 @@ end
 
 
 require("nvim-tree").setup({
-  sort_by = "case_insensitive",
+--j  sort_by = "case_insensitive",
   on_attach = on_attach,
 --  view = {
 --    adaptive_size = true,
