@@ -22,7 +22,7 @@ window:
   #  lines: 0
 
   #nieuw, nu hier
-  opacity: 0.80
+  opacity: 0.90
   # Window position (changes require restart)
   #
   # Specified in number of pixels.
@@ -110,26 +110,26 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: FiraCode Nerd Font
+    family: Input NFM
     style: Regular
 
   # Bold font face
   bold:
-    family: FiraCode Nerd Font
-    style: Medium
+    family: Input NFM
+    style: Bold
 
   # Italic font face
   italic:
-    family: FiraCode Nerd Font
+    family: Input NFM
     style: Italic
 
   # Bold italic font face
   bold_italic:
-    family: FiraCode Nerd Font
+    family: Input NFM
     style: Bold Italic
 
   # Point size
-  size: 13.0
+  size: 12.0
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
