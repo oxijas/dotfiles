@@ -47,6 +47,7 @@ tw      37      # STICKY_OTHER_WRITABLE
 ow      12      # OTHER_WRITABLE
 st      01;12   # STICKY
 di      01;36   # DIR
+#di      01;31   # DIR ROOT
 pi      33      # FIFO
 so      01;35   # SOCK
 bd      33;01   # BLK
