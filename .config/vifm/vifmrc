@@ -546,7 +546,7 @@ fileview * defviewer %c
 "highlight User2 ctermbg=208 ctermfg=white cterm=bold
 "set statusline="%1* %-26t %= %A %7u:%-7g %-5s %d "
 set statusline="  %-26t %= %A %7u:%-7g %-5s %d  "
-colorscheme japser molokai Default-256 Default
+colorscheme papercolor-dark japser molokai Default-256 Default
 
 set timefmt=%d-%m-%y\ %H:%M
 :screen!
