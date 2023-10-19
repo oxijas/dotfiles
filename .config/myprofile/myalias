@@ -16,6 +16,7 @@ alias mi='micro'
 alias please='sudo'
 alias cdh="cd ~"
 alias cdc="cd ~/.config"
+alias he="helix"
 
 # git 
 alias gst='git status'
