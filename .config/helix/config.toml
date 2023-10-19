@@ -1,0 +1,24 @@
+theme = "heisenberg"
+
+[editor]
+line-number = "absolute"
+mouse = false
+true-color = true
+scrolloff = 3
+bufferline = "multiple"
+color-modes = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = true
+
+[keys.normal]
+";" = "command_mode"
+
+[keys.insert.j]
+j = "normal_mode" # Maps `jj` to exit insert mode
+

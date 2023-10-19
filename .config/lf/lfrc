@@ -415,6 +415,7 @@ map gl git_log
 map gs git_status
 map ga git_add
 map gp git_push
+map gt cd /mnt/c/Users/jvdga/Documents/Ninjatrader\ 8/bin/Custom/Indicators/Timo
 map gr git_clearindex
 map gu git_update
 
