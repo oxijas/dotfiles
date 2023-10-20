@@ -1,4 +1,4 @@
-theme = "heisenberg"
+theme = "doom_acario_dark"
 
 [editor]
 line-number = "absolute"
@@ -16,11 +16,23 @@ select = "underline"
 [editor.file-picker]
 hidden = false
 
+[editor.soft-wrap]
+enable = true
+
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
 [keys.normal]
 ";" = "command_mode"
 "tab" = ":bn"
 "A-w" = "rotate_view"
 
-[keys.insert.j]
-j = "normal_mode" # Maps `jj` to exit insert mode
+#[keys.insert.j]
+#j = "normal_mode" # Maps `jj` to exit insert mode
+
+[keys.insert]
+j = { k = "normal_mode" } # Maps `jk` to exit insert mode
+
 

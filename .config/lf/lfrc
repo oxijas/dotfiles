@@ -1,5 +1,6 @@
-# jga lf config file
+#!/bin/sh
 
+# jga lf config file
 %[ $LF_LEVEL -eq 1 ] || echo "Warning: You're in a nested lf instance!"
 
 # basic settings ========================

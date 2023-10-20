@@ -1,5 +1,5 @@
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
@@ -93,7 +93,7 @@ keymap.set("n", "<leader>wv", ":vsplit<CR>", opts)
 -- keymap.set("n", "M-h",  ":horizontal resize -2<CR>", opts)
 -- keymap.set("n", "M-l",  ":horizontal resize +2<CR>", opts)
 
-keymap.set("n", "<leader>,", ":NvimTreeToggle<CR>")
+keymap.set("n", "<leader>f", ":NvimTreeToggle<CR>")
 
 -- custom scrolling
 -- halve pagina is standaard ctrl-u / ctrl-d
