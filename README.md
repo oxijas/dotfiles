@@ -38,12 +38,15 @@ or SSH:
  
   
 Then overwrite existing config
+
 	rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
 
 And remove temp folder
+
 	rm -r tmpdotfiles
 
 add to existing bashrc
+
 	source ~/.config/myprofile/mybash
 
 in case of zsh, then .zshenv in home folder will be read automatically
