@@ -38,21 +38,27 @@ alias pclip='xclip -o -selection clipboard'
 
 
 if [[ $(cat /etc/issue) =~ "Ubuntu" ]]; then
- 	echo "Ubuntu detected, settings applied."
+ 	echo "Ubuntu distro."
    echo " "
    alias update='sudo apt update && sudo apt upgrade'
 elif [[ $(cat /etc/issue) =~ "Arch" ]]; then
- 	echo "Arch detected, settings applied."
+ 	echo "Arch distro."
    echo " "
    alias update='sudo pacman -Syu'
 elif [[ $(cat /etc/issue) =~ "Manjaro" ]]; then
- 	echo "Manjaro detected, settings applied."
+ 	echo "Manjaro distro."
    echo " "
    alias update='sudo pacman -Syu'
 elif [[ $(cat /etc/issue) =~ "Debian" ]]; then
- 	echo "Debian detected, settings applied."
+ 	echo "Debian distro."
    echo " "
    alias update='sudo apt update && sudo apt upgrade'
+elif [[ $(cat /etc/issue) =~ "Endeavour" ]]; then
+ 	echo "Endeavour distro."
+   echo " "
+   alias update='sudo pacman -Syu'
+else
+ 	echo "unknown distro, no update settings applied."
 fi
 
 # dot management
