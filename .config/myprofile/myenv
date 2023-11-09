@@ -9,10 +9,10 @@ export SAVEHIST=1000
 
 export TERM='xterm-256color'
 
-#export EDITOR="/usr/bin/nvim"
-export EDITOR="/usr/bin/helix"
-#export VISUAL="/usr/bin/nvim"
-export VISUAL="/usr/bin/helix"
+export EDITOR="/usr/bin/nvim"
+#export EDITOR="/usr/bin/helix"
+export VISUAL="/usr/bin/nvim"
+#export VISUAL="/usr/bin/helix"
 
 export NNN_BMS='h:~/;c:~/.config/;d:~/Downloads/;e:/etc/;u:/usr/share'
 export NNN_PLUG='c:cdpath;h:hexview;i:imgview;o:fzopen;m:nmount;x:togglex;S:suedit;u:uidgid'
