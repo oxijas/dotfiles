@@ -1,0 +1,20 @@
+#!/bin/bash
+
+echo "Test write and read speed with dd"
+echo "Starting write.."
+
+dd if=/dev/zero of=./testfile.tmp bs=100M count=10 oflag=direct conv=fsync; 
+
+echo "Write complete.."
+echo " "
+echo "Starting read.."
+
+dd if=./testfile.tmp of=/dev/zero bs=100M count=10 oflag=dsync
+echo "Read complete.."
+echo " "
+echo "Deleting write file"
+
+sudo rm -f ./testfile.tmp
+
+echo "finished.."
+
