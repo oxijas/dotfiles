@@ -1,0 +1,2 @@
+blurry fonts
+	go to brave://flags/ search for ozone and change the setting to auto.
