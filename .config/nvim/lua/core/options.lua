@@ -81,4 +81,4 @@ vim.opt.undofile = true
 
 -- vim.cmd [[colorscheme onedark]]
 
-
+vim.api.nvim_set_option("clipboard","unnamedplus")
