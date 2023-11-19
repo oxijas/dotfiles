@@ -110,27 +110,30 @@ scrolling:
 font:
   # Normal (roman) font face
   normal:
-    family: Input NFM
+    #family: Input NFM
     #family: FiraMono Nerd Font
-    #family: Input NerdFont Mono
+    family: Input NerdFont Mono
     style: Regular
 
   # Bold font face
   bold:
-    family: Input NFM
+    #family: Input NFM
     #family: FiraMono Nerd Font
+    family: Input NerdFont Mono
     style: Bold
 
   # Italic font face
   italic:
-    family: Input NFM
+    #family: Input NFM
     #family: FiraMono Nerd Font
+    family: Input NerdFont Mono
     style: Italic
 
   # Bold italic font face
   bold_italic:
-    family: Input NFM
+    #family: Input NFM
     #family: FiraMono Nerd Font
+    family: Input NerdFont Mono
     style: Bold Italic
 
   # Point size
