@@ -30,7 +30,7 @@ export CDPATH="$XDG_CONFIG_HOME/nnn/bookmarks"
 
 export XINITRC="$XDG_CONFIG_HOME/X11/xinitrc"
 
-
+export KITTY_CONFIG_DIRECTORY="$XDG_CONFIG_HOME/kitty"
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
