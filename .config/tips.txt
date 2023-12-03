@@ -1,2 +1,6 @@
 blurry fonts
 	go to brave://flags/ search for ozone and change the setting to auto.
+
+
+in windows, bij gebrek aan ssh-copy-id
+>type C:\Users\jvdga\.ssh\id_rsa.pub | ssh jga@192.168.1.240 -p 1801 "cat >> .ssh/authorized_keys"
