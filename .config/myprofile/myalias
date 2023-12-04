@@ -2,7 +2,7 @@
 
 
 # generieke aliases
-alias ll='ls -alF'
+alias ll='ls -alF --color'
 alias la='ls -A'
 alias l='ls -CF'
 alias cp="cp -i" # Confirm before overwriting something

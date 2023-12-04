@@ -33,6 +33,6 @@ mode.select = "SELECT"
 #j = "normal_mode" # Maps `jj` to exit insert mode
 
 [keys.insert]
-j = { k = "normal_mode" } # Maps `jk` to exit insert mode
+j = { j = "normal_mode" } # Maps `jk` to exit insert mode
 
 
