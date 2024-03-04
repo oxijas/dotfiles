@@ -10,7 +10,8 @@ alias df='df -h' # Human-readable sizes
 alias free='free -m' # Show sizes in MB
 alias ..='cd ..'
 alias vi='nvim'
-alias slf='sudo lf'
+alias vvi='sudo env "PATH=$PATH" nvim'
+alias llf='sudo env "PATH=$PATH" lf'
 alias fm='vifm'
 alias mi='micro'
 alias please='sudo'

@@ -9,9 +9,9 @@ export SAVEHIST=1000
 
 export TERM='xterm-256color'
 
-export EDITOR="/usr/bin/nvim"
+export EDITOR="/usr/local/bin/nvim"
 #export EDITOR="/usr/bin/helix"
-export VISUAL="/usr/bin/nvim"
+export VISUAL="/usr/local/bin/nvim"
 #export VISUAL="/usr/bin/helix"
 
 export NNN_BMS='h:~/;c:~/.config/;d:~/Downloads/;e:/etc/;u:/usr/share'
