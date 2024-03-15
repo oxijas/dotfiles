@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo certbot --manual  --preferred-challenges dns certonly -d djuniverse.nl 
