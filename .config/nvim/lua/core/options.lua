@@ -79,6 +79,7 @@ vim.opt.undofile = true
 
 -- vim.wo.signcolumn = 'yes'
 
--- vim.cmd [[colorscheme onedark]]
+vim.cmd [[colorscheme PaperColor]]
 
 vim.api.nvim_set_option("clipboard","unnamedplus")
+

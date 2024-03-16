@@ -5,54 +5,46 @@ version: "3.8"
 # docker compose down removes also containers after stopping and volumes, unless volumes are declared external
 #  port:  host: in container
 
+networks:
+  gitea:
+    external: false
+
 services:
-  
-  pihole:
-    image: pihole/pihole:latest
-    container_name: pihole
-    restart: unless-stopped
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      #- "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
-      - "90:80"
+  gitea:
+    image: gitea/gitea:1.21.7
+    container_name: gitea
     environment:
-      TZ: Europe/Amsterdam
-      #FTLCONF_LOCAL_IPV4: "192.168.1.210"   #eth0 
-      #FTLCONF_LOCAL_IPV4: 192.168.1.211   #wlan0
-      PIHOLE_DNS_1: 1.1.1.1
-      PIHOLE_DNS_2: 1.0.0.1  #Cloudflare
-      DHCP_ACTIVE: false  # wel of niet DHCP aanzetten
-      DNSMASQ_LISTENING: all
-      DNS_FQDN_REQUIRED: true
-      DNS_BOGUS_PRIV: true
-      DNSSEC: false
-      IPv6: false
-      PIHOLE_DOMAIN: pi210pihole
-      #REV_SERVER: true
-      #REV_SERVER_DOMAIN: myrouter.home
-      #REV_SERVER_CIDR: 192.168.1.0/24
-      #REV_SERVER_TARGET: 192.168.1.1
-      WEBTHEME: default-dark
-      WEBPASSWORD: ''
+      - USER_UID=1000
+      - USER_GID=1000
+      - GITEA__database__DB_TYPE=postgres
+      - GITEA__database__HOST=db:5432
+      - GITEA__database__NAME=gitea
+      - GITEA__database__USER=gitea
+      - GITEA__database__PASSWD=gitea
+    restart: always
+    networks:
+      - gitea
     volumes:
-      - ./etc-pihole:/etc/pihole
-      - ./etc-dnsmasq.d:/etc/dnsmasq.d
-    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
-    #cap_add:
-      #- NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
-  nginx:
-    image: jc21/nginx-proxy-manager:latest 
-    container_name: nginx
-    restart: unless-stopped 
+      - ./gitea:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     ports:
-      - "80:80"
-      - "81:81"
-      - "443:443" 
+      - "3000:3000"
+      - "222:22"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14
+    restart: always
+    environment:
+      - POSTGRES_USER=gitea
+      - POSTGRES_PASSWORD=gitea
+      - POSTGRES_DB=gitea
+    networks:
+      - gitea
     volumes:
-      - ./nginx/data:/data
-      - ./nginx/letsencrypt:/etc/letsencrypt 
-      #- /etc/letsencrypt:/etc/letsencrypt
+      - ./postgres:/var/lib/postgresql/data
 
   portainer:
     image: portainer/portainer-ce:latest
@@ -65,8 +57,54 @@ services:
     volumes:
       - ./portdata:/data
       - /var/run/docker.sock:/var/run/docker.sock
- 
-  # # onderstaand gebruikt met DHCP uit, kan geen kwaad om tweede pihole te hebben met DHCP uit 
 
 
- 
+  # pihole:
+  #   image: pihole/pihole:latest
+  #   container_name: pihole
+  #   restart: unless-stopped
+  #   ports:
+  #     - "53:53/tcp"
+  #     - "53:53/udp"
+  #     #- "67:67/udp" # Only required if you are using Pi-hole as your DHCP server
+  #     - "90:80"
+  #   environment:
+  #     TZ: Europe/Amsterdam
+  #     #FTLCONF_LOCAL_IPV4: "192.168.1.210"   #eth0 
+  #     #FTLCONF_LOCAL_IPV4: 192.168.1.211   #wlan0
+  #     PIHOLE_DNS_1: 1.1.1.1
+  #     PIHOLE_DNS_2: 1.0.0.1  #Cloudflare
+  #     DHCP_ACTIVE: false  # wel of niet DHCP aanzetten
+  #     DNSMASQ_LISTENING: all
+  #     DNS_FQDN_REQUIRED: true
+  #     DNS_BOGUS_PRIV: true
+  #     DNSSEC: false
+  #     IPv6: false
+  #     PIHOLE_DOMAIN: pi210pihole
+  #     #REV_SERVER: true
+  #     #REV_SERVER_DOMAIN: myrouter.home
+  #     #REV_SERVER_CIDR: 192.168.1.0/24
+  #     #REV_SERVER_TARGET: 192.168.1.1
+  #     WEBTHEME: default-dark
+  #     WEBPASSWORD: ''
+  #   volumes:
+  #     - ./etc-pihole:/etc/pihole
+  #     - ./etc-dnsmasq.d:/etc/dnsmasq.d
+  #   #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    #cap_add:
+      #- NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
+ #  nginx:
+ #    image: jc21/nginx-proxy-manager:latest 
+ #    container_name: nginx
+ #    restart: unless-stopped 
+ #    ports:
+ #      - "80:80"
+ #      - "81:81"
+ #      - "443:443" 
+ #    volumes:
+ #      - ./nginx/data:/data
+ #      - ./nginx/letsencrypt:/etc/letsencrypt 
+ #      #- /etc/letsencrypt:/etc/letsencrypt
+ #
+
+
