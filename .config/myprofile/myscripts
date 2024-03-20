@@ -61,3 +61,8 @@ mkextract() {
         fi
     done
 }
+
+function lk {
+  cd "$(walk --icons "$@")"
+}
+
