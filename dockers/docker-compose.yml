@@ -10,6 +10,32 @@ networks:
     external: false
 
 services:
+
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: unless-stopped
+    ports:
+      - "9443:9443"
+      - "9000:9000"
+      - "8000:8000"
+    volumes:
+      - ./portainer/data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  nginx:
+    image: jc21/nginx-proxy-manager:latest 
+    container_name: nginx
+    restart: unless-stopped 
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443" 
+    volumes:
+      - ./nginx/data:/data
+      - ./nginx/letsencrypt:/etc/letsencrypt 
+      #- /etc/letsencrypt:/etc/letsencrypt
+
   gitea:
     image: gitea/gitea:1.21.7
     container_name: gitea
@@ -25,7 +51,7 @@ services:
     networks:
       - gitea
     volumes:
-      - ./gitea:/data
+      - ./gitea/data:/data
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
@@ -44,21 +70,9 @@ services:
     networks:
       - gitea
     volumes:
-      - ./postgres:/var/lib/postgresql/data
+      - ./gitea/postgres:/var/lib/postgresql/data
 
-  portainer:
-    image: portainer/portainer-ce:latest
-    container_name: portainer
-    restart: unless-stopped
-    ports:
-      - "9443:9443"
-      - "9000:9000"
-      - "8000:8000"
-    volumes:
-      - ./portdata:/data
-      - /var/run/docker.sock:/var/run/docker.sock
-
-
+  
   # pihole:
   #   image: pihole/pihole:latest
   #   container_name: pihole
@@ -70,8 +84,6 @@ services:
   #     - "90:80"
   #   environment:
   #     TZ: Europe/Amsterdam
-  #     #FTLCONF_LOCAL_IPV4: "192.168.1.210"   #eth0 
-  #     #FTLCONF_LOCAL_IPV4: 192.168.1.211   #wlan0
   #     PIHOLE_DNS_1: 1.1.1.1
   #     PIHOLE_DNS_2: 1.0.0.1  #Cloudflare
   #     DHCP_ACTIVE: false  # wel of niet DHCP aanzetten
@@ -88,23 +100,6 @@ services:
   #     WEBTHEME: default-dark
   #     WEBPASSWORD: ''
   #   volumes:
-  #     - ./etc-pihole:/etc/pihole
-  #     - ./etc-dnsmasq.d:/etc/dnsmasq.d
-  #   #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
-    #cap_add:
-      #- NET_ADMIN # Required if you are using Pi-hole as your DHCP server, else not needed
- #  nginx:
- #    image: jc21/nginx-proxy-manager:latest 
- #    container_name: nginx
- #    restart: unless-stopped 
- #    ports:
- #      - "80:80"
- #      - "81:81"
- #      - "443:443" 
- #    volumes:
- #      - ./nginx/data:/data
- #      - ./nginx/letsencrypt:/etc/letsencrypt 
- #      #- /etc/letsencrypt:/etc/letsencrypt
- #
-
+  #     - .pihole/etc-pihole:/etc/pihole
+  #     - .pihole/etc-dnsmasq.d:/etc/dnsmasq.d
 
