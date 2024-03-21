@@ -1,0 +1,54 @@
+version: "3.8" 
+# volumes lokale_folder:folder_in_container
+# starten: docker compose up -d
+# docker container prune = verwijdert alle gestopte containers
+# docker compose down removes also containers after stopping and volumes, unless volumes are declared external
+#  port:  host: in container
+
+# networks:
+#   gitea:
+#     external: false
+#
+services:
+#
+   portainer:
+     image: portainer/portainer-ce:latest
+     container_name: portainer
+     restart: unless-stopped
+     ports:
+       - 9443:9443
+       - 9000:9000
+       - 8000:8000
+     volumes:
+       - ./portainer/data:/data
+       - /var/run/docker.sock:/var/run/docker.sock
+
+    pihole:
+     image: pihole/pihole:latest
+     container_name: pihole
+     restart: unless-stopped
+     ports:
+       - 53:53/tcp
+       - 53:53/udp
+       - 90:80
+     environment:
+        TZ: Europe/Amsterdam
+        PIHOLE_DNS_1: 1.1.1.1
+        PIHOLE_DNS_2: 1.0.0.1  #Cloudflare
+        DHCP_ACTIVE: false  # wel of niet DHCP aanzetten
+        DNSMASQ_LISTENING: all
+        DNS_FQDN_REQUIRED: true
+        DNS_BOGUS_PRIV: true
+        DNSSEC: false
+        IPv6: false
+        PIHOLE_DOMAIN: pi210pihole
+        #REV_SERVER: true
+        #REV_SERVER_DOMAIN: myrouter.home
+        #REV_SERVER_CIDR: 192.168.1.0/24
+        #REV_SERVER_TARGET: 192.168.1.1
+        WEBTHEME: default-dark
+        WEBPASSWORD: ''
+      volumes:
+        - ./etc-pihole:/etc/pihole
+        - ./etc-dnsmasq.d:/etc/dnsmasq.d
+  
