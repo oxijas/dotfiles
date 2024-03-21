@@ -16,9 +16,9 @@ services:
     container_name: portainer
     restart: unless-stopped
     ports:
-      - "9443:9443"
-      - "9000:9000"
-      - "8000:8000"
+      - 9443:9443
+      - 9000:9000
+      - 8000:8000
     volumes:
       - ./portainer/data:/data
       - /var/run/docker.sock:/var/run/docker.sock
@@ -28,9 +28,9 @@ services:
     container_name: nginx
     restart: unless-stopped 
     ports:
-      - "80:80"
-      - "81:81"
-      - "443:443" 
+      - 80:80
+      - 81:81
+      - 443:443 
     volumes:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt 
@@ -55,8 +55,8 @@ services:
       - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     ports:
-      - "3000:3000"
-      - "222:22"
+      - 3000:3000
+      - 222:22
     depends_on:
       - db
 
@@ -72,7 +72,8 @@ services:
     volumes:
       - ./gitea/postgres:/var/lib/postgresql/data
 
-  
+  # pihole staat in aparte subfolder - starten vanaf daar
+  #
   # pihole:
   #   image: pihole/pihole:latest
   #   container_name: pihole
