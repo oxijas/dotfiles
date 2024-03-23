@@ -17,7 +17,6 @@ alias mi='micro'
 alias please='sudo'
 alias cdh="cd ~"
 alias cdc="cd ~/.config"
-alias hx="helix"
 alias pacclean="sudo pacman -Scc"
 
 # git 
