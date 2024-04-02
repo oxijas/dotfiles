@@ -1,17 +1,12 @@
-version: "3.8" 
+version: "3" 
 # volumes lokale_folder:folder_in_container
 # starten: docker compose up -d
 # docker container prune = verwijdert alle gestopte containers
 # docker compose down removes also containers after stopping and volumes, unless volumes are declared external
 #  port:  host: in container
 
-networks:
-  gitea:
-    external: false
-
 services:
-
-  portainer:
+  portainer: 
     image: portainer/portainer-ce:latest
     container_name: portainer
     restart: unless-stopped
@@ -20,7 +15,7 @@ services:
       - 9000:9000
       - 8000:8000
     volumes:
-      - ./portainer/data:/data
+      - ./portdata:/data
       - /var/run/docker.sock:/var/run/docker.sock
 
   nginx:
@@ -34,42 +29,36 @@ services:
     volumes:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt 
-      #- /etc/letsencrypt:/etc/letsencrypt
 
-  gitea:
-    image: gitea/gitea:1.21.7
-    container_name: gitea
-    environment:
-      - USER_UID=1000
-      - USER_GID=1000
-      - GITEA__database__DB_TYPE=postgres
-      - GITEA__database__HOST=db:5432
-      - GITEA__database__NAME=gitea
-      - GITEA__database__USER=gitea
-      - GITEA__database__PASSWD=gitea
-    restart: always
-    networks:
-      - gitea
-    volumes:
-      - ./gitea/data:/data
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    restart: unless-stopped
     ports:
-      - 3000:3000
-      - 222:22
-    depends_on:
-      - db
-
-  db:
-    image: postgres:14
-    restart: always
+      - 53:53/tcp
+      - 53:53/udp
+      - 90:80
     environment:
-      - POSTGRES_USER=gitea
-      - POSTGRES_PASSWORD=gitea
-      - POSTGRES_DB=gitea
-    networks:
-      - gitea
+      TZ: Europe/Amsterdam
+      PIHOLE_DNS_1: 1.1.1.1
+      PIHOLE_DNS_2: 1.0.0.1  #Cloudflare
+      DHCP_ACTIVE: false  # wel of niet DHCP aanzetten
+      DNSMASQ_LISTENING: all
+      DNS_FQDN_REQUIRED: true
+      DNS_BOGUS_PRIV: true
+      DNSSEC: false
+      IPv6: false
+      PIHOLE_DOMAIN: piholegang
+      #REV_SERVER: true
+      #REV_SERVER_DOMAIN: myrouter.home
+      #REV_SERVER_CIDR: 192.168.1.0/24
+      #REV_SERVER_TARGET: 192.168.1.1
+      WEBTHEME: default-dark
+      WEBPASSWORD: ''
+    dns:
+      - 127.0.0.1
     volumes:
-      - ./gitea/postgres:/var/lib/postgresql/data
+      - ./etc-pihole:/etc/pihole
+      - ./etc-dnsmasq.d:/etc/dnsmasq.d
 
-
+ 
