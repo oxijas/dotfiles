@@ -59,6 +59,4 @@ services:
       - 127.0.0.1
     volumes:
       - ./etc-pihole:/etc/pihole
-      - ./etc-dnsmasq.d:/etc/dnsmasq.d
-
- 
+      - ./etc-dnsmasq.d:/etc/dnsmasq.d 
