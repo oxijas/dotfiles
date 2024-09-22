@@ -9,9 +9,9 @@ zshrc:~/.config/zsh/.zshrc
 zshenv:~/.zshenv
 mcini:~/.config/mc/ini
 mckeymap:~/.config/mc/mc.keymap
-nvim:~/.config/nvim/init.lua
-nvimkey:~/.config/nvim/lua/keymap.lua
-nvimopt:~/.config/nvim/lus/options.lua
+nvimplug:~/.config/nvim/lua/core/plugins.lua
+nvimkey:~/.config/nvim/lua/core/keymap.lua
+nvimopt:~/.config/nvim/lua/core/options.lua
 herbstluftwm:~/.config/herbstluftwm/autostart
 spectrwm:~/.config/spectrwm/spectrwm.conf
 promptzsh:~/.config/zsh/plugins/jgprompt.zsh-theme
