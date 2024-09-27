@@ -18,6 +18,7 @@ alias please='sudo'
 alias cdh="cd ~"
 alias cdc="cd ~/.config"
 alias pacclean="sudo pacman -Scc"
+alias y="yazi"
 
 # git 
 alias gst='git status'
