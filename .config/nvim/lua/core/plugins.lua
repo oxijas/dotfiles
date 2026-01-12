@@ -13,9 +13,9 @@ local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
    use 'wbthomason/packer.nvim'
-	use 'ayu-theme/ayu-vim'
+	--use 'ayu-theme/ayu-vim'
 	use 'christoomey/vim-tmux-navigator'
-   --use 'navarasu/onedark.nvim' -- Theme inspired by Atom
+    use 'navarasu/onedark.nvim' -- Theme inspired by Atom
 	use 'nvim-lualine/lualine.nvim' -- Fancier statusline	
 	use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
 	use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
